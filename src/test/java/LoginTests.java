@@ -44,7 +44,7 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
-    
+
     @Test
     public void loginValidEmailPasswordTest(){
         //      Added ChromeOptions argument below to fix websocket error
@@ -108,6 +108,8 @@ public class LoginTests extends BaseTest {
 
         driver.quit();
     }
+
+
 
 
 }
