@@ -104,7 +104,7 @@ public class LoginTests extends BaseTest {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://testpro.io/
 
         driver.quit();
     }
