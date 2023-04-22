@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework16 {
+public class Homework16 extends BaseTest {
     @Test
     public void registrationNavigation(){
         //WebDriver driver = new ChromeDriver();
