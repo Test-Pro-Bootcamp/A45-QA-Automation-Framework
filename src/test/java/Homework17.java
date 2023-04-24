@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework17 {
+public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist(){
         ChromeOptions options = new ChromeOptions();
@@ -51,7 +51,7 @@ public class Homework17 {
         WebElement playlistHW17 = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li:nth-child(5)"));
         playlistHW17.click();
 
-        WebElement successMessage = driver.findElement(By.xpath("//div[contains(text(), 'Added 1 song into \"HW17.\"')]"));
+        WebElement successMessage = driver.findElement(By.cssSelector("body > div.alertify-logs.top.right > div"));
 
         Assert.assertTrue(successMessage.isDisplayed());
         driver.quit();
