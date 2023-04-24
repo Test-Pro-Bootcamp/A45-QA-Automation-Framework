@@ -20,8 +20,7 @@ public class BaseTest {
     public void setupBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
     @AfterMethod
@@ -45,5 +44,32 @@ public class BaseTest {
 
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
+    }
+    public static void searchSong (String songTtile) {
+        WebElement searchField = driver.findElement(By.cssSelector("[type='search']"));
+        searchField.click();
+        searchField.sendKeys(songTtile);
+    }
+    public static void clickViewAllButton() throws InterruptedException {
+        WebElement viewAllButton = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
+        viewAllButton.click();
+        Thread.sleep(2000);
+    }
+
+    public static void clickFirstSong() throws InterruptedException {
+        WebElement firstTitle = driver.findElement(By.cssSelector("section#songResultsWrapper tr.song-item td.title"));
+        firstTitle.click();
+        Thread.sleep(2000);
+    }
+    public static void addToPlaylist() throws InterruptedException {
+        WebElement addToButton = driver.findElement(By.cssSelector(".btn-add-to"));
+        addToButton.click();
+        WebElement playlistNewName = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//section[@class='existing-playlists']/ul/li[5]"));
+        playlistNewName.click();
+        Thread.sleep(2000);
+    }
+    public String getNotificationMessage() {
+        WebElement notificationMessage = driver.findElement(By.cssSelector(".success"));
+        return(notificationMessage.getText());
     }
 }
