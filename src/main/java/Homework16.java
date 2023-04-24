@@ -1,3 +1,4 @@
+import BaseTest.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import java.time.Duration;
 public class Homework16 extends BaseTest {
     @Test
     public static void registrationNavigation() {
-        //Added ChromeOptions argument below to fix websocket error
+        //Added ChromeOptions argument below
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
