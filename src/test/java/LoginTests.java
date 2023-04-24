@@ -17,7 +17,7 @@ public class LoginTests extends BaseTest {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
             String url = "https://bbb.testpro.io/";
-            driver.get(url);
+
 
             WebElement regLink = driver.findElement(By.cssSelector("button[type='submit']"));
             regLink.click();
