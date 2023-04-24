@@ -9,6 +9,12 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+    //@Test
+    public static void registrationNavigation(){
+        if (System.getProperty("os.name").toLowerCase().contains("win")){
+            System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+        }
+    }
 
     @Test
     public void loginInvalidEmailValidPasswordTest(){
