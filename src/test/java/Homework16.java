@@ -23,7 +23,7 @@ public class Homework16 extends BaseTest {
         driver.get(url);
 
         // Steps
-        WebElement registration = driver.findElement(By.cssSelector("//a[@id=\"hel\"]"));
+        WebElement registration = driver.findElement(By.id("//a[@id=\"hel\"]"));
        registration.click();
 
         // Expected Result
