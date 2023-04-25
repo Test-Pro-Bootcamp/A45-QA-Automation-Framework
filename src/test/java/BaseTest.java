@@ -54,6 +54,29 @@ public class BaseTest {
         searchField.sendKeys("Samurai");
         Thread.sleep(2000);
     }
+    public void clickViewAllButton() throws InterruptedException {
+        WebElement viewAllButton = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
+        viewAllButton.click();
+        Thread.sleep(2000);
+    }
+    public void selectFirstSongInSearch() throws InterruptedException {
+        WebElement firstSongInSearch = driver.findElement(By.cssSelector("#songResultsWrapper > div > div > div.item-container > table > tr"));
+        firstSongInSearch.click();
+        Thread.sleep(2000);
+    }
+    public void addToInSearch() throws InterruptedException {
+        WebElement addToInSearch = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/span/button[2]"));
+        addToInSearch.click();
+        Thread.sleep(1000);
+    }
+    public void chooseTestProPlaylistInSearch(){
+        WebElement testProPlaylistInSearch = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[1]/ul/li[59]"));
+        testProPlaylistInSearch.click();
+    }
+    public String getNotificationInSearch(){
+        WebElement notificationInSearch = driver.findElement(By.cssSelector("div.success.show"));
+        return notificationInSearch.getText();
+    }
     public void clickAllSongs() throws InterruptedException {
         WebElement allSongsOption = driver.findElement(By.cssSelector("a[class='songs']"));
         allSongsOption.click();
@@ -72,7 +95,7 @@ public class BaseTest {
     public void chooseTestProPlaylistName() throws InterruptedException {
         WebElement playlistName = driver.findElement(By.xpath("//*[@id='songsWrapper']/header/div[3]/div/section[1]/ul/li[55]"));
         playlistName.click();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
     public String getNotificationText(){
         WebElement notificationElement = driver.findElement(By.cssSelector("div[class='alertify-logs top right']"));  //"div.success.show"
