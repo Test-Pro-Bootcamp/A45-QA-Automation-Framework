@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 @Test
 public class Homework17 extends BaseTest{
+    @Test
     public void addSongToPlaylist() throws InterruptedException {
         String expectedNotificationText = "Added 1 song into";
         openLogInPage();
@@ -22,6 +23,7 @@ public class Homework17 extends BaseTest{
 
 
 }
+    @Test
     public void searchSong(String songname) throws InterruptedException {
         WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
         searchField.clear();
@@ -30,26 +32,31 @@ public class Homework17 extends BaseTest{
         Thread.sleep(2000);
 
     }
+    @Test
     public void clickViewAllButton()  throws InterruptedException  {
         WebElement buttonViewAll = driver.findElement(By.cssSelector("section.songs h1 button"));
         buttonViewAll.click();
         Thread.sleep(2000);
     }
+    @Test
     public void selectFirstSongFromSearchResult()  throws InterruptedException {
         WebElement firstSongFromList = driver.findElement(By.cssSelector("#songResultsWrapper td.title"));
         firstSongFromList.click();
         Thread.sleep(2000);
     }
+    @Test
     public void clickAddToButton() throws InterruptedException  {
         WebElement buttonAddTo = driver.findElement(By.cssSelector("button.btn-add-to"));
         buttonAddTo.click();
         Thread.sleep(2000);
     }
+    @Test
     public void choosePlayListToAdd()  throws InterruptedException {
         WebElement uniquePlayList = driver.findElement(By.xpath("// section[@id='songResultsWrapper']//li[contains(text(),'kristina.matskaylo')]"));
         uniquePlayList.click();
         Thread.sleep(2000);
     }
+         @Test
         public String actualNotificationText ()  {
         WebElement getActualNotificationText = driver.findElement(By.cssSelector("div.success.show"));
         return getActualNotificationText.getText();
