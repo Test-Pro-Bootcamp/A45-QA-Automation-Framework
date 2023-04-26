@@ -17,20 +17,19 @@ public class Homework17 extends BaseTest{
         clickAddToButton();
         choosePlayListToAdd();
         Assert.assertTrue(actualNotificationText().contains(expectedNotificationText));
-
-
-
-
-}
-
-    public void searchSong(String songname) throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
-        searchField.clear();
-        searchField.sendKeys(songname);
-        searchField.click();
-        Thread.sleep(2000);
-
     }
+
+
+
+        public void searchSong (String songname) throws InterruptedException {
+            WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+            searchField.clear();
+            searchField.sendKeys(songname);
+            searchField.click();
+            Thread.sleep(2000);
+        }
+
+
     public void clickViewAllButton()  throws InterruptedException  {
         WebElement buttonViewAll = driver.findElement(By.cssSelector("section.songs h1 button"));
         buttonViewAll.click();
