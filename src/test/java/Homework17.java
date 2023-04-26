@@ -10,7 +10,6 @@ public class Homework17 extends BaseTest{
     @Test
     public void addSongToPlaylist() throws InterruptedException {
         String mPlayList = "TestPlaylist";
-        //To check for notification
         String mNotficationText="Added 1 song into \"" + mPlayList +"."+ "\"";
         navigateToPage();
         provideEmail("latha.baliga@testpro.io");
