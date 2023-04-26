@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -71,5 +73,26 @@ public class BaseTest {
     public String getNotificationMessage() {
         WebElement notificationMessage = driver.findElement(By.cssSelector(".success"));
         return(notificationMessage.getText());
+    }
+
+    public static void clickPlayNextSongButton() throws InterruptedException{
+        WebElement playNextSongButton = driver.findElement(By.cssSelector("[title='Play next song']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(playNextSongButton).perform();
+        playNextSongButton.click();
+        Thread.sleep(2000);
+    }
+
+    public static void clickPlaySongButton() throws InterruptedException {
+        WebElement playSongButton = driver.findElement(By.cssSelector(".album-thumb-wrapper .fa-play"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(playSongButton).perform();
+        playSongButton.click();
+        Thread.sleep(2000);
+    }
+
+    public static void idDisplayedSoundBars() {
+        WebElement sondBars = driver.findElement(By.cssSelector("[alt='Sound bars']"));
+        Assert.assertTrue(sondBars.isDisplayed());
     }
 }
