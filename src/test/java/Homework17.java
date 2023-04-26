@@ -8,18 +8,31 @@ import java.time.Duration;
 
 public class Homework17 extends BaseTest{
     @Test
-    public void addSongToPlaylist(){
-        String mNotficationText="Added 1 song into"; //TestPlaylist"
+    public void addSongToPlaylist() throws InterruptedException {
+        String mPlayList = "TestPlaylist";
+        String mNotficationText="Added 1 song into \"" + mPlayList +"."+ "\"";
         navigateToPage();
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("latha.baliga@testpro.io");
+        providePassword("1te$t$tudent");
         clickSubmit();
+        Thread.sleep(2000);
+
         searchSong("dark");
+        Thread.sleep(2000);
+
         clickViewAllButton();
+        Thread.sleep(2000);
+
         clickFirstSongResult();
+        Thread.sleep(2000);
+
         clickAddToButton();
+        Thread.sleep(2000);
+
         choosePlaylist();
-        Assert.assertTrue(getNotificationText().contains(mNotficationText));
+        Thread.sleep(2000);
+
+      Assert.assertEquals(getNotificationText(),mNotficationText);
 
     }
 }

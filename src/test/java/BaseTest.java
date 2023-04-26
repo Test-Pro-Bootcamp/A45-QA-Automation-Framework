@@ -83,7 +83,7 @@ public class BaseTest {
         choosePlaylistElement.click();
     }
     public String getNotificationText(){
-        WebElement notificationText = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement notificationText = driver.findElement(By.cssSelector("div.success.show")); ////div[@class='alertify-logs top right']
         return notificationText.getText();
     }
 
