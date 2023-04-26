@@ -58,7 +58,7 @@ public void navigatePage(){
          fillTitle.sendKeys("title");
          WebElement fillText=driver.findElement(By.cssSelector("input[name='value[]']"));
          fillText.sendKeys("good");
-         WebElement saveSong=driver.findElemnet(By.cssSelector("form[data-testid='create-smart-playlist-form'] button[type='submit']"));
+         WebElement saveSong=driver.findElement(By.cssSelector("form[data-testid='create-smart-playlist-form'] button[type='submit']"));
          saveSong.click();
 
      }
@@ -67,6 +67,6 @@ public void navigatePage(){
      public void verifySongPlaylist(){
 
 WebElement verifySong=driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > section:nth-child(2) > section:nth-child(7) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)")).
-     Assert.assert.Equals("Added 1 song into playlist",verifySong);
+     Assert.assertEquals( driver.getTitle(),"Added 1 song into playlist");
 }
 }
