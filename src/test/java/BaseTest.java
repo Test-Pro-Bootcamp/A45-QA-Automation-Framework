@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 import java.util.UUID;
@@ -15,30 +16,33 @@ public class BaseTest {
 
     public static WebDriver driver = null;
 
-    public static String url = "https://bbb.testpro.io/";
+    public static String url = "";
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
+
     @BeforeMethod
-    public void launchBrowser() {
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notification", "--remote-allow-origins=*", "--incognito", "--start-maximized");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+        driver.get(url);
+        provideEmail("andrei.bryliakov@testpro.io");
+        providePassword("te$t$tudent1");
+        clickSubmit();
     }
 
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
-    }
-
-    public static void navigateToPage() {
-        driver.get(url);
     }
 
     public static void provideEmail(String email) {

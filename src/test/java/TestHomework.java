@@ -9,7 +9,6 @@ public class TestHomework extends BaseTest{
     public void testMethod() throws InterruptedException {
         String playlistName = "kz-new playlist";
 
-        navigateToPage();
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
