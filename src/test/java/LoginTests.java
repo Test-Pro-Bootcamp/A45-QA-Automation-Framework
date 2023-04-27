@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
         providePassword(password);
         clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbbb.testpro.io/
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
@@ -30,7 +30,7 @@ public class LoginTests extends BaseTest {
         providePassword("");
         clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbbb.testpro.io/
     }
     public static void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
