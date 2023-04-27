@@ -21,6 +21,9 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+    protected static void navigateToPage() {
+        driver.get("baseURL");
+    }
     @BeforeMethod
     @Parameters({"baseURL"})
     static void setupBrowser(String baseURL){
