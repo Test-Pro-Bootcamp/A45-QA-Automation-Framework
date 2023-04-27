@@ -40,16 +40,13 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
-        navigateToPage();
+        driver.get(url);
     }
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
 
-    public static void navigateToPage() {
-        driver.get(url);
-    }
 
     public static void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
