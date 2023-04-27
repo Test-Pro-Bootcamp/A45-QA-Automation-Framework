@@ -98,6 +98,33 @@ public class BaseTest {
         playlistName.click();
         Thread.sleep(3000);
     }
+    public void findTestProPlaylistHome() throws InterruptedException {
+        WebElement testProPlaylistHome = driver.findElement(By.cssSelector("a[href='#!/playlist/54169']"));
+        testProPlaylistHome.click();
+        Thread.sleep(2000);
+    }
+    public void goToTestProPlaylistElement(){
+        WebElement testProPlaylistElement = driver.findElement(By.cssSelector("section[id='playlistWrapper']"));
+    }
+    public void clickFirstSongInTestProPlaylist() throws InterruptedException {
+        WebElement firstSongInTestProPlaylist = driver.findElement(By.xpath("//*[@id='playlistWrapper']/div/div/div[1]/table/tr[1]"));
+        firstSongInTestProPlaylist.click();
+        Thread.sleep(2000);
+    }
+    public void clickPlayButton() throws InterruptedException{
+        WebElement playButton = driver.findElement(By.cssSelector("span[class='play']>i[class='fa fa-play']"));
+        playButton.click();
+        Thread.sleep(2000);
+    }
+    public void clickNextSong() throws InterruptedException {
+        WebElement nextSong = driver.findElement(By.cssSelector("i[class='next fa fa-step-forward control']"));
+        nextSong.click();
+        Thread.sleep(2000);
+    }
+    public void validateTheSoundBar() throws InterruptedException {
+        WebElement theSoundBar = driver.findElement(By.cssSelector("div[data-testid='sound-bar-play']"));
+        Thread.sleep(3000);
+    }
     public String getNotificationText(){
         WebElement notificationElement = driver.findElement(By.cssSelector("div[class='alertify-logs top right']"));  //"div.success.show"
         return notificationElement.getText();
