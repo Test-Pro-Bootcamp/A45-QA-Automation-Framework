@@ -40,13 +40,19 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        navigateToPage();//method call
+        mySampleMethod();//another method call
+        // we have a method inside a method, our @beforemethod launchBrowser will now run the called methods in line 43 and 44
     }
+    public void mySampleMethod(){
+        //insert code to perform
+    }
+
 
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
-
     public static void navigateToPage() {
         driver.get(url);
     }
