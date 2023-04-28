@@ -85,4 +85,16 @@ public class BaseTest {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         avatarIcon.click();
     }
+
+    public void playaSong(){
+        //Click «Play next song» (media player controls),
+        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        playNextButton.click();
+
+        //then the Play button, to play a song
+        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+        playButton.click();
+
+    }
+
 }
