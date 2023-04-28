@@ -5,34 +5,33 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
 public class BaseTest {
     public static WebDriver driver = null;
+    public static String url = "";
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
-    public static void launchBrowser(){
+    @Parameters({"BaseURL"})
+    public static void launchBrowser(String BaseURL){
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+        driver.get(url);
     }
     @AfterMethod
     public static void closeBrowser(){
         driver.quit();
     }
-    public void openLoginUrl(){
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-    }
+    
     public void inputEmail(){
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
@@ -128,5 +127,15 @@ public class BaseTest {
     public String getNotificationText(){
         WebElement notificationElement = driver.findElement(By.cssSelector("div[class='alertify-logs top right']"));  //"div.success.show"
         return notificationElement.getText();
+    }
+    public void clickPlaylistSvyeta() throws InterruptedException {
+        WebElement playlistSvyeta = driver.findElement(By.cssSelector("#playlists > ul > li:nth-child(12) > a"));
+        playlistSvyeta.click();
+        Thread.sleep(2000);
+    }
+    public void clickRedBtnDeletePlaylist() throws InterruptedException {
+        WebElement redBtnDeletePlaylist = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
+        redBtnDeletePlaylist.click();
+        Thread.sleep(2000);
     }
 }
