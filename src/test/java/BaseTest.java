@@ -12,6 +12,16 @@ import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
+    public void login(String email, String password){
+        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        emailField.sendKeys(email);
+
+        WebElement passwordField = driver.findElement(By.cssSelector("[type = 'password']"));
+        passwordField.sendKeys(password);
+
+        WebElement submitButton = driver.findElement(By.cssSelector("[type = 'submit']"));
+        submitButton.click();
+    }
 
     public static WebDriver driver = null;
 
