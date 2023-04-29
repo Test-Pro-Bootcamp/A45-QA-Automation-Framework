@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -28,6 +29,24 @@ public class BaseTest {
                 {"demo@class.com", ""},
                 {"", ""}
         };
+    }
+
+    public static void isAvatarDisplayed() {
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
+    }
+
+    public static boolean isSongPlaying() {
+        WebElement soundbar = driver.findElement(By.xpath("//div[@data-test='soundbars']"));
+        return soundbar.isDisplayed();
+    }
+
+    public static void playNextSong() {
+        WebElement playNextBtn = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playBtn = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+        playNextBtn.click();
+        playBtn.click();
     }
 
     @BeforeMethod
