@@ -16,46 +16,57 @@ import java.time.Duration;
 public class BaseTest {
     public static WebDriver driver = null;
     public static ChromeOptions optionC;
-    public WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
+    static WebDriverWait wait;
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeMethod
     @Parameters({"baseURL"})
-    static void setupBrowser(String baseURL){
+    static void setupBrowser(String baseURL) {
         optionC = new ChromeOptions();
         optionC.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
         driver = new ChromeDriver(optionC);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().minimize();
         driver.get(baseURL);
     }
+
     @AfterMethod
     public static void tearDownBrowser() {
         driver.quit();
     }
-    public void logIn(String email,String password) throws InterruptedException {
+
+    public void logIn(String email, String password) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
         emailField.clear();
         emailField.sendKeys(email);
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
         passwordField.clear();
         passwordField.sendKeys(password);
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
     }
-    public void choosePlaylist(){
-        WebElement playlistToDelete = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']")));
-        playlistToDelete.click();
+
+    public void choosePlaylist() {
+        WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
+        //playlistToDelete.click();
     }
-    public void deleteButton(){
-        WebElement deletePlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist")));
-        deletePlaylist.click();
+
+    public void deleteButton() {
+        WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist"))).click();
+        // deletePlaylist.click();
     }
-    public String confirmDelete(){
-        WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
-        return deleteConfirmation.getText();
-    }
+
+  //  public String confirmDelete() {
+      //  WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
+     //   return deleteConfirmation.getText();
+   // }
 }
