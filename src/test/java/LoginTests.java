@@ -1,5 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -31,10 +29,5 @@ public class LoginTests extends BaseTest {
         clickSubmit();
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
-    }
-    public static void isAvatarDisplayed() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
     }
 }
