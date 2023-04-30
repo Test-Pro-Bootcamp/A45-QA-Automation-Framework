@@ -7,7 +7,6 @@ public class Homework18 extends BaseTest {
     @Test
     public void playNextSong() throws InterruptedException {
 
-        openLoginUrl();
         inputEmail();
         inputPassword();
         clickLogin();
