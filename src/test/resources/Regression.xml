@@ -3,13 +3,15 @@
 
 <suite name="TestNG">
 
-    <test name="Example Test" preserve-order="false">
+    <test name="delete Playlist" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
             <class name="BaseTest"/>
             <class name="LoginTests"/>
             <class name="TestHomework"/>
             <class name="ProfileTests"/>
+            <class name="Homework19"/>
+
         </classes>
     </test>
 </suite>
