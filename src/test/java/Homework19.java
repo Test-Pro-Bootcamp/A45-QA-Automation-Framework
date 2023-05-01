@@ -1,20 +1,17 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
-
 import java.time.Duration;
 
-
 public class Homework19 extends BaseTest {
-
 
     public static void clickPlaylist() {
         WebElement clickPlaylist = driver.findElement(By.xpath ("//*[@id=\"playlists\"]/ul/li/a[contains(text(), \"My List\")]"));
         clickPlaylist.click();
     }
+
     public static void createPlaylist() {
         WebElement createPlaylist = driver.findElement(By.cssSelector ("i[title='Create a new playlist']"));
         createPlaylist.click();
@@ -26,19 +23,12 @@ public class Homework19 extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         newPlaylistInput.sendKeys("My List");
         newPlaylistInput.sendKeys(Keys.RETURN);
-
     }
-
 
     public static void clickRedButton() {
         WebElement clickRedButton = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
         clickRedButton.click();
     }
-    //public static void deletePlaylist() {
-    // WebElement deletePlaylist = driver.findElement(By.cssSelector("button[class='ok']"));
-    // deletePlaylist.click();
-    // Thread.sleep(2000);
-    //}
 
     @Test
     public void deletePlaylist() throws InterruptedException {
@@ -53,14 +43,7 @@ public class Homework19 extends BaseTest {
         clickRedButton();
         Thread.sleep(2000);
 
-
-
-
         WebElement deletePlaylistNotif = driver.findElement(By.cssSelector("div.success.show"));
         Assert.assertEquals(deletePlaylistNotif.getText(), "Deleted playlist \"My List.\"");
-
-
     }
-
-
 }
