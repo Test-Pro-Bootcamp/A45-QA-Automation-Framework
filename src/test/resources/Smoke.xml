@@ -6,9 +6,9 @@
     <test name="Example Test" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="Homework19">
+            <class name="Homework20">
                 <methods>
-                <include name="deletePlaylistSvyeta"/>
+                <include name="playFirstSongInAllSongsPlaylist"/>
                 </methods>
             </class>
         </classes>
