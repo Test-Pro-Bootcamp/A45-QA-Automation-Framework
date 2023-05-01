@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +14,7 @@ import java.time.Duration;
 public class BaseTest {
     static WebDriverWait wait;
     public static WebDriver driver = null;
+    public Actions actions = null;
     public static String url = "";
     @BeforeSuite
     static void setupClass() {
@@ -49,6 +51,12 @@ public class BaseTest {
         WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
         //loginButton.click();
+    }
+    public void doubleClickSong(){
+        WebElement toDoubleClickSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
+                ("//*[@id='songsWrapper']/div/div/div[1]/table/tr[1]/td[2]")));
+        actions = new Actions(driver);
+        actions.doubleClick(toDoubleClickSong).perform();
     }
     
     public void inputEmail(){
@@ -146,6 +154,7 @@ public class BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//*[@id='playlistWrapper']/div/div/div[1]/table/tr[1]"))).click();
         //firstSongInTestProPlaylist.click();
+
     }
     public void clickPlayButton() throws InterruptedException{
         WebElement playButton = driver.findElement(By.cssSelector("span[title='Play or resume']"));

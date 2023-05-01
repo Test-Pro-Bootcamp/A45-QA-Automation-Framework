@@ -9,8 +9,7 @@ public class Homework20 extends BaseTest{
         validLoginCredentials();
         clickAllSongs();
         selectFirstSong();
-        clickNextSong();
-        clickPlayButton();
+        doubleClickSong();
         validateTheSoundBar();
     }
 }
