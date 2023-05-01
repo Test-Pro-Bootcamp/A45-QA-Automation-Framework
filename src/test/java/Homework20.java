@@ -14,7 +14,7 @@ public class Homework20 extends BaseTest{
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[title='Delete this playlist']"))).click();
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.ok"))).click();
-            
+
             wait.until(ExpectedConditions.textToBe(By.cssSelector("div.success.show"),"Deleted playlist \"HW17.\""));
         }
     }
