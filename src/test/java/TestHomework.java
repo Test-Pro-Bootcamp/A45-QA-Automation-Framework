@@ -13,6 +13,7 @@ public class TestHomework extends BaseTest{
         clickSubmit();
         Thread.sleep(2000);
 
+
         WebElement search = driver.findElement(By.cssSelector("[type='search']"));
         search.sendKeys("Pluto");
 

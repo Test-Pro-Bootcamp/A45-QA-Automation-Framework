@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -11,9 +13,17 @@ import java.util.UUID;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
+    public static WebDriver driver;
 
     public static String url = "";
+
+    static WebDriverWait wait;
+
+    static By emailField = By.cssSelector("input[type='email']");
+    static By passwordField = By.cssSelector("input[type='password']");
+    static By submitButton = By.cssSelector("button[type='submit']");
+
+
 
     @BeforeSuite
     static void setupClass() {
@@ -38,9 +48,15 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
-        navigateToPage();
+        driver.get(url);//navigateToPage();
+
+       provideEmail("andrei.bryliakov@testpro.io");
+       providePassword("te$t$tudent1");
+       clickSubmit();
+
     }
     @AfterMethod
     public void closeBrowser() {
@@ -52,22 +68,27 @@ public class BaseTest {
     }
 
     public static void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        WebElement emailElement = wait.until(ExpectedConditions.elementToBeClickable(emailField));
+        emailElement.sendKeys("andrei.bryliakov@testpro.io");
+        /*WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();//not needed
         emailField.clear();
-        emailField.sendKeys(email);
+        emailField.sendKeys(email);*/
     }
 
     public static void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        WebElement passwordElement = wait.until(ExpectedConditions.elementToBeClickable(passwordField));
+        passwordElement.sendKeys("te$t$tudent1");
+       /* WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.click();//not needed
         passwordField.clear();
-        passwordField.sendKeys(password);
+        passwordField.sendKeys(password);*/
     }
 
     public static void clickSubmit() {
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
+        WebElement submitButtonElement = wait.until(ExpectedConditions.elementToBeClickable(submitButton));
+       // WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitButtonElement.click();
     }
 
     public static void clickSaveButton() {
