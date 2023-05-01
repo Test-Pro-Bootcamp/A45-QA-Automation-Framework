@@ -34,6 +34,22 @@ public class BaseTest {
     public static void closeBrowser(){
         driver.quit();
     }
+
+    public void validLoginCredentials(){
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']"))).click();
+        emailField.clear();
+        emailField.sendKeys("demo@class.com");
+
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
+        passwordField.clear();
+        passwordField.sendKeys("te$t$tudent");
+
+        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
+        //loginButton.click();
+    }
     
     public void inputEmail(){
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
@@ -49,9 +65,8 @@ public class BaseTest {
     }
     public void clickLogin() throws InterruptedException{
         WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
         //loginButton.click();
-
     }
     public void searchSong() throws InterruptedException {
         WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
@@ -62,7 +77,8 @@ public class BaseTest {
     }
     public void clickViewAllButton() throws InterruptedException {
         WebElement viewAllButton = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
+                "input[type='button[data-test='view-all-songs-btn']']"))).click();
         //viewAllButton.click();
     }
     public void selectFirstSongInSearch() throws InterruptedException {
@@ -91,8 +107,8 @@ public class BaseTest {
         return notificationInSearch.getText();
     }
     public void clickAllSongs() throws InterruptedException {
-        WebElement allSongsOption = driver.findElement(By.cssSelector("a[class='songs']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[class='songs']"))).click();
+        WebElement allSongsOption = driver.findElement(By.xpath("//*[@id='sidebar']/section[1]/ul/li[3]/a"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sidebar']/section[1]/ul/li[3]/a"))).click();
         //allSongsOption.click();
     }
     public void selectFirstSong() throws InterruptedException {
@@ -132,15 +148,14 @@ public class BaseTest {
         //firstSongInTestProPlaylist.click();
     }
     public void clickPlayButton() throws InterruptedException{
-        WebElement playButton = driver.findElement(By.cssSelector("span[class='play']>i[class='fa fa-play']"));
+        WebElement playButton = driver.findElement(By.cssSelector("span[title='Play or resume']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
-                "span[class='play']>i[class='fa fa-play']"))).click();
+                "span[title='Play or resume']"))).click();
         //playButton.click();
     }
     public void clickNextSong() throws InterruptedException {
-        WebElement nextSong = driver.findElement(By.cssSelector("i[class='next fa fa-step-forward control']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
-                "i[class='next fa fa-step-forward control']"))).click();
+        WebElement nextSong = driver.findElement(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"))).click();
         //nextSong.click();
     }
     public void validateTheSoundBar() throws InterruptedException {

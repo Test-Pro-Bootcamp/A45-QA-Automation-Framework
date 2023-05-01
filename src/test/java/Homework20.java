@@ -4,15 +4,14 @@ import org.testng.annotations.Test;
 
 public class Homework20 extends BaseTest{
     @Test
-    public void deletePlaylistSvyeta() throws InterruptedException {
+    public void playFirstSongInAllSongsPlaylist() throws InterruptedException {
 
-        inputEmail();
-        inputPassword();
-        clickLogin();
-        clickPlaylistSvyeta();
-        clickRedBtnDeletePlaylist();
-        Assert.assertTrue(driver.findElement(By.cssSelector("div[class='alertify-logs top right']")) .isDisplayed());
-
+        validLoginCredentials();
+        clickAllSongs();
+        selectFirstSong();
+        clickNextSong();
+        clickPlayButton();
+        validateTheSoundBar();
     }
 }
 
