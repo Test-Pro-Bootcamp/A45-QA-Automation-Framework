@@ -25,7 +25,7 @@ public class BaseTest {
 
         return new Object[][] {
                 {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
+                {"yuliia.tkachenko@testpro.io", ""},
                 {"", ""}
         };
     }
