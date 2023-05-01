@@ -9,8 +9,12 @@
             <class name="LoginTests">
                 <methods>
                     <include name="loginInvalidEmailValidPasswordTest" />
+                    <include name="loginValidEmailEmptyPasswordTest"/>
                 </methods>
             </class>
+            <class name = "Homework20"/>
+            <class name = "BaseTest"/>
+
         </classes>
     </test>
 </suite>

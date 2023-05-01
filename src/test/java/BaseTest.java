@@ -4,12 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+
+
 
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
+static WebDriverWait wait;
 
     public static WebDriver driver = null;
 
@@ -41,6 +46,13 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         navigateToPage();
+        wait = new WebDriverWait((driver), Duration.ofSeconds(4));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //WebDriverWait wait = new WebDriverWait(WebDriverReference, TimeOut);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("locator")));
+
+
+
     }
     @AfterMethod
     public void closeBrowser() {
@@ -49,6 +61,16 @@ public class BaseTest {
 
     public static void navigateToPage() {
         driver.get(url);
+    }
+    public void login (String email, String password) {
+        WebElement emailField = driver.findElement(By.cssSelector("[type = 'email']"));
+        emailField.sendKeys (email);
+        WebElement passwordField = driver.findElement(By.cssSelector("[type = 'password']"));
+        passwordField.sendKeys (password);
+        WebElement submitButton = driver.findElement(By.cssSelector("[type = 'submit']"));
+        submitButton.click();
+
+
     }
 
     public static void provideEmail(String email) {
