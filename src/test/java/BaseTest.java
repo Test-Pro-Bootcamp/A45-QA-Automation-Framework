@@ -4,17 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
 public class BaseTest {
    public static WebDriver driver;
-   public  static String url;
+   //public  static String url;
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -22,20 +18,34 @@ public class BaseTest {
     @BeforeTest
     public static void setUpBrowser() {
 
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
+
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL){
+      /*  ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));*/
+
+        driver.get(BaseURL);
+    }
+
     @AfterTest
     public static void closeWeb(){
         driver.quit();
     }
-    public static void openLogInPage() {
-        url = "https://bbb.testpro.io";
-        driver.get(url);
-    }
+   // public static void openLogInPage() {
+        //url = "https://bbb.testpro.io";
+       // driver.get(url);
+   // }
     public static void enterEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         //emailField.click(); // no need
