@@ -8,7 +8,7 @@ public class Homework20 extends BaseTest{
     @Test
     public void deletePlaylist(){
         navigateToPage();
-        provideEmail("bolormaa.zanabaatar@testpro.io");
+        provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
         click(".playlist:nth-child(3)");
