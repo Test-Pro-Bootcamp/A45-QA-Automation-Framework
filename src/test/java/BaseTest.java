@@ -3,7 +3,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,8 @@ public class BaseTest {
 
     public static WebDriver driver = null;
     public static String url = "https://testpro.io/";
+
+    public static WebDriverWait wait;
 
     @BeforeSuite
     static void setupClass() {
@@ -24,6 +27,7 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
@@ -36,20 +40,24 @@ public class BaseTest {
     public static void navigateToPage (String BaseURL) {
         url = BaseURL;
         driver.get(url);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     public static void provideEmail (String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']"))).click();
+        //emailField.click();
         emailField.sendKeys(email);
     }
     public static void providePassword (String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
+        //passwordField.click();
         passwordField.sendKeys(password);
     }
     public static void clickSubmit () {
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
+        //submitButton.click();
     }
 
 }
