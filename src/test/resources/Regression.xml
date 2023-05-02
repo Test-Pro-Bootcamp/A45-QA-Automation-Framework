@@ -2,14 +2,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-
     <test name="Example Test" preserve-order="false">
+<<<<<<< Updated upstream:src/test/resources/Regression.xml
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
             <class name="BaseTest"/>
             <class name="LoginTests"/>
             <class name="TestHomework"/>
             <class name="ProfileTests"/>
+=======
+
+        <classes>
+
+
+            <class name="com.Home.CkeckWebTest"/>
+
+>>>>>>> Stashed changes:src/test/resources/TestNG.xml
         </classes>
     </test>
 </suite>
