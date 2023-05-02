@@ -11,6 +11,16 @@
 <!--                    <include name="loginInvalidEmailValidPasswordTest" />-->
 <!--                </methods>-->
 <!--            </class>-->
+            <class name="Homework17">
+                <methods>
+                    <include name="addSongToPlaylist" />
+                </methods>
+            </class>
+            <class name="Homework18">
+                <methods>
+                    <include name="playSong" />
+                </methods>
+            </class>
             <class name="Homework19">
                 <methods>
                     <include name="deletePlaylist" />
