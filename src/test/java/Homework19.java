@@ -13,7 +13,7 @@ import org.openqa.selenium.Keys;
 public class Homework19 extends BaseTest{
     @Test
     @Parameters ({"BaseURL"})
-    public static void deletePlaylist() throws InterruptedException {
+    public static void deletePlaylist() {
         navigateToPage(url);
         provideEmail("asdASD@mail.com");
         providePassword("te$t$tudent");
@@ -36,8 +36,9 @@ public class Homework19 extends BaseTest{
         WebElement newPlaylistName = driver.findElement(By.xpath("//section[@id='playlists']//input[@name='name']"));
         //newPlaylistName.click();
         newPlaylistName.sendKeys("NewPLaylist" + Keys.ENTER);
-        Thread.sleep(5000); //This Thread.sleep is needed for this test. In this 5 seconds one successful notification disappears so the other one can appear without interfering.
+        //Thread.sleep(5000); //This Thread.sleep is needed for this test. In this 5 seconds one successful notification disappears so the other one can appear without interfering.
 
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='success show']")));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]"))).click();
         //WebElement playlist = driver.findElement(By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]"));
         //playlist.click();
