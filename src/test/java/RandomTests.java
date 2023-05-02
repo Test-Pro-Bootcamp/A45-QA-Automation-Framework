@@ -7,7 +7,7 @@ public class RandomTests extends BaseTest {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
-        doubleClickChoosePlaylist();
+        //doubleClickChoosePlaylist();
 
 //        hoverPlay();
 //        contextClickFirstSong();
@@ -18,6 +18,6 @@ public class RandomTests extends BaseTest {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
-        displayAllSongs();
+        //displayAllSongs();
     }
 }

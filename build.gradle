@@ -32,3 +32,9 @@ task testRegression(type: Test) {
         suites "src/test/resources/Regression.xml"
     }
 }
+
+task testHomework20(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/Homework20.xml"
+    }
+}
