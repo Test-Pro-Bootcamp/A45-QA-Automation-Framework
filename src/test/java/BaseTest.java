@@ -54,8 +54,8 @@ public class BaseTest {
     }
 
     public void choosePlaylist() {
-        WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
+        WebElement playlistToDelete = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".playlist:nth-child(3)"))).click();
         //playlistToDelete.click();
     }
 
@@ -65,8 +65,8 @@ public class BaseTest {
         // deletePlaylist.click();
     }
     public void okDelete(){
-        WebElement deleteOkBtn = driver.findElement(By.cssSelector("[class='ok']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[class='ok']"))).click();
+        WebElement deleteOkBtn = driver.findElement(By.cssSelector("body > div.alertify > div > div > nav > button.ok"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.alertify > div > div > nav > button.ok"))).click();
     }
 
     public String confirmDelete() {
