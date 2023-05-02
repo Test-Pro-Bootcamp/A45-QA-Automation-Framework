@@ -2,6 +2,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,8 +15,8 @@ public class BaseTest {
 
     public static WebDriver driver = null;
     public static String url = "https://testpro.io/";
-
     public static WebDriverWait wait;
+    public static Actions actions;
 
     @BeforeSuite
     static void setupClass() {
@@ -27,13 +29,13 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterMethod
     public void closeBrowser () {
         driver.quit();
+
     }
     @BeforeMethod
     @Parameters({"BaseURL"})
@@ -41,6 +43,7 @@ public class BaseTest {
         url = BaseURL;
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
     }
     public static void provideEmail (String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
@@ -59,5 +62,4 @@ public class BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
         //submitButton.click();
     }
-
 }
