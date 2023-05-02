@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -17,7 +18,7 @@ public class BaseTest {
     public static WebDriver driver = null;
     public static ChromeOptions optionC;
     static WebDriverWait wait;
-
+    static Actions action = null;
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -29,6 +30,7 @@ public class BaseTest {
         optionC = new ChromeOptions();
         optionC.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
         driver = new ChromeDriver(optionC);
+        action = new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().minimize();
@@ -88,6 +90,21 @@ public class BaseTest {
         WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
         //playlistToDelete.click();
+    }
+
+    public static void enterNewName() {
+        WebElement newName = driver.findElement(By.cssSelector("input[data-test='new-playlist-name']"));
+    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-test='new-playlist-name']")));
+    action.doubleClick(newName).perform();
+    newName.clear();
+    newName.sendKeys("NewPlaylistName");
+
+    }
+
+    public static void editPlaylist() {
+        WebElement chooseEdit = driver.findElement(By.cssSelector("#playlists > ul > li:nth-child(3) > nav > ul > li:nth-child(1)"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists > ul > li:nth-child(3) > nav > ul > li:nth-child(1)")));
+        action.contextClick(chooseEdit).perform();
     }
 
 
