@@ -78,11 +78,18 @@ public class BaseTest {
         WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[1]/ul/li[5]"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[1]/ul/li[5]"))).click();
     }
+
     public static void deleteButton() {
         WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist"))).click();
         // deletePlaylist.click();
     }
+    public static void choosePlaylistToDelete() {
+        WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
+        //playlistToDelete.click();
+    }
+
 
     public String confirmDelete() {
         WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));

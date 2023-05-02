@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 public class Homework20 extends BaseTest{
     @Test
 
-  public static void Homework20(){
+  public static void Homework20test(){
 
         logIn("heavenmayhem@gmail.com","Everything2Me0628!");
         searchSong("Dark Days");
@@ -11,6 +11,7 @@ public class Homework20 extends BaseTest{
         selectSong();
         clickAddTo();
         choosePlaylist();
+        choosePlaylistToDelete();
         deleteButton();
 
 
