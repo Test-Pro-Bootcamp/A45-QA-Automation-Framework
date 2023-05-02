@@ -52,10 +52,9 @@ public class BaseTest {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);//navigateToPage();
-
-       provideEmail("andrei.bryliakov@testpro.io");
-       providePassword("te$t$tudent1");
-       clickSubmit();
+       //provideEmail("andrei.bryliakov@testpro.io");
+       //providePassword("te$t$tudent1");
+       //clickSubmit();
 
     }
     @AfterMethod
@@ -90,30 +89,38 @@ public class BaseTest {
        // WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submitButtonElement.click();
     }
+    static By saveButton = By.cssSelector("button.btn-submit");
 
     public static void clickSaveButton() {
-        WebElement saveButton = driver.findElement(By.cssSelector("button.btn-submit"));
-        saveButton.click();
+        WebElement saveButtonElement = wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+        //WebElement saveButton = driver.findElement(By.cssSelector("button.btn-submit"));
+        saveButtonElement.click();
     }
+    static By profileName = By.cssSelector("[name='name']");
 
     public static void provideProfileName(String randomName) {
-        WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
-        profileName.clear();
-        profileName.sendKeys(randomName);
+        WebElement profileNameElement = wait.until(ExpectedConditions.elementToBeClickable(profileName));
+        //WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
+        profileNameElement.clear();
+        profileNameElement.sendKeys(randomName);
     }
+    static By currentPassword = By.cssSelector("[name='current_password']");
 
     public static void provideCurrentPassword(String password) {
-        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
+        WebElement currentPasswordElement = wait.until(ExpectedConditions.elementToBeClickable(currentPassword));
+        //WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
+        currentPasswordElement.clear();
+        currentPasswordElement.sendKeys(password);
     }
 
     public static String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
+    static By avatarIcon = By.cssSelector("span.name");
 
     public static void clickAvatarIcon() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
-        avatarIcon.click();
+        WebElement avatarIconElement = wait.until(ExpectedConditions.elementToBeClickable(avatarIcon));
+        //WebElement avatarIcon = driver.findElement(By.cssSelector("span.name"));
+        avatarIconElement.click();
     }
 }
