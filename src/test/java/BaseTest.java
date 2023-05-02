@@ -64,9 +64,13 @@ public class BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist"))).click();
         // deletePlaylist.click();
     }
+    public void okDelete(){
+        WebElement deleteOkBtn = driver.findElement(By.cssSelector("[class='ok']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[class='ok']"))).click();
+    }
 
-  //  public String confirmDelete() {
-      //  WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
-     //   return deleteConfirmation.getText();
-   // }
+    public String confirmDelete() {
+        WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
+        return deleteConfirmation.getText();
+    }
 }
