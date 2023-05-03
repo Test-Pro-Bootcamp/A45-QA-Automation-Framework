@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,12 +23,13 @@ public class BaseTest {
     }
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public static void launchBrowser(String BaseURL){
+    public void launchBrowser(String BaseURL){
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        actions = new Actions(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);
@@ -55,7 +57,6 @@ public class BaseTest {
     public void doubleClickSong(){
         WebElement toDoubleClickSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
                 ("//*[@id='songsWrapper']/div/div/div[1]/table/tr[1]/td[2]")));
-        actions = new Actions(driver);
         actions.doubleClick(toDoubleClickSong).perform();
     }
     
@@ -136,41 +137,29 @@ public class BaseTest {
                 "//*[@id='songsWrapper']/header/div[3]/div/section[1]/ul/li[55]"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//*[@id='songsWrapper']/header/div[3]/div/section[1]/ul/li[55]"))).click();
-        //playlistName.click(};
     }
     public void findTestProPlaylistHome() throws InterruptedException {
         WebElement testProPlaylistHome = driver.findElement(By.cssSelector("a[href='#!/playlist/54169']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='#!/playlist/54169']"))).click();
-        //testProPlaylistHome.click();
-    }
-    public void goToTestProPlaylistElement(){
-        WebElement testProPlaylistElement = driver.findElement(By.cssSelector("section[id='playlistWrapper']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("section[id='playlistWrapper']"))).click();
-
     }
     public void clickFirstSongInTestProPlaylist() throws InterruptedException {
         WebElement firstSongInTestProPlaylist = driver.findElement(By.xpath(
                 "//*[@id='playlistWrapper']/div/div/div[1]/table/tr[1]"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//*[@id='playlistWrapper']/div/div/div[1]/table/tr[1]"))).click();
-        //firstSongInTestProPlaylist.click();
-
     }
     public void clickPlayButton() throws InterruptedException{
         WebElement playButton = driver.findElement(By.cssSelector("span[title='Play or resume']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(
                 "span[title='Play or resume']"))).click();
-        //playButton.click();
     }
     public void clickNextSong() throws InterruptedException {
         WebElement nextSong = driver.findElement(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"))).click();
-        //nextSong.click();
     }
     public void validateTheSoundBar() throws InterruptedException {
         WebElement theSoundBar = driver.findElement(By.cssSelector("div[data-testid='sound-bar-play']"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-testid='sound-bar-play']")));
-        Thread.sleep(3000);
     }
     public String getNotificationText(){
         WebElement notificationElement = driver.findElement(By.cssSelector("div[class='alertify-logs top right']"));
@@ -180,12 +169,25 @@ public class BaseTest {
     public void clickPlaylistSvyeta() throws InterruptedException {
         WebElement playlistSvyeta = driver.findElement(By.cssSelector("a[href='#!/playlist/54983']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='#!/playlist/54983']"))).click();
-        //playlistSvyeta.click();
-        //Thread.sleep(2000);
     }
     public void clickRedBtnDeletePlaylist() throws InterruptedException {
         WebElement redBtnDeletePlaylist = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='del btn-delete-playlist']"))).click();
-        //Thread.sleep(2000);
+    }
+    public void clickNewPlaylistIcon() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector
+                ("i[title='Create a new playlist']"))).click();
+    }
+    public void newPlaylistOption() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector
+                ("#playlists > nav > ul > li:nth-child(1)"))).click();
+    }
+    public void enterNewPlaylistName(){
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector
+               ("section#playlists>form>input[required='required']")));
+       WebElement addNewPlaylistName = driver.findElement(By.cssSelector
+               ("section#playlists>form>input[required='required']"));
+        addNewPlaylistName.sendKeys("Svyeta");
+        addNewPlaylistName.sendKeys(Keys.ENTER);
     }
 }
