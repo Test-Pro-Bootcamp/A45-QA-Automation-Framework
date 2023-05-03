@@ -50,7 +50,7 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod(enabled = false)
+    @AfterMethod//(enabled = false)
     public void closeBrowser() {
         driver.quit();
     }
@@ -98,7 +98,7 @@ public class BaseTest {
     }
 
     public static void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img.avatar")));
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.view-profile")));
         avatarIcon.click();
     }
 
