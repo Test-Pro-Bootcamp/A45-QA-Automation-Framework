@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class BaseTest {
-
+    public static WebDriverWait wait;
     public static WebDriver driver = null;
-    public static WebDriverWait wait = null;
+//    public static WebDriverWait wait = null;
     public static Actions actions = null;
 
     public static String url = "";
@@ -43,15 +43,15 @@ public class BaseTest {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-
         driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         actions = new Actions(driver);
         url = BaseURL;
         navigateToPage();
+        wait=new WebDriverWait(driver,Duration.ofSeconds(20));
     }
-    @AfterMethod(enabled = false)
+
+    @AfterMethod(enabled = true)
     public void closeBrowser() {
         driver.quit();
     }
