@@ -10,7 +10,7 @@ public class Homework20 extends BaseTest {
     String deleteNotifyMsg = "Deleted playlist";
 
     @Test
-    public void deletePlaylistTest() throws InterruptedException {
+    public void deletePlaylistTest()  {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
