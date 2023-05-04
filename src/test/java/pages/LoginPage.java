@@ -1,4 +1,4 @@
-package pom;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +17,7 @@ public class LoginPage extends BasePage {
         findElement(passwordField).sendKeys(password);
     }
     public void clickSubmit() {
-        findElement(submitBtn).click();
+        click(submitBtn);
     }
     public void login(){
         provideEmail("demo@class.com");

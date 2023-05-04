@@ -1,4 +1,4 @@
-package pom;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,8 +22,17 @@ public class BasePage {
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+    public void click (By locator) {
+        findElement(locator).click();
+    }
     public void doubleClick (By locator) {
         actions.doubleClick(findElement(locator)).perform();
     }
+    public void contextClick (By locator) {
+        actions.contextClick(findElement(locator)).perform();
+    }
+
+
+
 }
 
