@@ -43,7 +43,7 @@ public class BaseTest {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']"))).click();
         emailField.clear();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("svyeta@test.com");
 
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']"))).click();
@@ -64,7 +64,7 @@ public class BaseTest {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']"))).click();
         emailField.clear();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("svyeta@test.com");
     }
     public void inputPassword(){
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
@@ -189,5 +189,11 @@ public class BaseTest {
                ("section#playlists>form>input[required='required']"));
         addNewPlaylistName.sendKeys("Svyeta");
         addNewPlaylistName.sendKeys(Keys.ENTER);
+    }
+
+    public void doubleClickPlaylist(){
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='playlists']/ul/li[3]/a")));
+        WebElement clickPlaylist = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]/a"));
+        actions.doubleClick(clickPlaylist).perform();
     }
 }
