@@ -1,3 +1,6 @@
+import POM.HomePage;
+import POM.LoginPage;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,20 +18,13 @@ public class Homework21 extends BaseTest {
     @Parameters ({"BaseURL"})
     public static void renamePlaylist() {
 
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
         navigateToPage(url);
-        provideEmail("asdASD@mail.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-
-        WebElement playlist = driver.findElement(By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]"));
-        actions.doubleClick(playlist).perform();
-
-        WebElement setPlaylistName = driver.findElement(By.xpath("//section[@id='playlists']//input[@name='name']"));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//input[@name='name']")));
-        setPlaylistName.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
-        setPlaylistName.sendKeys("Renamed", Keys.ENTER);
-
-        WebElement successNotification = driver.findElement(By.xpath("//div[@class='success show']"));
-        Assert.assertTrue(successNotification.isDisplayed());
+        loginPage.login();
+        homePage.doubleClickPlaylist();
+        homePage.enterNewPlaylistName("NewPlaylist");
+        homePage.successShowNotificationDisplayed();
     }
 }

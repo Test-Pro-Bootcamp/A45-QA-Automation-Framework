@@ -1,5 +1,6 @@
 import POM.HomePage;
 import POM.LoginPage;
+import POM.PlaylistPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,11 +21,12 @@ public class Homework19 extends BaseTest{
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
 
         navigateToPage(url);
         loginPage.login();
         homePage.createNewPlaylist();
-        homePage.deletePlaylist();
+        playlistPage.deletePlaylist();
         homePage.successShowNotificationDisplayed();
     }
 }

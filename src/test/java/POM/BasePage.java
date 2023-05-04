@@ -22,14 +22,20 @@ public class BasePage {
     public BasePage (WebDriver givenDriver) {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        actions = new Actions(driver);
     }
 
     public void click (By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
     public WebElement findElement (By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void doubleClick (By locator) {
+        actions.doubleClick(findElement(locator)).perform();
     }
 
 }
