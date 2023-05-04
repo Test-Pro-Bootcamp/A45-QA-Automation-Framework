@@ -34,7 +34,6 @@ public class BaseTest {
                 {"", ""}
         };
     }
-
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) {
@@ -50,7 +49,7 @@ public class BaseTest {
         navigateToPage();
     }
 
-    @AfterMethod(enabled = false)
+    @AfterMethod//(enabled = false)
     public void closeBrowser() {
         driver.quit();
     }
