@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class Homework17 extends BaseTest {
 
     @Test
-    public void addSongToPlaylist() throws InterruptedException {
+    public void addSongToPlaylist() {
         navigateToPage();
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");

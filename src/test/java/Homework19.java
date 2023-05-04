@@ -34,7 +34,7 @@ public class Homework19 extends BaseTest {
     }
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
