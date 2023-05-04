@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest {
-    public static void renamePlaylist() throws InterruptedException {
+    public static void renamePlaylist() {
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li.playlist:nth-child(3)")));
         WebElement choosePlaylist = driver.findElement(By.cssSelector("li.playlist:nth-child(3)"));
@@ -26,7 +26,7 @@ public class Homework21 extends BaseTest {
     }
 
     @Test
-    public void renamePlaylistTest() throws InterruptedException {
+    public void renamePlaylistTest() {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
