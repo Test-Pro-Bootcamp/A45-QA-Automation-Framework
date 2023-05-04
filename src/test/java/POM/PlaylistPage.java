@@ -15,14 +15,13 @@ import java.time.Duration;
 import org.openqa.selenium.Keys;
 public class PlaylistPage extends BasePage {
 
+    By firstPlaylistFromList = By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]");
+    By deletePlaylistBtn = By.xpath("//section[@id='playlistWrapper']//button[@class='del btn-delete-playlist']");
+
     public PlaylistPage (WebDriver givenDriver) {super (givenDriver);}
 
-    public void deletePlaylist () {
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]"))).click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlistWrapper']//button[@class='del btn-delete-playlist']"))).click();
-
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
+    public void deleteEmptyPlaylist () {
+        click(firstPlaylistFromList);
+        click(deletePlaylistBtn);
     }
 }

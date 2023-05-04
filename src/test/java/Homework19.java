@@ -26,7 +26,7 @@ public class Homework19 extends BaseTest{
         navigateToPage(url);
         loginPage.login();
         homePage.createNewPlaylist();
-        playlistPage.deletePlaylist();
+        playlistPage.deleteEmptyPlaylist();
         homePage.successShowNotificationDisplayed();
     }
 }
