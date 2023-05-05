@@ -9,37 +9,34 @@ public class Homework21 extends BaseTest{
     @Test
     public void renamePlaylist() throws InterruptedException {
         validLoginCredentials();
-        clickRecentlyPlayed();
-        choosePlaylist();
-        editOptionButton();
+        choosePlaylist();        //let's comment these steps first and check the test behavior
+        clickEditOptionButton();
+        changePlaylistName();
         checkPlaylistExist();
     }
-    public void clickRecentlyPlayed(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector
-                ("a[href='#!/recently-played']"))).click();
-    }
+
     public void choosePlaylist(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
-                ("//*[@id='playlists']/ul/li[3]/a"))).click();
-        WebElement playlistName = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]/a"));
+        WebElement playlistName = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@id='playlists']/ul/li[3]/a")));
         actions.contextClick(playlistName).perform();
     }
-    public void editOptionButton(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                        (By.xpath(" //*[@id='playlists']/ul/li[3]/nav/ul/li[1]"))).click();
+    public void clickEditOptionButton(){
+        WebElement editOptionButton = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@id='playlists']/ul/li[3]/nav/ul/li[1]")));
+        editOptionButton.click();
     }
     public void changePlaylistName(){
-         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector
-                ("a[href='#!/playlist/55914']>input")));
-         WebElement inputRenamePlaylistField = driver.findElement(By.cssSelector
-                         ("a[href='#!/playlist/55914']>input"));
-         inputRenamePlaylistField.clear();
-         inputRenamePlaylistField.sendKeys("SNKim");
-         inputRenamePlaylistField.sendKeys(Keys.ENTER);
+        WebElement inputRenamePlaylistField = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.cssSelector("input[name='name']")));
+//      inputRenamePlaylistField.clear();//clear won't work since the playlist name field has an attribute of "required"
+//work around will be using sendkeys CTRL + A then hitting backspace or delete to remove current playlist name and replace with new name
+        inputRenamePlaylistField.sendKeys(Keys.chord(Keys.CONTROL,"A", Keys.BACK_SPACE));
+        inputRenamePlaylistField.sendKeys("SNKim");
+        inputRenamePlaylistField.sendKeys(Keys.ENTER);
      }
-     public boolean checkPlaylistExist(){
+     public void checkPlaylistExist(){
         WebElement playlistExistElement = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]/a"));
-        return playlistExistElement.isDisplayed();
+        playlistExistElement.isDisplayed();
      }
 }
 
