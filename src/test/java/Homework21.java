@@ -26,7 +26,7 @@ public class Homework21 extends BaseTest {
 
 public void enterNewPlaylistName(){
         WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));//removed extra paraenthesis
-    playlistInputField.sendKeys(Keys.chord(Keys.COMMAND,"a", Keys.DELETE));
+    playlistInputField.sendKeys(Keys.chord(Keys.COMMAND,"A")+ Keys.DELETE);
     playlistInputField.sendKeys(newPlaylistName);
     playlistInputField.sendKeys(Keys.ENTER);
 
