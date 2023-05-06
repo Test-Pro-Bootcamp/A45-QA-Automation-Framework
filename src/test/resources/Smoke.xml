@@ -11,6 +11,7 @@
                     <include name="loginInvalidEmailValidPasswordTest" />
                 </methods>
             </class>
+            <class name="Homework16"/>
         </classes>
     </test>
 </suite>
