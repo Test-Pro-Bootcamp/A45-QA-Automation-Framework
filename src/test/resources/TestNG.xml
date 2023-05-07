@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-<parameter name ="BaseUrl" value="https://bbb.testpro.io/"/>
     <test name="addSongToPlaylist" preserve-order="false">
+        <parameter name ="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
             <class name="homework17"/>
         </classes>
