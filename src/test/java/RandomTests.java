@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
 
-public class RandomTests extends BasePage {
+public class RandomTests extends BaseTest {
 
     @Test
     public void actionMethods() {

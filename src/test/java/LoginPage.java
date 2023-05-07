@@ -1,44 +1,25 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BasePage.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPasswordTest(String username, String password){
-
-        provideEmail(username);
-        providePassword(password);
-        clickSubmit();
-
-        Assert.assertEquals(driver.getCurrentUrl(), url); // https://bbb.testpro.io/
+    public LoginPage(WebDriver baseDriver){
+        super(baseDriver);
     }
 
-    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
-    public void loginValidEmailPasswordTest(){
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        isAvatarDisplayed();
+    public void provideEmail(String email){
+        getElement(By.cssSelector("input[type='email']")).sendKeys(email);
     }
 
-    @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public static void loginValidEmailEmptyPasswordTest() {
-        provideEmail("demo@class.com");
-        providePassword("");
-        clickSubmit();
-
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+    public void providePassword(String password){
+        getElement(By.cssSelector("input[type='password']")).sendKeys(password);
     }
-    public static void isAvatarDisplayed() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
+
+    public void clickSubmit(){
+        getElement(By.cssSelector("button[type='submit']")).click();
     }
 
     public void login(){
-        navigateToPage();
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
