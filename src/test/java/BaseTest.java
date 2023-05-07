@@ -34,6 +34,35 @@ public class BaseTest {
                 {"", ""}
         };
     }
+
+
+    public static void isAvatarDisplayed() {
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
+    }
+
+    public static void deletePl(String name) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format("//a[contains(text(),'%s')]", name)))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='del btn-delete-playlist']"))).click();
+        WebElement notif = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show'][2]")));
+        Assert.assertEquals(notif.getText(), String.format("Deleted playlist \"%s.\"", name));
+
+    }
+
+    public static void createPl(String name) {
+
+        WebElement plusBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@data-testid=\"sidebar-create-playlist-btn\"]")));
+        plusBtn.click();
+        WebElement newPlBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@data-testid=\"playlist-context-menu-create-simple\"]")));
+        newPlBtn.click();
+        WebElement namePlInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='name']")));
+        namePlInput.sendKeys(name);
+        namePlInput.submit();
+        WebElement notif = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
+        Assert.assertEquals(notif.getText(), String.format("Created playlist \"%s.\"", name));
+    }
+
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) {
@@ -42,8 +71,8 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         actions = new Actions(driver);
         url = BaseURL;
         navigateToPage();
@@ -131,9 +160,8 @@ public class BaseTest {
 
     // double click
     public void doubleClickChoosePlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         // double click
-        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         actions.doubleClick(playlist).perform();
     }
 }
