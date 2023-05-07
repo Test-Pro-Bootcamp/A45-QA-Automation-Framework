@@ -15,16 +15,16 @@ import java.util.List;
 import java.util.UUID;
 
 public class BaseTest {
-    public static WebDriver driver = null;
-    public static WebDriverWait wait = null;
-    public static Actions actions = null;
-    public static String url = "";
+    public WebDriver driver;
+    public  WebDriverWait wait;
+    public  Actions actions;
+    public  String url = "https://bbb.testpro.io/";
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
+/*
     @DataProvider(name="IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
 
@@ -34,20 +34,19 @@ public class BaseTest {
                 {"", ""}
         };
     }
-
+*/
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) {
+    public void launchBrowser() {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(8));
         actions = new Actions(driver);
-        url = BaseURL;
-        navigateToPage();
+        driver.get(url);
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @AfterMethod(enabled = false)
@@ -55,49 +54,55 @@ public class BaseTest {
         driver.quit();
     }
 
-    public static void navigateToPage() {
+    public  void navigateToPage() {
         driver.get(url);
     }
+    public void login(String email,String password){
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
 
-    public static void provideEmail(String email) {
+    }
+
+    public  void provideEmail(String email) {
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
+        //emailField.clear();
         emailField.sendKeys(email);
     }
 
-    public static void providePassword(String password) {
+    public  void providePassword(String password) {
         WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
-    public static void clickSubmit() {
+    public  void clickSubmit() {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
 
-    public static void clickSaveButton() {
+    public  void clickSaveButton() {
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
         saveButton.click();
     }
 
-    public static void provideProfileName(String randomName) {
+    public  void provideProfileName(String randomName) {
         WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         profileName.clear();
         profileName.sendKeys(randomName);
     }
 
-    public static void provideCurrentPassword(String password) {
+    public  void provideCurrentPassword(String password) {
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
         currentPassword.clear();
         currentPassword.sendKeys(password);
     }
 
-    public static String generateRandomName() {
+    public  String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
-    public static void clickAvatarIcon() {
+    public  void clickAvatarIcon() {
         WebElement avatarIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img.avatar")));
         avatarIcon.click();
     }
