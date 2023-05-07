@@ -42,7 +42,7 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
         url = BaseURL;
@@ -136,4 +136,9 @@ public class BaseTest {
         WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         actions.doubleClick(playlist).perform();
     }
-}
+    public String getPlaylistName() {
+        WebElement playlistElement = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        //WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='" + playlistName + "']")));
+        return playlistElement.getText();
+    }
+    }

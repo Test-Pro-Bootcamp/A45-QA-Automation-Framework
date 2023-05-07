@@ -22,6 +22,7 @@ public class BasePage {
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+    public WebElement findElement(WebElement locator){ return wait.until(ExpectedConditions.visibilityOf(locator)); }
     public void click (By locator) {
         findElement(locator).click();
     }
@@ -32,6 +33,7 @@ public class BasePage {
         actions.contextClick(findElement(locator)).perform();
     }
 
+//public void getPlaylistName (By locator) {actions.contextClick(findElement(locator)).perform();}
 
 
 }
