@@ -9,7 +9,6 @@ public class Homework22 extends BaseTest{
         String newPlName = "AlekseiZZZ";
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-
         loginPage.login();
         homePage.doubleClickFirstPlaylist()
                 .enterNewPlaylistName(newPlName);
