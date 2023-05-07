@@ -10,7 +10,6 @@ import java.time.Duration;
 
 public class homework17 extends BaseTest {
     @Test
-
     public void addSongToPlaylist() throws InterruptedException {
 
         String newSongAddedNotificationText = "Added 1 song into";
