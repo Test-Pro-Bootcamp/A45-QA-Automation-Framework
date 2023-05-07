@@ -4,12 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
@@ -35,21 +42,49 @@ public class BaseTest {
         };
     }
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) {
+    @Parameters({"BaseURL", "browser"})
+    public void launchBrowser(@Optional String BaseURL, @Optional String browser) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
+        driver = pickBrowser(browser);
+        driver.get(BaseURL);
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
-        url = BaseURL;
         navigateToPage();
     }
-
-    @AfterMethod//(enabled = false)
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        String gridURL = " http://192.168.1.218:4444";
+        switch (browser){
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
+            case "MicrosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                return driver = new EdgeDriver();
+            case "grid-edge":
+                capabilities.setCapability("browserName", "Microsoft Edge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),capabilities);
+            case "grid-firefox":
+                capabilities.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),capabilities);
+            case "grid-chrome":
+                capabilities.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),capabilities);
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                return driver = new ChromeDriver(options);
+        }
+    }
+    @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
         driver.quit();
     }
