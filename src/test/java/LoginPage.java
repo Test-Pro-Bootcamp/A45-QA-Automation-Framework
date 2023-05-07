@@ -3,9 +3,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTests extends BaseTest {
+public class LoginPage extends BasePage {
 
-    @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
+    @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BasePage.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPasswordTest(String username, String password){
 
         provideEmail(username);
@@ -35,5 +35,12 @@ public class LoginTests extends BaseTest {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
 //        Assert.assertEquals(avatarIcon.isDisplayed(), true);
+    }
+
+    public void login(){
+        navigateToPage();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
     }
 }

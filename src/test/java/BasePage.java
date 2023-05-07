@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
 
-public class BaseTest {
+public class BasePage {
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;

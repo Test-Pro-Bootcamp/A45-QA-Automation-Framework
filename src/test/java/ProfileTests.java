@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProfileTests extends BaseTest {
+public class ProfileTests extends BasePage {
 
     @Test
     public static void changeProfileNameTest () throws InterruptedException {
