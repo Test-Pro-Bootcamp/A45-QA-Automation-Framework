@@ -4,9 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+<<<<<<< HEAD
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+=======
+>>>>>>> Homework19
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -34,6 +37,39 @@ public class BaseTest {
                 {"", ""}
         };
     }
+<<<<<<< HEAD
+=======
+
+    public static void isAvatarDisplayed() {
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
+    }
+
+    public static void deletePl(String name) {
+        WebElement plBtn = driver.findElement(By.xpath(String.format("//a[contains(text(),'%s')]", name)));
+        plBtn.click();
+        WebElement delPlBtn = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
+        delPlBtn.click();
+        WebElement notif = driver.findElement(By.xpath("//div[@class='success show'][2]"));
+        Assert.assertEquals(notif.getText(), String.format("Deleted playlist \"%s.\"", name));
+
+    }
+
+    public static void createPl(String name) {
+        WebElement plusBtn = driver.findElement(By.xpath("//i[@data-testid=\"sidebar-create-playlist-btn\"]"));
+        plusBtn.click();
+        WebElement newPlBtn = driver.findElement(By.xpath("//li[@data-testid=\"playlist-context-menu-create-simple\"]"));
+        newPlBtn.click();
+        WebElement namePlInput = driver.findElement(By.xpath("//input[@name='name']"));
+        namePlInput.sendKeys(name);
+        namePlInput.submit();
+
+        WebElement notif = driver.findElement(By.xpath("//div[@class='success show']"));
+        Assert.assertEquals(notif.getText(), String.format("Created playlist \"%s.\"", name));
+    }
+
+>>>>>>> Homework19
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) {

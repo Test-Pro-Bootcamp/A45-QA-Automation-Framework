@@ -1,5 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -33,6 +31,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
     }
+<<<<<<< HEAD
     public static void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
@@ -53,4 +52,6 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }
+=======
+>>>>>>> Homework19
 }
