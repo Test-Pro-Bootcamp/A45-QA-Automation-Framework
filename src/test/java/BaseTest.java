@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -163,5 +164,25 @@ public class BaseTest {
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         // double click
         actions.doubleClick(playlist).perform();
+    }
+
+    public boolean doesPlExists(String newPlName) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                String.format("//a[text()='%s']",newPlName)))).isDisplayed();
+    }
+
+    public void enterNewPlName(String newPlName) {
+        WebElement plInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                "//input[@name='name']")));
+        plInputField.sendKeys(Keys.chord(Keys.COMMAND, "A"));
+        plInputField.sendKeys(Keys.BACK_SPACE);
+        plInputField.sendKeys(newPlName);
+        plInputField.sendKeys(Keys.ENTER);
+    }
+
+    public void doubleClickPl() {
+        WebElement pl = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                "//li[@class='playlist playlist'][1]")));
+        actions.doubleClick(pl).perform();
     }
 }
