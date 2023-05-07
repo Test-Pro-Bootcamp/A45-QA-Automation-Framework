@@ -23,8 +23,6 @@ public class Homework21 extends BaseTest {
 
         navigateToPage(url);
         loginPage.login();
-        homePage.doubleClickPlaylist();
-        homePage.enterNewPlaylistName("NewPlaylist");
-        homePage.successShowNotificationDisplayed();
+        homePage.doubleClickPlaylist().enterNewPlaylistName("NewPlaylist").successShowNotificationDisplayed();
     }
 }

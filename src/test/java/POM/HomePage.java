@@ -13,46 +13,54 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import java.time.Duration;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
 
-    By userAvatarIcon = By.cssSelector("img.avatar");
-    By successShowNotification = By.xpath("//div[@class='success show']");
-    By firstPlaylist = By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]");
-    By setPlaylistName = By.xpath("//section[@id='playlists']//input[@name='name']");
-    By createNewPlaylistBtn = By.xpath("//section[@id='playlists']//i[@title='Create a new playlist']");
-    By newSimplePlaylist = By.xpath("//section[@id='playlists']//li[@data-testid='playlist-context-menu-create-simple']");
-
+    @FindBy (css = "img.avatar")
+    private WebElement userAvatarIcon;
+    @FindBy(xpath = "//div[@class='success show']")
+    private WebElement successShowNotification;
+    @FindBy(xpath = "//section[@id='playlists']//li[@class='playlist playlist']//a[position()]")
+    private WebElement firstPlaylist;
+    @FindBy(xpath = "//section[@id='playlists']//input[@name='name']")
+    private WebElement setPlaylistName;
+    @FindBy(xpath = "//section[@id='playlists']//i[@title='Create a new playlist']")
+    private WebElement createNewPlaylistBtn;
+    @FindBy(xpath = "//section[@id='playlists']//li[@data-testid='playlist-context-menu-create-simple']")
+    private WebElement newSimplePlaylist;
 
 
     public HomePage (WebDriver givenDriver) {
         super (givenDriver);
     }
 
-    public WebElement getUserAvatar () {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(userAvatarIcon));
+    public boolean isAvatarDisplayed () {
+        return userAvatarIcon.isDisplayed();
     }
 
-    public void createNewPlaylist () {
+    public HomePage createNewPlaylist () {
         click(createNewPlaylistBtn);
         click(newSimplePlaylist);
         click(setPlaylistName);
-        findElement(setPlaylistName).sendKeys("AutomatedNewPlaylist" + Keys.ENTER);
+        setPlaylistName.sendKeys("AutomatedNewPlaylist" + Keys.ENTER);
+        return this;
     }
 
-    public void successShowNotificationDisplayed () {
-        findElement(successShowNotification);
-        WebElement successNotification = driver.findElement(successShowNotification);
+    public HomePage successShowNotificationDisplayed () {
+        //findElement(successShowNotification);
+        WebElement successNotification = (successShowNotification);
         Assert.assertTrue(successNotification.isDisplayed());
+        return this;
     }
 
-    public void doubleClickPlaylist () {
-        doubleClick(firstPlaylist);
+    public HomePage doubleClickPlaylist () {
+        doubleClick(firstPlaylist); return this;
     }
-    public void enterNewPlaylistName (String playlistName) {
-
-        findElement(setPlaylistName).click();
-        findElement(setPlaylistName).sendKeys(Keys.CONTROL, "a", Keys.DELETE);
-        findElement(setPlaylistName).sendKeys(playlistName);
-        findElement(setPlaylistName).sendKeys(Keys.ENTER);
+    public HomePage enterNewPlaylistName (String playlistName) {
+        setPlaylistName.click();
+        setPlaylistName.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
+        setPlaylistName.sendKeys(playlistName);
+        setPlaylistName.sendKeys(Keys.ENTER);
+        return this;
     }
 }

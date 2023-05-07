@@ -13,15 +13,19 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import java.time.Duration;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.FindBy;
 public class PlaylistPage extends BasePage {
 
-    By firstPlaylistFromList = By.xpath("//section[@id='playlists']//li[@class='playlist playlist']//a[position()]");
-    By deletePlaylistBtn = By.xpath("//section[@id='playlistWrapper']//button[@class='del btn-delete-playlist']");
+    @FindBy (xpath = "//section[@id='playlists']//li[@class='playlist playlist']//a[position()]")
+    private WebElement firstPlaylistFromList;
+    @FindBy (xpath = "//section[@id='playlistWrapper']//button[@class='del btn-delete-playlist']")
+    private WebElement deletePlaylistBtn;
 
     public PlaylistPage (WebDriver givenDriver) {super (givenDriver);}
 
-    public void deleteEmptyPlaylist () {
+    public PlaylistPage deleteEmptyPlaylist () {
         click(firstPlaylistFromList);
         click(deletePlaylistBtn);
+        return this;
     }
 }
