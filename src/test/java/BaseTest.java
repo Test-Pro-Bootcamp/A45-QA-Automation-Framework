@@ -55,13 +55,14 @@ public class BaseTest {
     //when
     public static void searchSong(String songTitle){
         WebElement searchBar = driver.findElement(By.cssSelector("input[type='search']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']"))).sendKeys(songTitle);
-        //searchBar.sendKeys(songTitle);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']")));
+    searchBar.sendKeys(songTitle);
     }
 
     public static void clickViewAll(){
-        WebElement searchResults = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-test='view-all-songs-btn']"))).click();
+        WebElement searchResults = driver.findElement(By.cssSelector("#searchExcerptsWrapper > div > div > section.songs > h1 > button"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("section#searchExcerptsWrapper > div > div > section.songs > h1 > button")));
+        searchResults.click();
     }
 
     public static void selectSong(){
@@ -85,8 +86,8 @@ public class BaseTest {
         // deletePlaylist.click();
     }
     public static void choosePlaylistToDelete() {
-        WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
+        WebElement playlistToDelete = driver.findElement(By.cssSelector("#playlists > ul > li:nth-child(3)"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists > ul > li:nth-child(3)"))).click();
         //playlistToDelete.click();
     }
 
