@@ -9,48 +9,49 @@ public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPasswordTest(String username, String password){
-
-        provideEmail(username);
-        providePassword(password);
-        clickSubmit();
-
-        Assert.assertEquals(driver.getCurrentUrl(), url); // https://bbb.testpro.io/
+        //GIVEN
+        LoginPage loginPage = new LoginPage(driver);
+        //WHEN - THEN
+        loginPage.login();
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPasswordTest(){
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        isAvatarDisplayed();
+        //GIVEN
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        //WHEN
+        loginPage.login();
+        //THEN
+        homePage.getUserAvatar();
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
     public static void loginValidEmailEmptyPasswordTest() {
-        provideEmail("demo@class.com");
-        providePassword("");
-        clickSubmit();
-
+        //GIVEN
+        LoginPage loginPage = new LoginPage(driver);
+        //WHEN
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("");
+        loginPage.clickSubmit();
+        //THEN
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
     }
     public static void isAvatarDisplayed() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
+        HomePage homePage = new HomePage(driver);
+        homePage.getUserAvatar();
     }
 
     //Page Object Model example
     @Test
     public void LoginValidEmailPasswordTest () {
-
+        //GIVEN
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmit();
-
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        //WHEN
+        loginPage.login();
+        //THEN
+        homePage.getUserAvatar();
 
     }
 }

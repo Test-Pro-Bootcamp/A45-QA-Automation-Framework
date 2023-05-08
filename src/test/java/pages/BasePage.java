@@ -13,26 +13,37 @@ public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
     Actions actions;
+    By allSongs = By.cssSelector("li a.songs");
+    By playButton = By.cssSelector("[data-testid='play-btn']");
 
-    public BasePage( WebDriver givenDriver) {
+    public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
     }
+
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-    public void click (By locator) {
+
+    public void click(By locator) {
         findElement(locator).click();
     }
-    public void doubleClick (By locator) {
+
+    public void doubleClick(By locator) {
         actions.doubleClick(findElement(locator)).perform();
     }
-    public void contextClick (By locator) {
+
+    public void contextClick(By locator) {
         actions.contextClick(findElement(locator)).perform();
     }
 
-
-
+    public void chooseAllSongsList() {
+        click(allSongs);
+    }
+    public void hoverPlay() {
+        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        // move to element
+        actions.moveToElement(play).perform();
+    }
 }
-
