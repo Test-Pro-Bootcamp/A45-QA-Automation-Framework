@@ -18,25 +18,25 @@ public class BaseTest {
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
-    public static String url = "";
+    public static String url;
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @DataProvider(name="IncorrectLoginData")
+    /*@DataProvider(name="IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
 
         return new Object[][] {
                 {"invalid@mail.com", "invalidPass"},
                 {"demo@class.com", ""},
                 {"", ""}
-        };
+        };*/
     }
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) {
+    //@Parameters({"BaseURL"})
+    public void launchBrowser() {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -45,8 +45,8 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
-        url = BaseURL;
-        navigateToPage();
+        url ="https://bbb.testpro.io/";
+        //navigateToPage();
     }
 
     @AfterMethod//(enabled = false)
