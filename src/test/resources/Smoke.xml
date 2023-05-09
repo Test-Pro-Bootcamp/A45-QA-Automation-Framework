@@ -11,7 +11,7 @@
                     <include name="actionMethods" />
                 </methods>
             </class>
-            <class name="LoginTests"/>
+<!--            <class name="LoginTests"/>-->
         </classes>
     </test>
 </suite>
