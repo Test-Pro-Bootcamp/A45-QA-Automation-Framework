@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -48,7 +49,6 @@ public class BaseTest {
         url = BaseURL;
         navigateToPage();
     }
-
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
         driver.quit();
@@ -59,68 +59,55 @@ public class BaseTest {
     }
 
     public static void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail(email);
     }
-
     public static void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.providePassword(password);
     }
-
     public static void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submit.click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickSubmit();
     }
-
     public static void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
+        HomePage homePage = new HomePage(driver);
+        homePage.clickSaveButton();
     }
-
     public static void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
+        ProfilePreferencesPage profilePreferencesPage = new ProfilePreferencesPage(driver);
+        profilePreferencesPage.provideProfileName(randomName);
     }
-
     public static void provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
+        ProfilePreferencesPage profilePreferencesPage = new ProfilePreferencesPage(driver);
+        profilePreferencesPage.provideCurrentPassword(password);
     }
-
     public static String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
-
     public static void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img.avatar")));
-        avatarIcon.click();
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAvatarIcon();
     }
-
     // hover
     public void hoverPlay() {
         WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
         // move to element
         actions.moveToElement(play).perform();
     }
-
+    public void clickPlayButton(){
+      HomePage homePage = new HomePage(driver);
+      homePage.clickPlayButton();
+    }
     // context click
     public void chooseAllSongsList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs")));
-        driver.findElement(By.cssSelector("li a.songs")).click();
+        BasePage basePage = new BasePage(driver);
+        basePage.chooseAllSongsList();
     }
-
     public void contextClickFirstSong(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
-        // context click
-        actions.contextClick(firstSong).perform();
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        allSongsPage.contextClickFirstSong();
     }
-
     public void displayAllSongs() {
         chooseAllSongsList();
     //add assertion
@@ -128,12 +115,9 @@ public class BaseTest {
         List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
         Assert.assertEquals(songsList.size(), 63);
     }
-
     // double click
     public void doubleClickChoosePlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        // double click
-        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        actions.doubleClick(playlist).perform();
+        HomePage homePage = new HomePage(driver);
+        homePage.doubleClickFirstPlaylist();
     }
 }
