@@ -12,6 +12,7 @@
                 </methods>
             </class>
             <class name="LoginTests"/>
+            <class name="Homework23"/>
         </classes>
     </test>
 </suite>

@@ -2,8 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
+import pagefactory.HomePage;
+import pagefactory.LoginPage;
 
 public class LoginTests extends BaseTest {
 
@@ -17,13 +17,18 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://bbb.testpro.io/
     }
 
-    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
-    public void loginValidEmailPasswordTest(){
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        isAvatarDisplayed();
-    }
+    //@Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
+    //public void loginValidEmailPasswordTest(){
+        //provideEmail("demo@class.com");
+        //providePassword("te$t$tudent");
+        //clickSubmit();
+        //isAvatarDisplayed();
+        //LoginPage loginPage = new LoginPage(driver);
+        //HomePage homePage = new HomePage(driver);
+        //loginPage.provideEmail("demo@class.com").providePassword("te$t$tudent").clickSubmit();
+        //Assert.assertEquals(homePage.getUserAvatar().isDisplayed());
+
+    //}
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
     public static void loginValidEmailEmptyPasswordTest() {
@@ -46,11 +51,11 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmit();
+        loginPage.provideEmail("demo@class.com")
+                .providePassword("te$t$tudent")
+        .clickSubmitBtn();
 
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        Assert.assertTrue(homePage.isAvatarDisplayed());
 
     }
 }
