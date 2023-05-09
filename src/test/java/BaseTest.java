@@ -18,7 +18,7 @@ public class BaseTest {
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
-    public static String url = "";
+    public static String url = "https://bbb.testpro.io";
 
     @BeforeSuite
     static void setupClass() {
@@ -103,7 +103,7 @@ public class BaseTest {
 
     // hover
     public void hoverPlay() {
-        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        WebElement play = driver.findElement(By.cssSelector("[data-test id='play-btn']"));
         // move to element
         actions.moveToElement(play).perform();
     }
