@@ -8,9 +8,9 @@ public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist() throws InterruptedException {
         String expectedNotificationText = "Deleted playlist \"kristina.matskaylo.\"";
-        enterEmail("kristina.matskaylo@testpro.io");
+        /*enterEmail("kristina.matskaylo@testpro.io");
         enterPassword("11111111*a");
-        submitLogIn();
+        submitLogIn();*/
         navigateToPlaylist();
         clickRedBtnPlaylist();
         Assert.assertTrue(actualNotificationText().contains(expectedNotificationText));

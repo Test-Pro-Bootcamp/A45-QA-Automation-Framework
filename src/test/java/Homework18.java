@@ -6,9 +6,9 @@ import org.testng.annotations.Test;
 public class Homework18 extends  BaseTest {
     public void playSong() throws InterruptedException{
         //openLogInPage();
-        enterEmail("kristina.matskaylo@testpro.io");
+        /*enterEmail("kristina.matskaylo@testpro.io");
         enterPassword("11111111*a");
-        submitLogIn();
+        submitLogIn();*/
         clickPlayNextSongButton();
         clickPlayButton();
         Assert.assertTrue(songPlaying());
