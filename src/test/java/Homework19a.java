@@ -1,10 +1,11 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework19a extends BaseTest{
     @Test
 
   public void Homework19test(){
-   // String deletedMsg = "Deleted Playlist";
+    String deletedMsg = "Myesha";
 
         logIn("heavenmayhem@gmail.com","Everything2Me0628!");
         searchSong("Dark Days");
@@ -14,8 +15,8 @@ public class Homework19a extends BaseTest{
         choosePlaylist();
         choosePlaylistToDelete();
         deleteButton();
-      //  clickOK();
-       // Assert.assertTrue(confirmDelete().contains(deletedMsg));
+        clickOK();
+       Assert.assertTrue(confirmDelete().contains(deletedMsg));
 
     }
 

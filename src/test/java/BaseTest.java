@@ -95,15 +95,14 @@ public class BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist")));
         deletePlaylist.click();
     }
-   // public void clickOK() {
-   //     WebElement okButton = driver.findElement(By.cssSelector("body > div.alertify > div > div > nav > button.ok"));
-   //     wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.alertify > div > div > nav > button.ok")));
-   //     okButton.click();
+    public void clickOK() {
+        WebElement okButton = driver.findElement(By.cssSelector("body > div.alertify > div > div > nav > button.ok"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.alertify > div > div > nav > button.ok")));
+       okButton.click();
+   }
+    public String confirmDelete() {
+        WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
+       return deleteConfirmation.getText();
     }
-  //  public String confirmDelete() {
-  //      WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
-  //     return deleteConfirmation.getText();
-  //  }
-
 }
 
