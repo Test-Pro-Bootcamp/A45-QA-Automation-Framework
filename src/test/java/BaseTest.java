@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +20,8 @@ public class BaseTest {
     public static ChromeOptions optionC;
     static WebDriverWait wait;
     static Actions action = null;
+    String newPlaylistName = "Myesha";
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -55,61 +58,61 @@ public class BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
     }
     //when
-    public static void searchSong(String songTitle){
-        WebElement searchBar = driver.findElement(By.cssSelector("input[type='search']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']"))).sendKeys(songTitle);
-        //searchBar.sendKeys(songTitle);
-    }
-
-    public static void clickViewAll(){
-        WebElement searchResults = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-test='view-all-songs-btn']"))).click();
-    }
-
-    public static void selectSong(){
-        WebElement chooseSong = driver.findElement(By.cssSelector("section#songResultsWrapper div.item-container tr.song-item td.title"));
-       wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("section#songResultsWrapper div.item-container tr.song-item td.title"))).click();
-    }
-
-    public static void clickAddTo(){
-        WebElement addToBtn = driver.findElement(By.cssSelector("button.btn-add-to"));
-       wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-add-to"))).click();
-    }
+//    public static void searchSong(String songTitle){
+//        WebElement searchBar = driver.findElement(By.cssSelector("input[type='search']"));
+//        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']"))).sendKeys(songTitle);
+//        //searchBar.sendKeys(songTitle);
+//    }
+//
+//    public static void clickViewAll(){
+//        WebElement searchResults = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
+//        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-test='view-all-songs-btn']"))).click();
+////    }
+//
+//    public static void selectSong(){
+//        WebElement chooseSong = driver.findElement(By.cssSelector("section#songResultsWrapper div.item-container tr.song-item td.title"));
+//       wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("section#songResultsWrapper div.item-container tr.song-item td.title"))).click();
+//    }
+//
+//    public static void clickAddTo(){
+//        WebElement addToBtn = driver.findElement(By.cssSelector("button.btn-add-to"));
+//       wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-add-to"))).click();
+//    }
 
     public static void choosePlaylist(){
-        WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[1]/ul/li[5]"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='songResultsWrapper']/header/div[3]/div/section[1]/ul/li[5]"))).click();
+        WebElement playlist = driver.findElement(By.cssSelector("#playlists > ul > li:nth-child(3)"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists > ul > li:nth-child(3)"))).click();
     }
 
-    public static void deleteButton() {
-        WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist"))).click();
-        // deletePlaylist.click();
-    }
-    public static void choosePlaylistToDelete() {
-        WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
-        //playlistToDelete.click();
-    }
-
-    public static void enterNewName() {
-        WebElement newName = driver.findElement(By.cssSelector("input[data-test='new-playlist-name']"));
-    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-test='new-playlist-name']")));
-    action.doubleClick(newName).perform();
-    newName.clear();
-    newName.sendKeys("NewPlaylistName");
-
-    }
+ //   public static void deleteButton() {
+//        WebElement deletePlaylist = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
+//        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist"))).click();
+//        // deletePlaylist.click();
+//    }
+//    public static void choosePlaylistToDelete() {
+//        WebElement playlistToDelete = driver.findElement(By.cssSelector("[href = '#!/playlist/54189']"));
+//        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[href = '#!/playlist/54189']"))).click();
+//        //playlistToDelete.click();
+//    }
 
     public static void editPlaylist() {
-        WebElement chooseEdit = driver.findElement(By.cssSelector("#playlists > ul > li:nth-child(3) > nav > ul > li:nth-child(1)"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists > ul > li:nth-child(3) > nav > ul > li:nth-child(1)")));
-        action.contextClick(chooseEdit).perform();
+        WebElement chooseEdit = driver.findElement(By.cssSelector("#playlists > ul > li:nth-child(3)"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#playlists > ul > li:nth-child(3)")));
+        action.doubleClick(chooseEdit).perform();
+    }
+    public void enterNewName() {
+       WebElement playlistInput = driver.findElement(By.cssSelector("[name='name']"));
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+       playlistInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+       playlistInput.sendKeys(newPlaylistName);
+       playlistInput.sendKeys(Keys.ENTER);
+
     }
 
 
-    public String confirmDelete() {
-        WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
-        return deleteConfirmation.getText();
-    }
+
+//    public String confirmDelete()
+//        WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
+//        return deleteConfirmation.getText();
+//    }
 }
