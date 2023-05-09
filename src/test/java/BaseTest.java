@@ -14,9 +14,9 @@ import org.testng.annotations.Parameters;
 import java.time.Duration;
 
 public class BaseTest {
-    public static WebDriver driver = null;
-    public static ChromeOptions optionC;
-    static WebDriverWait wait;
+   //public static WebDriver driver = null;
+   // public static ChromeOptions optionC;
+   // static WebDriverWait wait;
 
     @BeforeSuite
     static void setupClass() {
@@ -52,7 +52,7 @@ public class BaseTest {
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
     }
-    //when
+
     public static void searchSong(String songTitle){
         WebElement searchBar = driver.findElement(By.cssSelector("input[type='search']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']"))).sendKeys(songTitle);
