@@ -33,9 +33,8 @@ public class HomePage extends BasePage{
         findElement(playlistNameField).sendKeys(Keys.ENTER);
         return this;
     }
-    public boolean doesPlaylistExist(String PlaylistName) {
-        findElement((WebElement) doesPlaylistExist("SNKim"));
-        return this;
+    public String retrievePlaylistName() {
+        return findElement(firstPlaylist).getText();
     }
 }
 
