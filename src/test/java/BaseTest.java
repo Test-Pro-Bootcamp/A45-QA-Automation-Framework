@@ -14,9 +14,9 @@ import org.testng.annotations.Parameters;
 import java.time.Duration;
 
 public class BaseTest {
-   //public static WebDriver driver = null;
-   // public static ChromeOptions optionC;
-   // static WebDriverWait wait;
+   public static WebDriver driver;
+    public static ChromeOptions optionC;
+    static WebDriverWait wait;
 
     @BeforeSuite
     static void setupClass() {
