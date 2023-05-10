@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class ProfileTests extends BaseTest {
 
     @Test
-    public static void changeProfileNameTest () throws InterruptedException {
+    public void changeProfileNameTest () throws InterruptedException {
 
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
@@ -22,7 +22,7 @@ public class ProfileTests extends BaseTest {
         clickSaveButton();
 
         Thread.sleep(2000);
-        WebElement actualProfileName = driver.findElement(By.cssSelector("a.view-profile>span"));
+        WebElement actualProfileName = getThreadLocal().findElement(By.cssSelector("a.view-profile>span"));
         Assert.assertEquals(actualProfileName.getText(), randomName);
     }
 }
