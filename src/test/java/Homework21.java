@@ -21,8 +21,9 @@ public class Homework21 extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        navigateToPage(url);
         loginPage.login();
-        homePage.doubleClickPlaylist().enterNewPlaylistName("NewPlaylist").successShowNotificationDisplayed();
+
+        String generatedName= RandomStringUtils.randomAlphabetic(10);
+        homePage.doubleClickPlaylist().enterNewPlaylistName(generatedName).successShowNotificationDisplayed();
     }
 }

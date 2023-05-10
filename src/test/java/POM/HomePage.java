@@ -48,6 +48,7 @@ public class HomePage extends BasePage {
 
     public HomePage successShowNotificationDisplayed () {
         //findElement(successShowNotification);
+        findElement (successShowNotification);
         WebElement successNotification = (successShowNotification);
         Assert.assertTrue(successNotification.isDisplayed());
         return this;

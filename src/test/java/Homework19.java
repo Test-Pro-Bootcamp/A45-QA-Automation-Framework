@@ -23,7 +23,6 @@ public class Homework19 extends BaseTest{
         HomePage homePage = new HomePage(driver);
         PlaylistPage playlistPage = new PlaylistPage(driver);
 
-        navigateToPage(url);
         loginPage.login();
         homePage.createNewPlaylist();
         playlistPage.deleteEmptyPlaylist();

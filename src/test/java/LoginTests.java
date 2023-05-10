@@ -15,7 +15,6 @@ public class LoginTests extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        navigateToPage(url);
         loginPage.login();
     }
 }
