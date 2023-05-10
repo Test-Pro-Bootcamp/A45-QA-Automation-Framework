@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class HomePage extends BasePage {
     String newPlaylistName = null;
     //locator
-    By firstPlaylist = By.cssSelector("li.playlist:nth-child(3)");
-    By playlistNameField = By.cssSelector("[name='name']");
+   private By firstPlaylist = By.cssSelector("li.playlist:nth-child(3)");
+   private By playlistNameField = By.cssSelector("[name='name']");
 
     public HomePage(WebDriver givenDriver){
         super(givenDriver);
