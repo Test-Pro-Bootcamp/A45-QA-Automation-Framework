@@ -12,15 +12,15 @@ public class Homework16 extends BaseTest {
 
     @Test
     public static void RegistrationLink() {
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+//
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//
+//        WebDriver driver = new ChromeDriver(options);
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//
+//        String url = "https://bbb.testpro.io/";
+//        driver.get(url);
 
         WebElement registrationLik = driver.findElement(By.cssSelector("a[type='submit']"));
         registrationLik.click();
