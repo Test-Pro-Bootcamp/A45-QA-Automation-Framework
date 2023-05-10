@@ -19,14 +19,17 @@ public class LoginPage extends BasePage{
    @FindBy(css = "input[type='email']")
    WebElement emailField;
 
-    public void provideEmail(String email){
+    public LoginPage provideEmail(String email){
         emailField.sendKeys(email);
+        return this;
     }
-    public void providePassword(String password){
+    public LoginPage providePassword(String password){
         passwordField.sendKeys(password);
+        return this;
     }
-    public void setSubmitButton(){
+    public LoginPage setSubmitButton(){
         submitButton.click();
+        return this;
     }
     public void logIn(){
         provideEmail("heavenmayhem@gmail.com");

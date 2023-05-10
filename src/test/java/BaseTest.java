@@ -90,6 +90,11 @@ public class BaseTest {
         //playlistToDelete.click();
     }
 
+    public static void getUserAvatar(){
+        WebElement userAvatar = driver.findElement(By.cssSelector("#userBadge > a.view-profile > img"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#userBadge > a.view-profile > img")));
+    }
+
 
     public String confirmDelete() {
         WebElement deleteConfirmation = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.success.show")));
