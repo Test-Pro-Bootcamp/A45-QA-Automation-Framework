@@ -21,7 +21,6 @@ public class HomeWork17 extends BaseTest{
         viewAll.click();
         Thread.sleep(2000);
 
-
         WebElement firstRow = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//td[@class='title']"));
         firstRow.click();
         Thread.sleep(2000);
@@ -37,16 +36,7 @@ public class HomeWork17 extends BaseTest{
         //WebElement songAdded =driver.findElement(By.xpath("//div[@class='alertify-logs top right']"));
         //Assert.assertTrue(songAdded.isDisplayed());
 
-       WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
         Assert.assertTrue(notification.isDisplayed());
-
-
-
-
-
-
-
     }
-
-
 }
