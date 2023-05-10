@@ -55,7 +55,7 @@ public class BaseTest {
 
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(25));
         actions = new Actions(driver);
         url = BaseURL;
         navigateToPage();
@@ -68,7 +68,10 @@ public class BaseTest {
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160:4444";
+        String gridURL = "http://10.0.0.186:4444";
+
+
+
 
         switch (browser){
             case "firefox":

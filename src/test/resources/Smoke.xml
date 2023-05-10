@@ -10,6 +10,9 @@
                 <methods>
                     <include name="actionMethods" />
                 </methods>
+                <methods>
+                    <include name="listOfSongsWebElements"/>
+                </methods>
             </class>
 <!--            <class name="LoginTests"/>-->
         </classes>
