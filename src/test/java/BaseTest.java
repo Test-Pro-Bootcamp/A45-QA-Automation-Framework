@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -29,8 +30,9 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
 
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
+//    WebDriverManager.chromedriver().setup();
+//    WebDriverManager.firefoxdriver().setup();
+  //    WebDriverManager.safaridriver().setup();
 
     }
 
@@ -49,10 +51,12 @@ public class BaseTest {
         //      Added ChromeOptions argument below to fix websocket error
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
 
-//        driver = new FirefoxDriver();
+//       driver = new ChromeDriver(options);
+  //     driver = new FirefoxDriver();
+  //       driver = new SafariDriver();
 
+        //gradle creadriver = pickBrowser(System.getProperty("browser"));
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -68,7 +72,7 @@ public class BaseTest {
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160:4444";
+        String gridURL = "http://192.168.1.35:4444";
 
         switch (browser){
             case "firefox":
