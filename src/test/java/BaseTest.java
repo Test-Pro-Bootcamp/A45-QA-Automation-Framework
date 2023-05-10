@@ -14,8 +14,8 @@ import java.time.Duration;
 public class BaseTest {
    public static WebDriver driver;
    public  static String url;
-   public static WebDriverWait wait;
-   public static Actions actions;
+   //public static WebDriverWait wait;
+  // public static Actions actions;
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -41,20 +41,19 @@ public class BaseTest {
 
         url = BaseURL;
         driver.get(url);
-        wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-        actions = new Actions(driver);
-
+       // wait = new WebDriverWait(driver,Duration.ofSeconds(4));
+       // actions = new Actions(driver);
     }
 
     @AfterTest
     public static void closeWeb(){
         driver.quit();
     }
-   // public static void openLogInPage() {
-        //url = "https://bbb.testpro.io";
+    // public static void openLogInPage() {
+       //url = "https://bbb.testpro.io";
        // driver.get(url);
-   // }
-    public static void enterEmail(String email) {
+    // }
+    /*public static void enterEmail(String email) {
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']")));
         //emailField.click(); // no need
         // emailField.clear(); Why we don't need to clean field here?
@@ -69,7 +68,7 @@ public class BaseTest {
     public static void submitLogIn() {
         WebElement buttonLogInSubmit = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
         buttonLogInSubmit.click();
-    }
+    } */
 
 
 }
