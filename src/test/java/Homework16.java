@@ -12,9 +12,8 @@ public class Homework16 extends BaseTest {
     @Test
     public void registrationNavigationTest() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins1=*");
-
-        WebDriver driver = new ChromeDriver();
+        options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+        WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         String url = "https://bbb.testpro.io/";
@@ -23,7 +22,7 @@ public class Homework16 extends BaseTest {
         WebElement registrationLink = driver.findElement(By.linkText("Registration"));
         registrationLink.click();
 
-        String expectedUrl = "https://bbb.testpro.io/registration";
+        String expectedUrl = "https://bbb.testpro.io/registration.php";
         String actualUrl = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
 
