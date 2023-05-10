@@ -5,7 +5,7 @@ import pagefactory.LoginPage;
 
 public class Homework23 extends BaseTest {
     @Test
-    public void renamePlaylist(){
+    public void renamePlaylist()   {
         String playlistName = "Daria45";
 
         LoginPage loginPage = new LoginPage(driver);
@@ -17,6 +17,8 @@ public class Homework23 extends BaseTest {
 
         homePage.doubleClickPlaylist()
                 .enterNewPlaylistName(playlistName);
+
+        System.out.println(homePage.getPlaylistName());
 //
         Assert.assertEquals(homePage.getPlaylistName(), playlistName);
         //compares the retrieved playlist from koel to the String playlidsstName

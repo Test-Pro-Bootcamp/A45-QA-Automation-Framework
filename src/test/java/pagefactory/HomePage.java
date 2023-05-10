@@ -33,9 +33,8 @@ public class HomePage extends BasePage {
 
     }
 
-    public HomePage enterNewPlaylistName(String playlistName) {
-        findElement(playlistNameField).sendKeys(playlistName);
-        findElement(playlistNameField).sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.DELETE));
+    public HomePage enterNewPlaylistName(String playlistName)   {
+        findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL , "A", Keys.BACK_SPACE));
         findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys(Keys.ENTER);
         return this;
