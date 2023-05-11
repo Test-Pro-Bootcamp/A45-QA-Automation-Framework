@@ -5,7 +5,7 @@ import pageFactory.LoginPage;
 
 public class Homework24 extends BaseTest{
     @Test
-    public void renamePlaylist() throws InterruptedException {
+    public void renamePlaylist() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.provideEmail("svyeta@test.com").providePassword("te$t$tudent").clickSubmitButton();
