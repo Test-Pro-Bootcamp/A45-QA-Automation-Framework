@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
         providePassword("");
         clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://testpro.io/
     }
     public static void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
