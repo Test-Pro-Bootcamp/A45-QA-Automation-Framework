@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -16,12 +18,15 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 public class BaseTest {
     public static WebDriver driver = null;
+    public ThreadLocal<WebDriver> threadDriver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
@@ -53,17 +58,26 @@ public class BaseTest {
 
 //        driver = new FirefoxDriver();
 
+        threadDriver = new ThreadLocal<>(); // make sure to have this line before the assigning the driver variable
         driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+        threadDriver.set(driver);
+
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
         url = BaseURL;
         navigateToPage();
     }
 
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadDriver.remove();
+    }
+
+    public WebDriver getDriver() {
+//        return driver;
+        return threadDriver.get();
     }
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -86,6 +100,8 @@ public class BaseTest {
             case "grid-edge":
                 caps.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -94,6 +110,25 @@ public class BaseTest {
         }
     }
 
+
+    public static WebDriver lambdaTest() throws MalformedURLException {
+            String username = "khaledzamanqa";
+            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
+            String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        FirefoxOptions browserOptions = new FirefoxOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("111.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+            ltOptions.put("username", username);
+            ltOptions.put("accessKey", accessToken);
+            ltOptions.put("project", "Untitled");
+            ltOptions.put("w3c", true);
+            ltOptions.put("plugin", "java-testNG");
+            browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+    }
     public static void navigateToPage() {
         driver.get(url);
     }
