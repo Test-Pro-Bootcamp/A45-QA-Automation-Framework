@@ -4,25 +4,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
-    By firstPlaylist = By.xpath("//li[@class='playlist playlist'][1]");
-    By playlistNameField = By.xpath("//input[@name='name']");
+    @FindBy(xpath = "//li[@class='playlist playlist'][1]")
+    protected WebElement firstPlaylist;
+    @FindBy(xpath = "//input[@name='name']")
+    protected WebElement playlistNameField;
+    @FindBy(css = "img.avatar")
+    protected WebElement userAvatarIcon;
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    By userAvatarIcon = By.cssSelector("img.avatar");
     public WebElement getUserAvatar () {
-        return findElement(userAvatarIcon);
+        return userAvatarIcon;
     }
     public HomePage doubleClickFirstPlaylist(){
-        doubleClick(firstPlaylist);
+        actions.doubleClick(firstPlaylist).perform();
         return this;
     }
     public HomePage enterNewPlaylistName (String newPlaylistName){
-        findElement(playlistNameField).sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.BACK_SPACE));
-        findElement(playlistNameField).sendKeys(newPlaylistName);
-        findElement(playlistNameField).sendKeys(Keys.ENTER);
+        playlistNameField.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.BACK_SPACE));
+        playlistNameField.sendKeys(newPlaylistName);
+        playlistNameField.sendKeys(Keys.ENTER);
         return this;
     }
 
