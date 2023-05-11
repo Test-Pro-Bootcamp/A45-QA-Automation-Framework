@@ -7,20 +7,21 @@ public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPasswordTest(String username, String password){
-
-        provideEmail(username);
-        providePassword(password);
-        clickSubmit();
-
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login();
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://bbb.testpro.io/
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPasswordTest(){
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        isAvatarDisplayed();
+//        provideEmail("demo@class.com");
+//        providePassword("te$t$tudent");
+//        clickSubmit();
+//        isAvatarDisplayed();
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.login();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
@@ -38,10 +39,7 @@ public class LoginTests extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmit();
+        loginPage.login();
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 

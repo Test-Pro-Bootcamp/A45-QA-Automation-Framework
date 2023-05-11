@@ -3,15 +3,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class ProfileTests extends BaseTest {
 
     @Test
     public static void changeProfileNameTest () throws InterruptedException {
-
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.login();
         clickAvatarIcon();
         String randomName = generateRandomName();
         provideCurrentPassword("te$t$tudent");
