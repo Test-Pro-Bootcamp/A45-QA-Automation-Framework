@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
     @Parameters({"BaseURL"})
     public static void LoginEmptyEmailPasswordTest() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.login();
     }

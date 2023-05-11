@@ -19,9 +19,9 @@ public class Homework19 extends BaseTest{
     @Parameters ({"BaseURL"})
     public static void deletePlaylist() {
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getDriver());
 
         loginPage.login();
         homePage.createNewPlaylist();
