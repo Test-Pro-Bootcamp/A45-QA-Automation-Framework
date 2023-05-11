@@ -8,11 +8,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
     @FindBy(xpath = "//li[@class='playlist playlist'][1]")
-    protected WebElement firstPlaylist;
+    private WebElement firstPlaylist;
     @FindBy(xpath = "//input[@name='name']")
-    protected WebElement playlistNameField;
+    private WebElement playlistNameField;
     @FindBy(css = "img.avatar")
-    protected WebElement userAvatarIcon;
+    private WebElement userAvatarIcon;
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
