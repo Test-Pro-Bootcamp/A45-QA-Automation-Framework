@@ -56,9 +56,9 @@ public class BaseTest {
     String token = "YUdvx9SSnkNMFMsXnPd4jurJCHv1twuHv41jidHIKWREnZv0pO";
     String username = "romeo.furnic";
 
-    ChromeOptions browserOptions = new ChromeOptions();
+    EdgeOptions browserOptions = new EdgeOptions();
     browserOptions.setPlatformName("Windows 10");
-    browserOptions.setBrowserVersion("113.0");
+    browserOptions.setBrowserVersion("111.0");
     HashMap<String, Object> ltOptions = new HashMap<String, Object>();
     ltOptions.put("username", username);
     ltOptions.put("accessKey", token);
