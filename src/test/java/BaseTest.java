@@ -19,13 +19,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
     static WebDriverWait wait;
     public static WebDriver driver = null;
     public Actions actions = null;
     public static String url = "";
+    public static ThreadLocal<WebDriver> threadDriver;
     @BeforeSuite
     static void setupClass() {
 
@@ -39,18 +42,40 @@ public class BaseTest {
 //        options.addArguments("--remote-allow-origins=*");
 //        driver = new ChromeDriver(options);
 
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        actions = new Actions(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        threadDriver.set(driver);
+
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        actions = new Actions(getDriver());
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
-        driver.get(url);
+        getDriver().get(url);
+    }
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("113.0");
+        HashMap<String, Object> ltOptions = new HashMap<>();
+        ltOptions.put("user", "svetakim0265");
+        ltOptions.put("accessKey", "vTSKu7O842k6CgJnf3JbT2ITJrybcyWt3L0fog94HkcoTa8SzA");
+        ltOptions.put("project", "Test Project");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
     @AfterMethod
-    public static void closeBrowser(){
-        driver.quit();
+    public void closeBrowser(){
+        //RemoteWebDriver getDriver = null;
+        getDriver().quit();
+        threadDriver.remove();
     }
-
+    public WebDriver getDriver() {
+        return  threadDriver.get();
+    }
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://192.168.1.4:4444"; //we insert our grid url here
@@ -78,6 +103,8 @@ public class BaseTest {
             case "grid-chrome":
                 capabilities.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "cloud":
+                return lambdaTest();
 
             default:
                 WebDriverManager.chromedriver().setup();
