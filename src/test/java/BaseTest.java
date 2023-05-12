@@ -34,7 +34,7 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
 
-//        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
 //        WebDriverManager.firefoxdriver().setup();
 
     }
@@ -52,9 +52,9 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
 
 //        driver = new FirefoxDriver();
 
@@ -82,7 +82,9 @@ public class BaseTest {
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160:4444";
+//        String gridURL = "http://192.168.1.160:4444";
+        String gridURL = "http://192.168.0.120:4444";
+
 
         switch (browser){
             case "firefox":
