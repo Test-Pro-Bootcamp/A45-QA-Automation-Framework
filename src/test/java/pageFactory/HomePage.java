@@ -17,6 +17,10 @@ public class HomePage extends BasePage{
 
     private @FindBy(css = "[name='name']")
     WebElement playlistNameField;
+
+    private @FindBy(css = "img[class='avatar']")
+    WebElement avatarIcon;
+
     public HomePage(WebDriver givenDriver) {super(givenDriver);}
     public HomePage doubleClickFirstPlaylist() {
         doubleClick(firstPlaylist);
@@ -35,6 +39,10 @@ public class HomePage extends BasePage{
     }
     public String retrievePlaylistName() {
         return findElement(firstPlaylist).getText();
+    }
+
+    public boolean isUserAvatarDisplayed() {
+        return findElement(avatarIcon).isDisplayed();// this method too
     }
 }
 
