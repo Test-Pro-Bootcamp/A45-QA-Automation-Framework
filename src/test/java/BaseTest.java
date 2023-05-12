@@ -63,8 +63,7 @@ public class BaseTest {
         threadDriver.set(driver);
 
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
+         actions = new Actions(getDriver());
         url = BaseURL;
         navigateToPage();
     }
@@ -82,7 +81,7 @@ public class BaseTest {
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160:4444";
+        String gridURL = " http://10.0.0.186:4444";
 
         switch (browser){
             case "firefox":
@@ -112,8 +111,8 @@ public class BaseTest {
 
 
     public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
+            String username = "meng.taff";
+            String accessToken = "7f81HIwOzncnqV3O0jG1jUor6sOwRJCq23F5zogjmmoZiSw6Kn";
             String hubURL = "https://hub.lambdatest.com/wd/hub";
 
         FirefoxOptions browserOptions = new FirefoxOptions();
