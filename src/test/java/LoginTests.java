@@ -32,7 +32,7 @@ public class LoginTests extends BaseTest {
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
     public static void loginValidEmailEmptyPasswordTest() {
-        provideEmail("demo@class.com");
+        provideEmail("daria.pavlyuk@testpro.io");
         providePassword("");
         clickSubmit();
 
@@ -51,7 +51,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("demo@class.com")
+        loginPage.provideEmail("daria.pavlyuk@testpro.io")
                 .providePassword("te$t$tudent")
         .clickSubmitBtn();
 

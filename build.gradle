@@ -18,6 +18,9 @@ dependencies {
 test {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"
+        systemProperty "browser", System.getProperty("browser")
+
+
     }
 }
 

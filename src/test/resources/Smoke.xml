@@ -6,13 +6,13 @@
     <test name="Example Test" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="RandomTests">
-                <methods>
-                    <include name="actionMethods" />
-                </methods>
-            </class>
-            <class name="LoginTests"/>
-            <class name="Homework23"/>
+<!--            <class name="RandomTests">-->
+<!--                <methods>-->
+<!--                    <include name="actionMethods" />-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="LoginTests"/>-->
+            <class name="Homework24"/>
         </classes>
     </test>
 </suite>
