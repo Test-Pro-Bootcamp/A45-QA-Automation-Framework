@@ -44,7 +44,6 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
-//
 
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -75,7 +74,7 @@ public class BaseTest {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver();
+                return driver = new ChromeDriver(options);
         }
     }
 
