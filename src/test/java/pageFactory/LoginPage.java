@@ -36,6 +36,9 @@ import org.openqa.selenium.support.FindBy;
             providePassword("te$t$tudent");
             clickSubmitButton();
         }
+        public void getRegistrationLink(){
+
+        }
     }
 
 

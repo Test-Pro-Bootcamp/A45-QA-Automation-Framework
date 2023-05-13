@@ -31,4 +31,5 @@ public class BasePage {
     public void doubleClick(WebElement locator){
         actions.doubleClick(findElement(locator)).perform();
     }
+
 }
