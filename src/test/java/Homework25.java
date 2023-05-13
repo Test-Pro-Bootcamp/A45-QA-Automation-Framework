@@ -3,13 +3,13 @@ import org.testng.annotations.Test;
 import pagefactory.HomePage;
 import pagefactory.LoginPage;
 
-public class Homework24 extends BaseTest {
+public class Homework25 extends BaseTest {
     @Test
     public void renamePlaylist(){
         String playlistName = "Daria45";
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("daria.pavlyuk@testpro.io")
                  .providePassword("te$t$tudent")
