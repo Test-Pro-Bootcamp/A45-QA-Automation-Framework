@@ -16,10 +16,17 @@ public class Homework21  extends BaseTest {
     LoginPage loginPage = new LoginPage(driver);
     HomePage homePage = new HomePage(driver);
 
-    loginPage.login();
-    homePage.doubleClickFirstPlaylist();
-    homePage.enterNewPLaylistName(newPlaylistName);
-    Assert.assertTrue(homePage.doesNewPlaylistexist(newPlaylistName));
+    //loginPage.login();
+    // homePage.doubleClickFirstPlaylist();
+    //homePage.enterNewPLaylistName(newPlaylistName);
+    //Assert.assertTrue(homePage.doesNewPlaylistexist(newPlaylistName));
+        loginPage.provideEmail("kristina.matskaylo@testpro.io")
+                 .providePassword("11111111*a")
+                 .clickSubmitBtn();
+        homePage.doubleClickFirstPlaylist()
+                .enterNewPLaylistName(newPlaylistName);
+        Assert.assertTrue(homePage.doesNewPlaylistexist(newPlaylistName));
+
     }
 }
 
