@@ -5,15 +5,15 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.UUID;
 
 public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
 
-    //By userAvatarIcon = By.cssSelector("img.avatar");
-    //public WebElement getUserAvatar () {
-    //return findElement(userAvatarIcon);
     @FindBy(css = "img[class = 'avatar']")
     WebElement avatarIcon;
     @FindBy(css = ".playlist:nth-child(3)")
@@ -21,16 +21,15 @@ public class HomePage extends BasePage {
     @FindBy(css = "[name = 'name']")
     WebElement playlistNameField;
 
-
-    //public HomePage(WebDriver givenDriver) {
-        //super(givenDriver);
-
-
     //Fluent Interface
     public HomePage doubleClickPlaylist() {
         doubleClick (firstPlaylist);
         return this;
 
+    }
+    public HomePage clickAvatarIcon() {
+       click(avatarIcon);
+       return this;
     }
 
     public HomePage enterNewPlaylistName(String playlistName) {

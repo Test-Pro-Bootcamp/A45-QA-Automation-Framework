@@ -87,7 +87,6 @@ public class BaseTest {
     //String gridURL = "http://192.168.1.67:1234";
 
 
-
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
         getDriver().quit();
@@ -102,7 +101,7 @@ public class BaseTest {
     public void tearDownBrowser(){
         getDriver().quit();
         //return driver;
-        //threadDriver.remove();
+        threadDriver.remove();
 
     }
     public static  WebDriver pickBrowser(String browser) throws MalformedURLException {

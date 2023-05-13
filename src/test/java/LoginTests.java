@@ -18,14 +18,13 @@ public class LoginTests extends BaseTest {
 //    //
 //
     @Test ( description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPasswordTest() throws InterruptedException {
+    public void loginInvalidEmailValidPasswordTest()   {
         LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.provideEmail("")
                  .providePassword("te$t$tudent")
                  .clickSubmitBtn();
         Assert.assertEquals(getDriver().getCurrentUrl(), url); // https://bbb.testpro.io/
-        Thread.sleep(10000);
         //
     }
 
@@ -43,19 +42,18 @@ public class LoginTests extends BaseTest {
     //}
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public void loginValidEmailEmptyPasswordTest() throws InterruptedException {
+    public void loginValidEmailEmptyPasswordTest()   {
         LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.provideEmail("daria.pavlyuk@testpro.io");
         loginPage.providePassword("");
         loginPage.clickSubmitBtn();
         Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://bbb.testpro.io/
-        Thread.sleep(10000);
     }
 
     //Page Object Model example
     @Test
-    public void LoginValidEmailPasswordTest () throws InterruptedException {
+    public void LoginValidEmailPasswordTest ()   {
 
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -65,6 +63,5 @@ public class LoginTests extends BaseTest {
                  .clickSubmitBtn();
 
         Assert.assertTrue(homePage.isAvatarDisplayed());
-        Thread.sleep(10000);
     }
 }
