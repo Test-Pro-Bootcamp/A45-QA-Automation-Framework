@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -19,14 +17,27 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    public static String url = "https://bbb.testpro.io/";
+    public static String url = "";
+
+    @DataProvider(name = "IncorrectLoginData")
+    public static Object [][] getDataFromDataProviders() {
+
+        return new Object[][] {
+                {"invalid@mail.com", "invalidPass"},
+                {"anton.prymak@testpro.io", ""},
+                {"", ""}
+        };
+    }
 
     @BeforeMethod
-    public void launchBrowser() {
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
         driver = new ChromeDriver(options); // Assigning the driver instance to the static driver variable
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+        navigateToPage();
     }
 
     @AfterMethod
@@ -55,5 +66,33 @@ public class BaseTest {
     public static void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
+    }
+
+    protected String getNotificationText() {
+        WebElement notification = driver.findElement(By.xpath("//div[@class='success show']"));
+        return notification.getText();
+    }
+
+    protected void removePlaylist(String playlistName) {
+
+        WebElement certainPlaylist = driver.findElement(By.xpath(String.format("//a[contains(text(), '%s')]",
+                                                                                playlistName)));
+        certainPlaylist.click();
+        WebElement delButton = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
+        delButton.click();
+    }
+
+    protected void createPlaylist(String playlistName) throws InterruptedException {
+        WebElement plusButton = driver.findElement(By.xpath("//i[@data-testid='sidebar-create-playlist-btn']"));
+        plusButton.click();
+
+        WebElement newPlaylist = driver.findElement(By.xpath("//li[@data-testid='playlist-context-menu-create-simple']"));
+        newPlaylist.click();
+
+        WebElement toSave = driver.findElement(By.xpath("//input[@name='name']"));
+        toSave.sendKeys(playlistName);
+        toSave.submit();
+
+        Thread.sleep(5000);
     }
 }

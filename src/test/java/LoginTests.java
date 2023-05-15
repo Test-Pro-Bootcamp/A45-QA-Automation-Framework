@@ -11,38 +11,18 @@ import java.time.Duration;
 public class LoginTests extends BaseTest {
 
 
-    @Test
-    public void loginInvalidEmailValidPasswordTest(){
-        // Pre-condition
-        //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+    @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
+    public void loginInvalidEmailValidPasswordTest(String username, String password){
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        //steps
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.click();//not needed
-        emailField.clear();
-        emailField.sendKeys("invalid@testpro.io");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.click();//not needed
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
+        provideEmail(username);
+        providePassword(password);
+        clickSubmit();
 
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(),url); //https://bbb.testpro.io/
 
-        // Post-condition
-        driver.quit();
+//        // Post-condition
+//        driver.quit();
     }
     @Test
     public void loginValidEmailPasswordTest() {
