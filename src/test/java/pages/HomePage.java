@@ -8,7 +8,7 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    By userAvatarIcon = By.cssSelector("img.avatar");
+    By userAvatarIcon = By.cssSelector(".avatar");
     public WebElement getUserAvatar () {
         return findElement(userAvatarIcon);
     }

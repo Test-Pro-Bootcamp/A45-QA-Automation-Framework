@@ -62,7 +62,7 @@ public class BaseTest {
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
 
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
         url = BaseURL;
@@ -112,20 +112,20 @@ public class BaseTest {
 
 
     public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
+            String username = "martinsamandakarine";
+            String accessToken = "bUAo2sLr2EwHUd5dNuibiO0OEHOFKVyNU6GIrIlougknsJueei";
             String hubURL = "https://hub.lambdatest.com/wd/hub";
 
-        FirefoxOptions browserOptions = new FirefoxOptions();
+        ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("111.0");
+        browserOptions.setBrowserVersion("113.0");
         HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", username);
-            ltOptions.put("accessKey", accessToken);
-            ltOptions.put("project", "Untitled");
-            ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
-            browserOptions.setCapability("LT:Options", ltOptions);
+        ltOptions.put("username", username);
+        ltOptions.put("accessKey", accessToken);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
 
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
@@ -134,7 +134,7 @@ public class BaseTest {
     }
 
     public static void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']")));
         emailField.clear();
         emailField.sendKeys(email);
     }
