@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -16,12 +18,15 @@ import pages.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 public class BaseTest {
     public static WebDriver driver = null;
+    public static ThreadLocal<WebDriver> threadDriver;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
@@ -44,17 +49,24 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
-
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
         url = BaseURL;
         navigateToPage();
     }
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-        driver.quit();
+//        getDriver().quit();
+        threadDriver.remove();
+    }
+
+    public static WebDriver getDriver(){
+       return driver;
+       //return threadDriver.get();
     }
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -63,19 +75,45 @@ public class BaseTest {
         switch (browser){
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
-                return driver = new EdgeDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver(edgeOptions);
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return driver = new FirefoxDriver();
             case "grid-Edge":
                 caps.setCapability("browserName","MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
             case "grid-Chrome":
                 caps.setCapability("browserName","Chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(options);
         }
+    }
+
+    public static WebDriver lambdaTest() throws MalformedURLException {
+        String userName = "andrei.bryliakov";
+        String accessToken = "MLm6XdKZYwamVaCDr9J7NPf9DZ46P4ta1JDjnqdAOYeXgMJR6q";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("114.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", userName);
+        ltOptions.put("accessKey", accessToken);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
 
     public static void navigateToPage() {
