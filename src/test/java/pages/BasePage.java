@@ -20,10 +20,11 @@ import java.time.Duration;
     wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     actions = new Actions(driver);
     PageFactory.initElements(driver,this);
-} protected WebElement findElement(WebElement webElement){
+    }
+    protected WebElement findElement(WebElement webElement){
     return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
-  protected void doubleClickElement(WebElement webElement){
-   actions.doubleClick(findElement(webElement)).perform();
+    protected void doubleClickElement(WebElement webElement){
+    actions.doubleClick(findElement(webElement)).perform();
 }
   }

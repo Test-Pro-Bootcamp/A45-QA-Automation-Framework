@@ -14,3 +14,12 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+selenium-server-4.9.0.jar
+msedgedriver.exe
+geckodriver.exe
+chromedriver.exe
+chromedriver.exe
+chromedriver.exe
+geckodriver.exe
+msedgedriver.exe
+selenium-server-4.9.0.jar
