@@ -9,34 +9,32 @@ public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPasswordTest(String username, String password){
-        LoginPage loginPage = new LoginPage(getDriver());
-        loginPage.provideEmail(username);
-        loginPage.providePassword(password);
-        loginPage.clickSubmit();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(), url); // https://bbb.testpro.io/
+        provideEmail(username);
+        providePassword(password);
+        clickSubmit();
+
+        Assert.assertEquals(driver.getCurrentUrl(), url); // https://bbb.testpro.io/
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPasswordTest(){
-        LoginPage loginPage = new LoginPage(getDriver());
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmit();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
         isAvatarDisplayed();
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public void loginValidEmailEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("");
-        loginPage.clickSubmit();
+    public static void loginValidEmailEmptyPasswordTest() {
+        provideEmail("demo@class.com");
+        providePassword("");
+        clickSubmit();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
     }
-    public void isAvatarDisplayed() {
-        WebElement avatarIcon = getDriver().findElement(By.cssSelector("img[class='avatar']"));
+    public static void isAvatarDisplayed() {
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
 //        Assert.assertEquals(avatarIcon.isDisplayed(), true);
     }
@@ -45,8 +43,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void LoginValidEmailPasswordTest () {
 
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.provideEmail("demo@class.com");
         loginPage.providePassword("te$t$tudent");
