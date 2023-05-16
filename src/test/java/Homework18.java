@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework18 extends BaseTest {
+    private WebElement driver;
+
     @Test
     public void playNextSong() throws InterruptedException {
 

@@ -4,8 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import static java.sql.DriverManager.getDriver;
 
-    public class LoginPage extends BasePage {
+
+public class LoginPage extends BasePage {
+
+        private @FindBy(xpath = "//*[@id='app']/div/form/div/img")
+        WebElement birdLogo;
         private @FindBy(css = "input[type='email']")
         WebElement emailField;
 
@@ -15,7 +22,7 @@ import org.openqa.selenium.support.FindBy;
         private @FindBy(css = "button[type='submit']")
         WebElement loginButton;
 
-        public LoginPage(WebDriver givenDriver) {
+    public LoginPage(WebDriver givenDriver) {
             super(givenDriver);
         }
 
@@ -29,16 +36,17 @@ import org.openqa.selenium.support.FindBy;
         }
         public LoginPage clickSubmitButton(){
             findElement(loginButton).click();
-            return this;
+        return this;
         }
-        public void login(){
-            provideEmail("svyeta@test.com");
+        public LoginPage provideValidLogin(){
+            provideEmail("demo@class.com");
             providePassword("te$t$tudent");
             clickSubmitButton();
+            return this;
         }
-        public void getRegistrationLink(){
-
+        public boolean getBirdLogo() {
+            return findElement(birdLogo).isDisplayed();
         }
-    }
+}
 
 

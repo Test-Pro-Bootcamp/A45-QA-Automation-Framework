@@ -10,8 +10,8 @@ public class Homework22 extends BaseTest {
    public void renamePlaylist() {
        String playlistName = "SNKim";
 
-       LoginPage loginPage = new LoginPage(driver);
-       HomePage homePage = new HomePage(driver);
+       LoginPage loginPage = new LoginPage(getThreadLocal());
+       HomePage homePage = new HomePage(getThreadLocal());
 
        loginPage.login();
        homePage.contextClick();

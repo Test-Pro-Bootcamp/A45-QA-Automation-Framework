@@ -79,7 +79,9 @@ public class BaseTest {
         caps.setCapability("build", "TestNG With Java");
         caps.setCapability("name", this.getClass().getName());
         caps.setCapability("plugin", "git-testing");
-        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub)),caps;
+
+        WebDriver RemoteWebDriver = null;
+        return null;
     }
 //        String hubURL = "https://hub.lambdatest.com/wd/hub";
 //
@@ -110,13 +112,13 @@ public class BaseTest {
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                FirefoxOptions optionsFirefox = new FirefoxOptions();
-                optionsFirefox.addArguments("-private");
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("-private");
 
 //                firefoxOptions.setBinary("C:/Users/kim_s/AppData/Local/Mozilla Firefox/firefox.exe");
-                return driver = new FirefoxDriver(optionsFirefox);
+                return driver = new FirefoxDriver(firefoxOptions);
 
-            case "edge": // gradle clean test -Dbrowser=MicrosoftEdge
+            case "MicrosoftEdge": // gradle clean test -Dbrowser=MicrosoftEdge
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
@@ -126,8 +128,8 @@ public class BaseTest {
                 capabilities.setCapability("browserName", "firefox");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
 
-            case "grid-edge": // gradle clean test -Dbrowser=grid-MicrosoftEdge
-                capabilities.setCapability("browserName", "edge");
+            case "grid-MicrosoftEdge": // gradle clean test -Dbrowser=grid-MicrosoftEdge
+                capabilities.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
 
             case "grid-chrome":
@@ -266,7 +268,8 @@ public class BaseTest {
     }
     public void clickNextSong() throws InterruptedException {
         WebElement nextSong = driver.findElement(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//*[@id='mainFooter']/div[1]/i[2]"))).click();
     }
     public void validateTheSoundBar() throws InterruptedException {
         WebElement theSoundBar = driver.findElement(By.cssSelector("div[data-testid='sound-bar-play']"));
@@ -283,7 +286,8 @@ public class BaseTest {
     }
     public void clickRedBtnDeletePlaylist() throws InterruptedException {
         WebElement redBtnDeletePlaylist = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='del btn-delete-playlist']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                ("button[class='del btn-delete-playlist']"))).click();
     }
     public void clickNewPlaylistIcon() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector
