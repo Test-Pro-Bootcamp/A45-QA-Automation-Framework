@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest{
     String playlistName = null;
+    private WebElement driver;
+
     @Test
     public void renamePlaylist() throws InterruptedException {
         validLoginCredentials();

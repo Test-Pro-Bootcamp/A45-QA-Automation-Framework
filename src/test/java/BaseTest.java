@@ -24,11 +24,17 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class BaseTest {
+
+    private static  final  ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    private WebDriver driver;
     static WebDriverWait wait;
-    public static WebDriver driver = null;
+//    public static WebDriver driver = null;
     public Actions actions = null;
     public static String url = "";
-    public static ThreadLocal<WebDriver> threadDriver;
+//    public static ThreadLocal<WebDriver> threadDriver;
+    public static WebDriver getThreadLocal(){
+        return THREAD_LOCAL.get();
+    }
     @BeforeSuite
     static void setupClass() {
 
@@ -36,46 +42,70 @@ public class BaseTest {
     }
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
+    public void setUpBrowser(@Optional String baseURL) throws MalformedURLException{
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        THREAD_LOCAL.get().manage().window().maximize();
+        THREAD_LOCAL.get().manage().deleteAllCookies();
+        getThreadLocal().get(baseURL);
+        System.out.println(
+        "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
+    }
+//    public void launchBrowser(String BaseURL) throws MalformedURLException {
 
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
 //        driver = new ChromeDriver(options);
 
-        threadDriver = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver);
-
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
-        actions = new Actions(getDriver());
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        url = BaseURL;
-        getDriver().get(url);
-    }
+//        threadDriver = new ThreadLocal<>();
+//        driver = pickBrowser(System.getProperty("browser"));
+//        threadDriver.set(driver);
+//
+//        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+//        actions = new Actions(getDriver());
+//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        url = BaseURL;
+//        getDriver().get(url);
+//    }
     public WebDriver lambdaTest() throws MalformedURLException {
-        String hubURL = "https://hub.lambdatest.com/wd/hub";
+        String username = "";
+        String authkey = "";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "110.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testing");
 
-        ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("113.0");
-        HashMap<String, Object> ltOptions = new HashMap<>();
-        ltOptions.put("user", "svetakim0265");
-        ltOptions.put("accessKey", "vTSKu7O842k6CgJnf3JbT2ITJrybcyWt3L0fog94HkcoTa8SzA");
-        ltOptions.put("project", "Test Project");
-        ltOptions.put("w3c", true);
-        browserOptions.setCapability("LT:Options", ltOptions);
-
-        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+        WebDriver RemoteWebDriver = null;
+        return null;
     }
-    @AfterMethod
-    public void closeBrowser(){
-        //RemoteWebDriver getDriver = null;
-        getDriver().quit();
-        threadDriver.remove();
-    }
-    public WebDriver getDriver() {
-        return  threadDriver.get();
-    }
+//        String hubURL = "https://hub.lambdatest.com/wd/hub";
+//
+//        ChromeOptions browserOptions = new ChromeOptions();
+//        browserOptions.setPlatformName("Windows 10");
+//        browserOptions.setBrowserVersion("113.0");
+//        HashMap<String, Object> ltOptions = new HashMap<>();
+//        ltOptions.put("user", "svetakim0265");
+//        ltOptions.put("accessKey", "vTSKu7O842k6CgJnf3JbT2ITJrybcyWt3L0fog94HkcoTa8SzA");
+//        ltOptions.put("project", "Test Project");
+//        ltOptions.put("w3c", true);
+//        browserOptions.setCapability("LT:Options", ltOptions);
+//
+//        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+//    }
+//    @AfterMethod
+//    public void closeBrowser(){
+//        //RemoteWebDriver getDriver = null;
+//        getDriver().quit();
+//        threadDriver.remove();
+//    }
+//    public WebDriver getDriver() {
+//        return  threadDriver.get();
+//    }
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://192.168.1.4:4444"; //we insert our grid url here
@@ -83,7 +113,9 @@ public class BaseTest {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setBinary("C:/Users/kim_s/AppData/Local/Mozilla Firefox/firefox.exe");
+                firefoxOptions.addArguments("-private");
+
+//                firefoxOptions.setBinary("C:/Users/kim_s/AppData/Local/Mozilla Firefox/firefox.exe");
                 return driver = new FirefoxDriver(firefoxOptions);
 
             case "MicrosoftEdge": // gradle clean test -Dbrowser=MicrosoftEdge
@@ -108,10 +140,16 @@ public class BaseTest {
 
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(options);
+                ChromeOptions optionsChrome = new ChromeOptions();
+                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*","--incognito","start-maximized");
+                optionsChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new ChromeDriver(optionsChrome);
         }
+    }
+    @AfterMethod
+    public void tearDown() {
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
 
     public void validLoginCredentials(){
@@ -230,7 +268,8 @@ public class BaseTest {
     }
     public void clickNextSong() throws InterruptedException {
         WebElement nextSong = driver.findElement(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath
+                ("//*[@id='mainFooter']/div[1]/i[2]"))).click();
     }
     public void validateTheSoundBar() throws InterruptedException {
         WebElement theSoundBar = driver.findElement(By.cssSelector("div[data-testid='sound-bar-play']"));
@@ -247,7 +286,8 @@ public class BaseTest {
     }
     public void clickRedBtnDeletePlaylist() throws InterruptedException {
         WebElement redBtnDeletePlaylist = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[class='del btn-delete-playlist']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector
+                ("button[class='del btn-delete-playlist']"))).click();
     }
     public void clickNewPlaylistIcon() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector

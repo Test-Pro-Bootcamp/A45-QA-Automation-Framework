@@ -2,11 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG" parallel="methods" thread-count="2">
-
-    <test name="Homework25" preserve-order="false">
+    <test name="Example Test" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="Homework25"/>
+            <class name="LoginTests"/>
+            <class name="PlaylistTests"/>
         </classes>
     </test>
 </suite>

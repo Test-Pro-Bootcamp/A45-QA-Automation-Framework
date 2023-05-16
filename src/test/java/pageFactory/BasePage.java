@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class BasePage {
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    protected static WebDriverWait wait;
     protected Actions actions;
     public BasePage (WebDriver givenDriver){
         driver = givenDriver;
@@ -20,9 +20,9 @@ public class BasePage {
         actions = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
-    public void click(WebElement locator){wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public static void click(WebElement locator){wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-    public WebElement findElement(WebElement locator){
+    public static WebElement findElement(WebElement locator){
         return wait.until(ExpectedConditions.visibilityOf(locator));
     }
     public void contextClick(WebElement locator){
@@ -32,3 +32,5 @@ public class BasePage {
         actions.doubleClick(findElement(locator)).perform();
     }
 }
+
+
