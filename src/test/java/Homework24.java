@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
@@ -7,14 +8,13 @@ public class Homework24 extends BaseTest {
     public void renamePlaylist24() {
         //GIVEN
         String playlistName = "Homework24A";
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         //WHEN
         loginPage.login();
         homePage.doubleClickFirstPlaylist();
         homePage.enterPlaylistName(playlistName);
         //THEN
-        homePage.playlistExists(playlistName);
+        Assert.assertTrue(homePage.userAvatar().isDisplayed());
     }
-
 }

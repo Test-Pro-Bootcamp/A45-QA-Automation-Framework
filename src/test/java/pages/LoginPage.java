@@ -20,7 +20,14 @@ public class LoginPage extends BasePage {
     public LoginPage provideEmail(String email) {emailField.sendKeys(email);return this;}
     public LoginPage providePassword(String password) {passwordField.sendKeys(password);return this;}
     public LoginPage clickSubmit() {submitBtn.click();return this;}
-    public LoginPage login(){provideEmail("andrei.bryliakov@testpro.io");providePassword("te$t$tudent1");clickSubmit();return this;}
+    public LoginPage login(){
+        emailField.click();
+        emailField.clear();
+        provideEmail("andrei.bryliakov@testpro.io");
+        passwordField.click();
+        passwordField.clear();
+        providePassword("te$t$tudent1");
+        clickSubmit();return this;}
 }
 
 

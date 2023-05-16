@@ -13,6 +13,7 @@ import java.time.Duration;
 
 public class BasePage {
     WebDriver driver;
+
     WebDriverWait wait;
     Actions actions;
     @FindBy(css = "li a.songs")

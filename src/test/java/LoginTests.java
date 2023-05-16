@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         loginPage.login();
-        homePage.getUserAvatar();
+        Assert.assertTrue(homePage.userAvatar().isDisplayed());
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")

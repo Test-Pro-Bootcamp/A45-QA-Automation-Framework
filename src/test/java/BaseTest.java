@@ -26,7 +26,7 @@ import java.util.UUID;
 
 public class BaseTest {
     public static WebDriver driver = null;
-    public static ThreadLocal<WebDriver> threadDriver;
+    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
@@ -49,10 +49,10 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
-        threadDriver = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //threadDriver = new ThreadLocal<>();
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        //threadDriver.set(driver);
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
         url = BaseURL;
@@ -60,13 +60,13 @@ public class BaseTest {
     }
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-//        getDriver().quit();
+       getDriver().quit();
         threadDriver.remove();
     }
 
     public static WebDriver getDriver(){
-       return driver;
-       //return threadDriver.get();
+       //return driver;
+       return threadDriver.get();
     }
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -117,38 +117,38 @@ public class BaseTest {
     }
 
     public static void navigateToPage() {
-        driver.get(url);
+        getDriver().get(url);
     }
 
     public static void provideEmail(String email) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.provideEmail(email);
     }
     public static void providePassword(String password) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.providePassword(password);
     }
     public static void clickSubmit() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.clickSubmit();
     }
     public static void clickSaveButton() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.clickSaveButton();
     }
     public static void provideProfileName(String randomName) {
-        ProfilePreferencesPage profilePreferencesPage = new ProfilePreferencesPage(driver);
+        ProfilePreferencesPage profilePreferencesPage = new ProfilePreferencesPage(getDriver());
         profilePreferencesPage.provideProfileName(randomName);
     }
     public static void provideCurrentPassword(String password) {
-        ProfilePreferencesPage profilePreferencesPage = new ProfilePreferencesPage(driver);
+        ProfilePreferencesPage profilePreferencesPage = new ProfilePreferencesPage(getDriver());
         profilePreferencesPage.provideCurrentPassword(password);
     }
     public static String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
     public static void clickAvatarIcon() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.clickAvatarIcon();
     }
     // hover
@@ -179,7 +179,7 @@ public class BaseTest {
     }
     // double click
     public void doubleClickChoosePlaylist() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.doubleClickFirstPlaylist();
     }
 }

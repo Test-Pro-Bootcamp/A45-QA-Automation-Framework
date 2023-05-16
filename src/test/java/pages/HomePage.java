@@ -24,7 +24,7 @@ public class HomePage extends BasePage {
     WebElement inputPlaylistNameField;
     @FindBy(xpath = "//a[text()=\"playlistName\"]")
     WebElement playlistElement;
-    public WebElement getUserAvatar () {return userAvatarIcon;}
+    public WebElement userAvatar () {return userAvatarIcon;}
     public HomePage clickAvatarIcon () {userAvatarIcon.click();return this;}
     public HomePage clickSaveButton() {saveButton.click();return this;}
     public  HomePage clickPlayButton(){playButton.click();return this;}
