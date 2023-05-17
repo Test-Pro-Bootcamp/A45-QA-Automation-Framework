@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.hc.core5.util.TimeValue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,15 +26,16 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    @DataProvider(name="IncorrectLoginData")
+    @DataProvider(name = "IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
 
-        return new Object[][] {
+        return new Object[][]{
                 {"invalid@mail.com", "invalidPass"},
                 {"demo@class.com", ""},
                 {"", ""}
         };
     }
+
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) {
@@ -43,8 +45,6 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
         url = BaseURL;
         navigateToPage();
     }
@@ -59,23 +59,23 @@ public class BaseTest {
     }
 
     public static void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
     }
 
     public static void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
     public static void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
     }
-
-    public static void clickSaveButton() {
+}
+    /*public static void clickSaveButton() {
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
         saveButton.click();
     }
@@ -95,6 +95,7 @@ public class BaseTest {
     public static String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
+
 
     public static void clickAvatarIcon() {
         WebElement avatarIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img.avatar")));
@@ -137,3 +138,4 @@ public class BaseTest {
         actions.doubleClick(playlist).perform();
     }
 }
+*/
