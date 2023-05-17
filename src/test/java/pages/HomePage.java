@@ -24,7 +24,7 @@ public class HomePage extends BasePage {
         return this;
     }
     public HomePage enterNewPlaylistName (String newPlaylistName){
-        playlistNameField.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.BACK_SPACE));
+        playlistNameField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         playlistNameField.sendKeys(newPlaylistName);
         playlistNameField.sendKeys(Keys.ENTER);
         return this;

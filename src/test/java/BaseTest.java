@@ -20,7 +20,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.net.MalformedURLException;
@@ -71,12 +73,34 @@ public class BaseTest {
             case "grid-safari":
                 caps.setCapability("browserName", "safari");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(options);
         }
+    }
+
+    public static WebDriver lambdaTest() throws MalformedURLException {
+        String username = "zaik8oval";
+        String accessToken = "sUKip7xxjRauz6yPPkWGvKZMQtULDBty0t104GbyQVTcSk14zF";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("113.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "zaik8oval");
+        ltOptions.put("accessKey", "sUKip7xxjRauz6yPPkWGvKZMQtULDBty0t104GbyQVTcSk14zF");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+
     }
 
     public static void isAvatarDisplayed() {
