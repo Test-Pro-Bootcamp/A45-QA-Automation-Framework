@@ -21,23 +21,30 @@ public class BaseTest {
     public static EdgeOptions optionE;
     static WebDriverWait wait;
 
+
     @BeforeSuite
     static void setupClass() {
-        WebDriverManager.edgedriver().setup();
-      WebDriverManager.chromedriver().setup();
+
+
     }
 
     @BeforeMethod
     @Parameters({"baseURL"})
 
     private static WebDriver pickBrowser(String browser){
+        driver = pickBrowser(System.getProperty("browser"));
         switch (browser){
-        case 
+            case "Edge":
+                WebDriverManager.edgedriver().setup();
+                return driver = new EdgeDriver();
 
+            default:
+                WebDriverManager.chromedriver().setup();
+                return driver = new ChromeDriver(optionC);
         }
     }
     static void setupBrowser(String baseURL) {
-       driver = new EdgeDriver(optionE);
+
         optionE = new EdgeOptions();
         optionE.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
 
