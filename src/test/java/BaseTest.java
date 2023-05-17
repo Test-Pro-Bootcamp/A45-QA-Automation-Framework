@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -73,13 +74,22 @@ public class BaseTest {
         return notification.getText();
     }
 
-    protected void removePlaylist(String playlistName) {
+    protected String removePlaylist(Integer ordNum) {
 
-        WebElement certainPlaylist = driver.findElement(By.xpath(String.format("//a[contains(text(), '%s')]",
-                                                                                playlistName)));
+        WebElement certainPlaylist = driver.findElement(By.xpath(String.format("//li[@class='playlist playlist'][%d]/a",
+                                                                                ordNum)));
+        String plName = certainPlaylist.getText();
+        certainPlaylist.getText();
         certainPlaylist.click();
         WebElement delButton = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
         delButton.click();
+        try {
+            WebElement okBtn = driver.findElement(By.xpath( "//button[@class='ok']"));
+            okBtn.click();
+        }
+        catch (NoSuchElementException e){
+        }
+        return plName;
     }
 
     protected void createPlaylist(String playlistName) throws InterruptedException {
@@ -92,7 +102,5 @@ public class BaseTest {
         WebElement toSave = driver.findElement(By.xpath("//input[@name='name']"));
         toSave.sendKeys(playlistName);
         toSave.submit();
-
-        Thread.sleep(5000);
     }
 }

@@ -12,12 +12,10 @@ public class Homework19 extends BaseTest {
         providePassword("te$t$tudent");
         clickSubmit();
         Thread.sleep(2000);
-
-        createPlaylist(playlistName);
-        removePlaylist(playlistName);
+        String deletedPlaylist = removePlaylist(1);
         String notificationText = getNotificationText();
         Assert.assertEquals(notificationText,
-                String.format("Deleted playlist \"%s.\"", playlistName));
+                String.format("Deleted playlist \"%s.\"", deletedPlaylist));
     }
 
 }
