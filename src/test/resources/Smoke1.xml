@@ -6,12 +6,11 @@
     <test name="Example Test" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-
-            <class name="LoginTests"/>
-            <class name="PlaylistTest"/>
-
+            <class name="PlaylistTest">
+                <methods>
+                    <include name="deletePlaylist" />
+                    </methods>
+            </class>
         </classes>
     </test>
 </suite>
-
-
