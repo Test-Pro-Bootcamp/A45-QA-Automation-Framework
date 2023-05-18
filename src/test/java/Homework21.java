@@ -13,8 +13,8 @@ public class Homework21  extends BaseTest {
     public void renamePlaylist(){
 
     String newPlaylistName = "kristina.matskaylo2";
-    LoginPage loginPage = new LoginPage(driver);
-    HomePage homePage = new HomePage(driver);
+    LoginPage loginPage = new LoginPage(getDriver());
+    HomePage homePage = new HomePage(getDriver());
 
     //loginPage.login();
     // homePage.doubleClickFirstPlaylist();
