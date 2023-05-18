@@ -34,8 +34,10 @@ public class HomePage extends BasePage {
         super (givenDriver);
     }
 
-    public boolean isAvatarDisplayed () {
-        return userAvatarIcon.isDisplayed();
+    public HomePage isAvatarDisplayed () {
+        findElement(userAvatarIcon);
+        Assert.assertTrue(userAvatarIcon.isDisplayed());
+        return this;
     }
 
     public HomePage createNewPlaylist () {
