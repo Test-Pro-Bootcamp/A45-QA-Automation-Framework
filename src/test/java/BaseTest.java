@@ -14,29 +14,22 @@ import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
 
+
 public class BaseTest {
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
 
+// Test annotation and the helper/reusable methods
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @DataProvider(name="IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders() {
-
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) {
+   @Parameters({"BaseURL"})
+    public void launchBrowser() {
         //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -46,7 +39,7 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
         url = BaseURL;
-        navigateToPage();
+       navigateToPage();
     }
 
     @AfterMethod//(enabled = false)
@@ -58,27 +51,43 @@ public class BaseTest {
         driver.get(url);
     }
 
-    public static void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
+    public void provideEmail(String email) {
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
     }
 
-    public static void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
+    public void providePassword(String password) {
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
-    public static void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+    public void clickSubmit() {
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
     }
 
-    public static void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
+
+    public void clickPlay() {
+        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+
+        playNextButton.click();
+        playButton.click();
     }
+
+    public boolean isSongPlaying(){
+        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        return soundBar.isDisplayed();
+    }
+
+}
+
+
+
+
+/*
 
     public static void provideProfileName(String randomName) {
         WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
@@ -137,3 +146,5 @@ public class BaseTest {
         actions.doubleClick(playlist).perform();
     }
 }
+
+ */
