@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 import pagefactory.HomePage;
 import pagefactory.LoginPage;
 
-public class Homework25 extends BaseTest {
+public class Homework26 extends BaseTest {
 //    @Test
 //    public void renamePlaylist(){
 //        String playlistName = "Daria45";
