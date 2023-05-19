@@ -7,7 +7,7 @@ import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
 
-    @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
+    @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BasePage.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPasswordTest(String username, String password){
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.provideEmail(username);

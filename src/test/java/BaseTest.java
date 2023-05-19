@@ -198,7 +198,7 @@ public class BaseTest {
 
     public void displayAllSongs() {
         chooseAllSongsList();
-    //add assertion
+        //add assertion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item")));
         List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
         Assert.assertEquals(songsList.size(), 63);
