@@ -44,20 +44,21 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException{
-
-       // threadDriver = new ThreadLocal<>(); #1 close line
         driver = pickBrowser(System.getProperty("browser"));
-        //threadDriver.set(driver); #2 close line
+        threadDriver = new ThreadLocal<>(); //#1
+        //driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(driver); //#2
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        actions = new Actions(driver);
+
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
         url = BaseURL;
-        driver.get(url);
+        getDriver().get(url);
     }
     public WebDriver getDriver(){
-       // return threadDriver.get();#3change line
-        return driver;
+       return threadDriver.get(); //#3
+       // return driver;
     }
 
 
@@ -95,7 +96,7 @@ public class BaseTest {
     private static WebDriver lambdaTest() throws MalformedURLException{
         String username = "kristinamatskaylo";
         String accessToken = "nB9vIHxa1gRuej4h0inAjbMAhkVNVdZxi0gkGudo8993ucWVSp";
-        String hubURL = "@hub.lambdatest.com/wd/hub";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
 
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
@@ -114,7 +115,7 @@ public class BaseTest {
     @AfterTest
     public  void tearDownBrowser(){
         getDriver().quit();
-       // threadDriver.remove(); #4close line
+        threadDriver.remove(); //#4
     }
 
 }
