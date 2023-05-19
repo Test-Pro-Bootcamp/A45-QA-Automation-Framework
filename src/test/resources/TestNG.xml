@@ -18,6 +18,7 @@
             <class name="Homework25"/>
             <class name="LoginTests"/>
             <class name="PlaylistTests"/>
+            <class name="CucumberRunner"/>
         </classes>
     </test>
 </suite>
