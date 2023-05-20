@@ -18,6 +18,8 @@ public class HomePage extends BasePage {
    //private By playlistNameField = By.cssSelector("[name='name']");
     @FindBy(xpath="//a[text()='kristina.matskaylo2']")
     private WebElement newPlaylist;
+    @FindBy(css="img.avatar")
+    private WebElement userAvatar;
 
     public HomePage(WebDriver givenDriver){
         super(givenDriver);
@@ -38,4 +40,8 @@ public class HomePage extends BasePage {
         // return findElement(newPlaylist).isDisplayed();
         return newPlaylist.isDisplayed();
     }
+    public boolean isUserAvatarDisplayed() {
+        return userAvatar.isDisplayed();
+    }
+
 }

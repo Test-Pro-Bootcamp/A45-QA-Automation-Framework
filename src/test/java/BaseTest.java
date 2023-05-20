@@ -44,8 +44,8 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException{
-        driver = pickBrowser(System.getProperty("browser"));
         threadDriver = new ThreadLocal<>(); //#1
+        driver = pickBrowser(System.getProperty("browser"));
         //driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver); //#2
 
@@ -112,7 +112,7 @@ public class BaseTest {
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
 
-    @AfterTest
+    @AfterMethod
     public  void tearDownBrowser(){
         getDriver().quit();
         threadDriver.remove(); //#4

@@ -35,10 +35,9 @@ public class LoginPage extends BasePage {
         submitButtonLocator.click();
         return this;
     }
-   /* public void login(){
-        provideEmail("kristina.matskaylo@testpro.io");
-        providePassword("11111111*a");
-        clickSubmitBtn();
-   }*/
+    public boolean isClickSubmitBtnDisplayed(){
+        return submitButtonLocator.isDisplayed();
+    }
+
 
 }
