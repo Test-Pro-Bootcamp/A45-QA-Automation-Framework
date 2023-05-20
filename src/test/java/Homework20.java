@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class Homework20 extends BaseTest{
 
     @Test
-    public void deletePlaylist()  {
+    public void deletePlaylist() {
 
         provideEmail("rishkodaria@gmail.com");
         providePassword("2743782dasha!");
@@ -27,7 +27,7 @@ public class Homework20 extends BaseTest{
     deletePlaylist.click();
     }
 
-    public String getDeletePlaylistMsg(){
+    public String getDeletePlaylistMsg() {
     WebElement deleteMsg = driver.findElement(By.cssSelector("div.success.show"));
     return deleteMsg.getText();
     }
