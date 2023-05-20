@@ -8,12 +8,11 @@ import org.testng.annotations.Test;
 public class Homework20 extends BaseTest{
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist()  {
 
         provideEmail("rishkodaria@gmail.com");
         providePassword("2743782dasha!");
         clickSubmit();
-        Thread.sleep(4000);
         openPlaylistOne();
         clickDeletePlaylistBtn();
         Assert.assertTrue(getDeletePlaylistMsg().contains(getDeletePlaylistMsg()));
@@ -23,10 +22,9 @@ public class Homework20 extends BaseTest{
         onePlaylist.click();
     }
 
-    public void clickDeletePlaylistBtn() throws InterruptedException{
+    public void clickDeletePlaylistBtn() {
     WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
     deletePlaylist.click();
-    Thread.sleep(2000);
     }
 
     public String getDeletePlaylistMsg(){
