@@ -6,17 +6,19 @@
     <test name="Example Test">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-<!--            <class name="RandomTests">-->
-<!--                <methods>-->
-<!--                    <include name="actionMethods" />-->
-<!--                </methods>-->
-<!--            </class>-->
-                        <class name="LoginTests">
-                            <methods>
-                                <include name="loginValidEmailPasswordTest" />
-                                <include name="loginValidEmailEmptyPasswordTest" />
-                            </methods>
-                        </class>
+
+            <class name="BaseTest"/>
+            <class name="LoginTests">
+                <methods>
+                    <include name="LoginValidEmailPasswordTest"/>
+                </methods>
+            </class>
+
+            <class name="Homework25">
+                <methods>
+                    <include name="renamePlaylistTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

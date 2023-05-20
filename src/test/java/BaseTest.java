@@ -33,38 +33,31 @@ public class BaseTest {
 
     @BeforeSuite
     static void setupClass() {
-
 //        WebDriverManager.chromedriver().setup();
 //        WebDriverManager.firefoxdriver().setup();
-
     }
 
-    @DataProvider(name="IncorrectLoginData")
+    @DataProvider(name = "IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
 
-        return new Object[][] {
+        return new Object[][]{
                 {"invalid@mail.com", "invalidPass"},
                 {"demo@class.com", ""},
                 {"", ""}
         };
     }
+
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
-        //      Added ChromeOptions argument below to fix websocket error
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
-
-//        driver = new FirefoxDriver();
 
         threadDriver = new ThreadLocal<>(); // make sure to have this line before the assigning the driver variable
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
-
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
+
         url = BaseURL;
         navigateToPage();
     }
@@ -73,6 +66,7 @@ public class BaseTest {
     public void closeBrowser() {
         getDriver().quit();
         threadDriver.remove();
+//        driver.quit();
     }
 
     public WebDriver getDriver() {
@@ -84,7 +78,7 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.1.160:4444";
 
-        switch (browser){
+        switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
@@ -110,25 +104,24 @@ public class BaseTest {
         }
     }
 
-
     public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
-            String hubURL = "https://hub.lambdatest.com/wd/hub";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+        String username = "veena.sreenidish";
+        String accessToken = "g3sQAKbYYjxtDxg0s78jmj2UNlgZYYUc1rfSyoGa4CxWWlezHx";
 
-        FirefoxOptions browserOptions = new FirefoxOptions();
+        ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("111.0");
+        browserOptions.setBrowserVersion("114.0");
         HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", username);
-            ltOptions.put("accessKey", accessToken);
-            ltOptions.put("project", "Untitled");
-            ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
-            browserOptions.setCapability("LT:Options", ltOptions);
-
+        ltOptions.put("username", username);
+        ltOptions.put("accessKey", accessToken);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
+
     public static void navigateToPage() {
         driver.get(url);
     }
@@ -189,7 +182,7 @@ public class BaseTest {
         driver.findElement(By.cssSelector("li a.songs")).click();
     }
 
-    public void contextClickFirstSong(){
+    public void contextClickFirstSong() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
         WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
         // context click
@@ -198,7 +191,7 @@ public class BaseTest {
 
     public void displayAllSongs() {
         chooseAllSongsList();
-    //add assertion
+        //add assertion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item")));
         List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
         Assert.assertEquals(songsList.size(), 63);
