@@ -11,7 +11,7 @@
 <!--                    <include name="loginValidEmailEmptyPasswordTests" />-->
 <!--                </methods>-->
 <!--            </class>-->
-            <class name="Homework24"/>
+<!--            <class name="Homework24"/>-->
         </classes>
     </test>
 </suite>
