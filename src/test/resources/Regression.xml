@@ -10,7 +10,6 @@
 <!--            <class name="LoginTests"/>-->
 <!--            <class name="TestHomework"/>-->
 <!--            <class name="ProfileTests"/>-->
-            <class name="Homework26"/>
         </classes>
     </test>
 </suite>
