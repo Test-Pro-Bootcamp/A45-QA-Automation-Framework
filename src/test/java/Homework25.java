@@ -8,12 +8,16 @@ public class Homework25 extends BaseTest {
 
     @Test
     public void renamePlaylistTest() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        PlaylistsPage playlistsPage = new PlaylistsPage(getDriver());
+        // GIVEN
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        PlaylistsPage playlistsPage = new PlaylistsPage(getThreadLocal());
 
-        loginPage.provideEmail("demo@class.com").providePassword("te$t$tudent").clickSubmit();
+        // WHEN
+        loginPage.provideEmail("demo@class.com").providePassword("te$t$tudent").clickSubmitBtn();
         playlistsPage.doubleClickPlaylist();
         playlistsPage.renamePlaylist("Renamed Playlist");
+
+        //THEN
         Assert.assertTrue(playlistsPage.isNameUpdated().contains(updatedMsg));
     }
 }
