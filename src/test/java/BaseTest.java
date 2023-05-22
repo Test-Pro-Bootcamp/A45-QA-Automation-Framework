@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -13,10 +14,12 @@ import org.testng.annotations.Parameters;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
+
 public class BaseTest {
     public static WebDriver driver = null;
     public static String url = "";
-    public static WebDriverWait wait;
+    public static WebDriverWait wait = null;
+    public static Actions actions = null;
     @BeforeSuite
     static void setupClass() {
 
@@ -31,8 +34,9 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
+       // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseUrl;
         driver.get(url);
         navigateToPage();
