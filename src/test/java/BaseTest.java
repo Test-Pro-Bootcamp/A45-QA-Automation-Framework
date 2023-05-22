@@ -1,19 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
@@ -21,70 +14,88 @@ import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+
+// Import necessary packages and classes for working with WebDriver,
+// browser configurations, and executing automated tests using TestNG.
 
 public class BaseTest {
-    public static WebDriver driver = null;
-    public ThreadLocal<WebDriver> threadDriver = null;
-    public static WebDriverWait wait = null;
-    public static Actions actions = null;
-    public static String url = "";
 
-    @BeforeSuite
-    static void setupClass() {
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    // THREAD_LOCAL of type ThreadLocal<WebDriver>. ThreadLocal is a mechanism that allows
+    // storing and retrieving unique variable values for each thread. In this case,
+    // ThreadLocal<WebDriver> will be used to store an instance of WebDriver
+    // associated with each thread during test execution.
 
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
+    private WebDriver driver = null;
+    // Here, a variable named driver of type WebDriver is declared and initialized with null.
+    // By default, driver doesn't have a reference to a WebDriver instance.
 
+    private int timeSeconds = 3;
+    // This line declares a variable named timeSeconds of type int and initializes it with the value 3.
+    // This variable represents the number of seconds used in the code to define time intervals, such as element waits or timeouts.
+
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
     }
+    // This getThreadLocal() method returns the current instance of WebDriver associated with the current thread.
 
-    @DataProvider(name="IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders() {
-
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
-        //      Added ChromeOptions argument below to fix websocket error
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
+    @Parameters({"baseURL"})
+    public void setUpBrowser(@Optional String baseURL) throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
+        getThreadLocal().get(baseURL);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
 
-//        driver = new FirefoxDriver();
-
-        threadDriver = new ThreadLocal<>(); // make sure to have this line before the assigning the driver variable
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver);
-
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
-        url = BaseURL;
-        navigateToPage();
     }
+    // This setUpBrowser() method is marked with the @BeforeMethod annotation from TestNG and executes before each test method.
+    // It sets up the browser, configures it, and opens the specified baseURL. It also prints information about the browser setup to the console.
 
-    @AfterMethod//(enabled = false)
-    public void closeBrowser() {
-        getDriver().quit();
-        threadDriver.remove();
-    }
 
-    public WebDriver getDriver() {
-//        return driver;
-        return threadDriver.get();
-    }
+public WebDriver lambdaTest() throws MalformedURLException {
+    String username = "veena.sreenidish";
+    String authkey = "g3sQAKbYYjxtDxg0s78jmj2UNlgZYYUc1rfSyoGa4CxWWlezHx";
+    String hub = "@hub.lambdatest.com/wd/hub";
+    DesiredCapabilities caps = new DesiredCapabilities();
+    caps.setCapability("platform", "Windows 10");
+    caps.setCapability("browserName", "Chrome");
+    caps.setCapability("version", "110.0");
+    caps.setCapability("resolution", "1024x768");
+    caps.setCapability("build", "TestNG With Java");
+    caps.setCapability("name", this.getClass().getName());
+    caps.setCapability("plugin", "git-testng");
+    return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+}
 
-    public static WebDriver pickBrowser(String browser) throws MalformedURLException {
+    // This lambdaTest() method returns an instance of WebDriver for remote testing using the LambdaTest service.
+
+
+    // Below code is lambdaTest() method using Automation Capabilities Generator with Chrome Browser Version "114.0"
+
+//    public WebDriver lambdaTest() throws MalformedURLException {
+//        String hubURL = "https://hub.lambdatest.com/wd/hub";
+//        String username = "veena.sreenidish";
+//        String accessToken = "g3sQAKbYYjxtDxg0s78jmj2UNlgZYYUc1rfSyoGa4CxWWlezHx";
+//
+//        ChromeOptions browserOptions = new ChromeOptions();
+//        browserOptions.setPlatformName("Windows 10");
+//        browserOptions.setBrowserVersion("114.0");
+//        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+//        ltOptions.put("username", username);
+//        ltOptions.put("accessKey", accessToken);
+//        ltOptions.put("project", "Untitled");
+//        ltOptions.put("selenium_version", "4.0.0");
+//        ltOptions.put("w3c", true);
+//        browserOptions.setCapability("LT:Options", ltOptions);
+//        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+//    }
+
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160:4444";
+        String gridURL = "http://10.2.127.17:4444";
 
-        switch (browser){
+        switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
@@ -110,105 +121,13 @@ public class BaseTest {
         }
     }
 
+    // This pickBrowser() method selects and returns an instance of WebDriver depending on the passed browser parameter.
 
-    public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
-            String hubURL = "https://hub.lambdatest.com/wd/hub";
-
-        FirefoxOptions browserOptions = new FirefoxOptions();
-        browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("111.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", username);
-            ltOptions.put("accessKey", accessToken);
-            ltOptions.put("project", "Untitled");
-            ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
-            browserOptions.setCapability("LT:Options", ltOptions);
-
-        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+    @AfterMethod
+    public void tearDown() {
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
-    public static void navigateToPage() {
-        driver.get(url);
-    }
-
-    public static void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    public static void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public static void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submit.click();
-    }
-
-    public static void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
-    }
-
-    public static void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
-
-    public static void provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
-
-    public static String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-
-    public static void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img.avatar")));
-        avatarIcon.click();
-    }
-
-    // hover
-    public void hoverPlay() {
-        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-        // move to element
-        actions.moveToElement(play).perform();
-    }
-
-    // context click
-    public void chooseAllSongsList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs")));
-        driver.findElement(By.cssSelector("li a.songs")).click();
-    }
-
-    public void contextClickFirstSong(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
-        // context click
-        actions.contextClick(firstSong).perform();
-    }
-
-    public void displayAllSongs() {
-        chooseAllSongsList();
-    //add assertion
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item")));
-        List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
-        Assert.assertEquals(songsList.size(), 63);
-    }
-
-    // double click
-    public void doubleClickChoosePlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        // double click
-        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        actions.doubleClick(playlist).perform();
-    }
+    // The tearDown() method is executed after each test method (@AfterMethod),
+    // and its purpose is to close the WebDriver and remove its instance from ThreadLocal.
 }
