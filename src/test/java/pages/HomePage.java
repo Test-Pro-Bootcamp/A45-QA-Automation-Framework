@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
-    @FindBy(xpath = "//li[@class='playlist playlist'][1]")
+    @FindBy(xpath = "//li[@class='playlist playlist'][1]/a")
     private WebElement firstPlaylist;
     @FindBy(xpath = "//input[@name='name']")
     private WebElement playlistNameField;

@@ -7,9 +7,9 @@ public class Homework24 extends BaseTest{
     @Test
     public void renamePlaylist(){
         String newPlName = "AlekseiZZZ";
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login();
+        HomePage homePage = new HomePage(getDriver());
         homePage.doubleClickFirstPlaylist()
                 .enterNewPlaylistName(newPlName);
         Assert.assertTrue(homePage.doesPlaylistExists(newPlName));

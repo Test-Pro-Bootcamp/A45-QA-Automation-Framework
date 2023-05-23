@@ -33,10 +33,15 @@ public class BaseTest {
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
+    public ThreadLocal<WebDriver> threadDriver = null;
+
+    public WebDriver getDriver(){
+        return threadDriver.get();
+    }
 
     @BeforeSuite
     static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
     }
 
     @DataProvider(name="IncorrectLoginData")
@@ -138,21 +143,24 @@ public class BaseTest {
 //        options.addArguments("--remote-allow-origins=*");
 //
 //        driver = new ChromeDriver(options);
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        actions = new Actions(driver);
+        threadDriver.set(driver);
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(4));
+        actions = new Actions(getDriver());
         url = BaseURL;
         navigateToPage();
     }
 
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadDriver.remove();
     }
 
-    public static void navigateToPage() {
-        driver.get(url);
+    public void navigateToPage() {
+        getDriver().get(url);
     }
 
     public static void provideEmail(String email) {
@@ -200,7 +208,7 @@ public class BaseTest {
 
     // hover
     public void hoverPlay() {
-        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        WebElement play = getDriver().findElement(By.cssSelector("[data-testid='play-btn']"));
         // move to element
         actions.moveToElement(play).perform();
     }
@@ -213,7 +221,7 @@ public class BaseTest {
 
     public void contextClickFirstSong(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
+        WebElement firstSong = getDriver().findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
         // context click
         actions.contextClick(firstSong).perform();
     }
@@ -222,7 +230,7 @@ public class BaseTest {
         chooseAllSongsList();
     //add assertion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item")));
-        List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
+        List<WebElement> songsList = getDriver().findElements(By.cssSelector(".all-songs tr.song-item"));
         Assert.assertEquals(songsList.size(), 63);
     }
 
