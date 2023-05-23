@@ -23,7 +23,6 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailEmptyPassword() {
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
         loginPage.provideEmail("kristina.matskaylo@testpro.io")
                 .providePassword("")
                 .clickSubmitBtn();
