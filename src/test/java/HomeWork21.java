@@ -23,7 +23,7 @@ public class HomeWork21 extends BaseTest{
 
         WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
         assert  playListElement.isDisplayed();
-        
+
     }
 
 }
