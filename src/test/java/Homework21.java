@@ -16,10 +16,6 @@ public class Homework21  extends BaseTest {
     LoginPage loginPage = new LoginPage(getDriver());
     HomePage homePage = new HomePage(getDriver());
 
-    //loginPage.login();
-    // homePage.doubleClickFirstPlaylist();
-    //homePage.enterNewPLaylistName(newPlaylistName);
-    //Assert.assertTrue(homePage.doesNewPlaylistexist(newPlaylistName));
         loginPage.provideEmail("kristina.matskaylo@testpro.io")
                  .providePassword("11111111*a")
                  .clickSubmitBtn();

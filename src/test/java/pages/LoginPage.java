@@ -19,19 +19,14 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
     public LoginPage provideEmail(String email){
-       // WebElement emailElement = driver.findElement(emailField);
-       // emailElement.clear();
         emailField.sendKeys(email);
         return this;
     }
     public LoginPage providePassword(String password){
-       // WebElement emailElement = driver.findElement(passwordField);
-       // passwordElement.clear();
         passwordField.sendKeys(password);
         return this;
     }
     public LoginPage clickSubmitBtn(){
-        //driver.findElement(submitButtonLocator).click();
         submitButtonLocator.click();
         return this;
     }

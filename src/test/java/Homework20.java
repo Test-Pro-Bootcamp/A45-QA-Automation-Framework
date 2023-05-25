@@ -3,14 +3,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
 public class Homework20 extends BaseTest {
     @Test
     public void deletePlaylist() {
         String expectedNotificationText = "Deleted playlist \"kristina.matskaylo.\"";
-        /*enterEmail("kristina.matskaylo@testpro.io");
-        enterPassword("11111111*a");
-        submitLogIn();*/
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        loginPage.provideEmail("kristina.matskaylo@testpro.io")
+                .providePassword("11111111*a")
+                .clickSubmitBtn();
         navigateToPlaylist();
         clickDeletePlaylist();
        // Assert.assertTrue(actualNotificationText().contains(expectedNotificationText));

@@ -2,16 +2,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class Homework17 extends BaseTest{
     @Test
     public void addSongToPlaylist() throws InterruptedException {
         String expectedNotificationText = "Added 1 song into";
-        //openLogInPage();
-        /*enterEmail("kristina.matskaylo@testpro.io");
-        enterPassword("11111111*a");
-        submitLogIn();*/
-        searchSong("Beautiful");
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.provideEmail("kristina.matskaylo@testpro.io")
+                .providePassword("11111111*a")
+                .clickSubmitBtn();
+        homePage.searchSong("Beautiful");
         clickViewAllButton();
         selectFirstSongFromSearchResult();
         clickAddToButton();
@@ -21,13 +25,13 @@ public class Homework17 extends BaseTest{
 
 
 
-        public void searchSong (String songname) throws InterruptedException {
-            WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
-            searchField.clear();
-            searchField.sendKeys(songname);
-            searchField.click();
-            Thread.sleep(2000);
-        }
+//        public void searchSong (String songname) throws InterruptedException {
+//            WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+//            searchField.clear();
+//            searchField.sendKeys(songname);
+//            searchField.click();
+//            Thread.sleep(2000);
+//        }
 
 
     public void clickViewAllButton()  throws InterruptedException  {
