@@ -29,6 +29,7 @@ public class BaseTest {
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
+    private WebElement playButton;
 
     @BeforeSuite
     static void setupClass() {
@@ -42,6 +43,8 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         url = BaseURL;
         navigateToPage();
     }
@@ -67,6 +70,20 @@ public class BaseTest {
     public static void clickSubmit() {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
+    }
+
+    public void  clickPlay() {
+//added @ for xpath playNextButton
+   WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+           WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+
+   playNextButton.click();
+   playButton.click();
+
+    }
+    public boolean isSongPlaying() {
+        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        return soundBar.isDisplayed();
     }
     public static void clickSaveButton() {
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
