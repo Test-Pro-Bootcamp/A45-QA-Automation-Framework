@@ -13,8 +13,8 @@ import java.util.Set;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
-    public static String url = "https://bbb.testpro.io/";
+    protected static WebDriver driver = null;
+    protected static String url = "https://bbb.testpro.io/";
 
     @BeforeSuite
     static void setupClass() {
