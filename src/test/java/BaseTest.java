@@ -33,9 +33,8 @@ public class BaseTest {
 
     @BeforeSuite
     static void setupClass() {
-
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
+       // WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
 
     }
 
@@ -54,9 +53,9 @@ public class BaseTest {
         //      Added ChromeOptions argument below to fix websocket error
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
+ //       driver = new ChromeDriver(options);
 
-//        driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
 
         threadDriver = new ThreadLocal<>(); // make sure to have this line before the assigning the driver variable
         driver = pickBrowser(System.getProperty("browser"));
