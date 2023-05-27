@@ -33,10 +33,10 @@ public class BaseTest {
     public static WebDriverWait wait = null;
     public static Actions actions = null;
     public static String url = "";
-    public ThreadLocal<WebDriver> threadDriver = null;
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
 
     public WebDriver getDriver(){
-        return threadDriver.get();
+        return THREAD_LOCAL.get();
     }
 
     @BeforeSuite
@@ -83,7 +83,8 @@ public class BaseTest {
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
                 return driver = new ChromeDriver(options);
         }
     }
@@ -143,20 +144,21 @@ public class BaseTest {
 //        options.addArguments("--remote-allow-origins=*");
 //
 //        driver = new ChromeDriver(options);
-        threadDriver = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver);
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(4)); // to comment
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(4));
         actions = new Actions(getDriver());
         url = BaseURL;
         navigateToPage();
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getDriver());
+
     }
 
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-        getDriver().quit();
-        threadDriver.remove();
+        getDriver().close();
+        THREAD_LOCAL.remove();
     }
 
     public void navigateToPage() {
