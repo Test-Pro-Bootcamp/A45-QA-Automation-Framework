@@ -9,8 +9,8 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
     @FindBy(xpath = "//li[@class='playlist playlist'][1]/a")
     private WebElement firstPlaylist;
-    @FindBy(xpath = "//input[@name='name']")
-    private WebElement playlistNameField;
+//    @FindBy(xpath = "//input[@name='name']")
+//    private WebElement playlistNameField;
     @FindBy(css = "img.avatar")
     private WebElement userAvatarIcon;
     public HomePage(WebDriver givenDriver) {
@@ -24,7 +24,8 @@ public class HomePage extends BasePage {
         return this;
     }
     public HomePage enterNewPlaylistName (String newPlaylistName){
-        playlistNameField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        WebElement playlistNameField = findElement(By.xpath("//input[@name='name']"));
+        playlistNameField.sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.BACK_SPACE));
         playlistNameField.sendKeys(newPlaylistName);
         playlistNameField.sendKeys(Keys.ENTER);
         return this;
