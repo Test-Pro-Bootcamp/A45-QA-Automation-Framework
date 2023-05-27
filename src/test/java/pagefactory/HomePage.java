@@ -46,11 +46,9 @@ public class HomePage extends BasePage {
     public boolean isAvatarDisplayed() {return avatarIcon.isDisplayed();
     }
 
-//      public boolean doesPlaylistExist(String playlistName){
-//        By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
-//        return findElement(newPlaylist.isDisplayed());
 
 }
+
 
 
 

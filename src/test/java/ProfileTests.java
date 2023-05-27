@@ -12,9 +12,9 @@ public class ProfileTests extends BaseTest {
 
         String randomName = ProfilePage.generateRandomName();
 
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-        ProfilePage profilePage = new ProfilePage(getDriver());
+        LoginPage loginPage = new LoginPage(driver);//replace getDriver() with driver
+        HomePage homePage = new HomePage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
 
         loginPage.provideEmail("daria.pavlyuk@testpro.io")
                 .providePassword("te$t$tudent")

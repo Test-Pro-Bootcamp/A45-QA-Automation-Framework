@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,12 +12,11 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+
+
 
 public class BaseTest {
     static WebDriver driver;
@@ -37,8 +34,8 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
 
-        //WebDriverManager.chromedriver().setup();
-//        WebDriverManager .safaridriver() .setup() ;
+        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.safaridriver().setup() ;
     }
 
     @DataProvider(name="IncorrectLoginData")
@@ -54,30 +51,30 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
         url = BaseURL;
-
-       // public  WebDriver getDriver() {
-          //  return threadDriver.get();
+//
+        //public  WebDriver getDriver() {
+        //return threadDriver.get();}
         //      Added ChromeOptions argument below to fix websocket error
-        //ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--remote-allow-origins=*");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
 
-        //driver = new ChromeDriver(options);
-        //driver = new SafariDriver();
-        threadDriver = new ThreadLocal<>() ;
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver);
+        driver = new ChromeDriver(options);
+//        driver = new SafariDriver();
+//        threadDriver = new ThreadLocal<>() ;
+//        driver = pickBrowser(System.getProperty("browser"));
+       // threadDriver.set(driver);
 
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        //lets add code to maximize browser window
-        //driver.manage().window().maximize();
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        actions = new Actions(getDriver());
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5) );
-        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+        actions = new Actions(driver);
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5) );
+        //wait = new WebDriverWait((WebDriver) getDriver(),Duration.ofSeconds(10));
         url = BaseURL;
-        getDriver().get(url);
+//        driver.get(url);
         navigateToPage();
+//    return driver;
     }
 
 
@@ -89,8 +86,9 @@ public class BaseTest {
 
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-        getDriver().quit();
-        threadDriver.remove();//added this line to remove the current thread values
+//        getDriver().quit();
+//        threadDriver.remove();//added this line to remove the current thread values
+        driver.quit();
 
     }
 
@@ -104,51 +102,51 @@ public class BaseTest {
         threadDriver.remove();
 
     }
-    public static  WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        String myGridUrl = "http://192.168.1.178:4444/";
+    //public static  WebDriver pickBrowser(String browser) throws MalformedURLException {
+        //DesiredCapabilities capabilities = new DesiredCapabilities();
+        //String myGridUrl = "http://192.168.1.178:4444/";
 
-        switch (browser) {
-            case "safari":
-                WebDriverManager.safaridriver().setup();
-                return driver= new SafariDriver();
+        //switch (browser) {
+            //case "safari":
+                //WebDriverManager.safaridriver().setup();
+                //return driver= new SafariDriver();
 
-            case "grid-safari":
-                capabilities.setCapability("browserName", "safari");
-                return driver = new RemoteWebDriver(URI.create(myGridUrl).toURL(), capabilities);
+            //case "grid-safari":
+                //capabilities.setCapability("browserName", "safari");
+                //return driver = new RemoteWebDriver(URI.create(myGridUrl).toURL(), capabilities);
 
-            case "grid-chrome":
-            capabilities.setCapability("browserName", "chrome");
-            return driver = new RemoteWebDriver(URI.create(myGridUrl).toURL(), capabilities);
+            //case "grid-chrome":
+            //capabilities.setCapability("browserName", "chrome");
+            //return driver = new RemoteWebDriver(URI.create(myGridUrl).toURL(), capabilities);
 
-            case"lambda":
-             return lambdaTest();
+            //case"lambda":
+             //return lambdaTest();
 
-             default:
-                WebDriverManager .chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(options);
-        }
-    }
+             //default:
+                //WebDriverManager .chromedriver().setup();
+                //ChromeOptions options = new ChromeOptions();
+                //options.addArguments("--remote-allow-origins=*");
+                //return driver = new ChromeDriver(options);
+        //}
+    //}
     //pavlyuk.daria81
             //fyipWm6hV2KISCPnsQTtgjN7VEyA8QKCkDPAhVP8LI31j5VY8I
-    public static WebDriver  lambdaTest() throws MalformedURLException {
-        String username="pavlyuk.daria81";
-        String accessToken = "fyipWm6hV2KISCPnsQTtgjN7VEyA8QKCkDPAhVP8LI31j5VY8I";
-        String hubURL = "https://hub.lambdatest.com/wd/hub";
-        ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("114.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-        ltOptions.put("username", "pavlyuk.daria81");
-        ltOptions.put("accessKey", "fyipWm6hV2KISCPnsQTtgjN7VEyA8QKCkDPAhVP8LI31j5VY8I");
-        ltOptions.put("project", "Untitled");
-        ltOptions.put("w3c", true);
-        ltOptions.put("plugin", "java-testNG");
-        browserOptions.setCapability("LT:Options", ltOptions);
-        return new RemoteWebDriver(new URL(hubURL), browserOptions);
-    }
+    //public static WebDriver  lambdaTest() throws MalformedURLException {
+        //String username="pavlyuk.daria81";
+        //String accessToken = "fyipWm6hV2KISCPnsQTtgjN7VEyA8QKCkDPAhVP8LI31j5VY8I";
+        //String hubURL = "https://hub.lambdatest.com/wd/hub";
+        //ChromeOptions browserOptions = new ChromeOptions();
+        //browserOptions.setPlatformName("Windows 10");
+        //browserOptions.setBrowserVersion("114.0");
+        //HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        //ltOptions.put("username", "pavlyuk.daria81");
+        //ltOptions.put("accessKey", "fyipWm6hV2KISCPnsQTtgjN7VEyA8QKCkDPAhVP8LI31j5VY8I");
+        //ltOptions.put("project", "Untitled");
+        //ltOptions.put("w3c", true);
+        //ltOptions.put("plugin", "java-testNG");
+        //browserOptions.setCapability("LT:Options", ltOptions);
+        //return new RemoteWebDriver(new URL(hubURL), browserOptions);
+    //}
     public static void navigateToPage() {
         driver.get(url);
     }
@@ -175,11 +173,11 @@ public class BaseTest {
         saveButton.click();
     }
 
-    public static void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
+    //public static void provideProfileName(String randomName) {
+        //WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        //profileName.clear();
+        //profileName.sendKeys(randomName);
+    //}
 
     public static void provideCurrentPassword(String password) {
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
@@ -232,3 +230,5 @@ public class BaseTest {
         actions.doubleClick(playlist).perform();
     }
         }
+
+

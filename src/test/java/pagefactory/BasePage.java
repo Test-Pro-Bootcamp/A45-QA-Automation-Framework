@@ -32,5 +32,6 @@ public class BasePage {
          public void contextClick (WebElement locator) {
          actions.contextClick(findElement(locator)).perform();
 
+
      }
 }
