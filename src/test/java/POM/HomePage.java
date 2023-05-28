@@ -59,6 +59,9 @@ public class HomePage extends BasePage {
     public HomePage doubleClickPlaylist () {
         doubleClick(firstPlaylist); return this;
     }
+    public HomePage clickFirstPlaylist() {
+        click(firstPlaylist); return this;
+    }
     public HomePage enterNewPlaylistName (String playlistName) {
         setPlaylistName.click();
         setPlaylistName.sendKeys(Keys.CONTROL, "a", Keys.DELETE);

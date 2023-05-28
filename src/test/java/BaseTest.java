@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -34,11 +35,11 @@ public class BaseTest {
         threadDriver= new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
         url = BaseURL;
-        driver.get(url);
+        getDriver().get(url);
     }
 
     @AfterMethod
@@ -56,9 +57,9 @@ public class BaseTest {
     String token = "YUdvx9SSnkNMFMsXnPd4jurJCHv1twuHv41jidHIKWREnZv0pO";
     String username = "romeo.furnic";
 
-    EdgeOptions browserOptions = new EdgeOptions();
+    FirefoxOptions browserOptions = new FirefoxOptions();
     browserOptions.setPlatformName("Windows 10");
-    browserOptions.setBrowserVersion("111.0");
+    browserOptions.setBrowserVersion("113.0");
     HashMap<String, Object> ltOptions = new HashMap<String, Object>();
     ltOptions.put("username", username);
     ltOptions.put("accessKey", token);

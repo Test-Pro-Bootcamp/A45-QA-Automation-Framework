@@ -20,12 +20,24 @@ public class PlaylistPage extends BasePage {
     private WebElement firstPlaylistFromList;
     @FindBy (xpath = "//section[@id='playlistWrapper']//button[@class='del btn-delete-playlist']")
     private WebElement deletePlaylistBtn;
+    @FindBy (css = "#playlistWrapper tr.song-item td.artist")
+    private WebElement firstSong;
+    @FindBy (css = "#playlistWrapper tr.song-item.selected td.artist")
+    private WebElement firstSongSelected;
 
     public PlaylistPage (WebDriver givenDriver) {super (givenDriver);}
 
     public PlaylistPage deleteEmptyPlaylist () {
         click(firstPlaylistFromList);
         click(deletePlaylistBtn);
+        return this;
+    }
+    public PlaylistPage clickFirstSong () {
+        click(firstSong);
+        return this;
+    }
+    public PlaylistPage firstSongIsPresent () {
+        Assert.assertTrue(firstSong.isDisplayed());
         return this;
     }
 }

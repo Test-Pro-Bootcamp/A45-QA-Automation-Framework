@@ -24,12 +24,10 @@ public class LoginPage extends BasePage {
     public LoginPage (WebDriver givenDriver) {
         super(givenDriver);
     }
-
     public LoginPage clickSubmitBtn () {
         submitButtonLocator.click();
         return this;
     }
-
     public LoginPage provideEmail (String email) {
         WebElement emailElement = emailField;
         emailElement.click();
@@ -37,7 +35,6 @@ public class LoginPage extends BasePage {
         emailElement.sendKeys(email);
         return this;
     }
-
     public LoginPage providePassword (String password) {
         WebElement passwordField = passwordFieldBox;
         passwordField.click();
@@ -45,11 +42,14 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys(password);
         return this;
     }
-
     public LoginPage login () {
     provideEmail("asdASD@mail.com");
     providePassword("te$t$tudent");
     clickSubmitBtn();
     return this;
+    }
+    public LoginPage submitBtnDisplayed () {
+        Assert.assertTrue(submitButtonLocator.isDisplayed());
+        return this;
     }
 }

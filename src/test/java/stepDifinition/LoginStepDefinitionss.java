@@ -58,4 +58,10 @@ public class LoginStepDefinitionss {
         HomePage homePage = new HomePage(driver);
         homePage.isAvatarDisplayed();
     }
+    @Then("I am not logged in")
+    public void iAmNotLoggedIn() {
+        LoginPage loginPage = new LoginPage(driver);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+        loginPage.submitBtnDisplayed();
+    }
 }
