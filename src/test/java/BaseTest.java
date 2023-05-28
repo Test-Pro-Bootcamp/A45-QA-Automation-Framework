@@ -42,6 +42,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         url = BaseURL;
         navigateToPage();
     }
@@ -68,6 +69,26 @@ public class BaseTest {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
+
+
+    public static void openPlaylist() {
+        WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        emptyPlaylist.click();
+    }
+public static void clickDeletePlaylistBtn() throws InterruptedException {
+
+WebElement deletePlaylistBtn = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
+deletePlaylistBtn.click();
+Thread.sleep(2000);
+
+    }
+
+    public static String getdeletedPlaylistMsg() {
+
+        WebElement notificationMsg = driver.findElement(By.cssSelector("div[class='alertify-logs top right']"));
+        return notificationMsg.getText();
+    }
+
     public static void clickSaveButton() {
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
         saveButton.click();
