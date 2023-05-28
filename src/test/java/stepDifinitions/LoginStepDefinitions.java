@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class LoginStepDefinitions {
     public void openLoginPage(){
         driver.get("https://bbb.testpro.io");
     }
-    @And("I enter email {string}")
+    @When("I enter email {string}")
     public void i_enter_email(String email){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
     }
