@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class Homework19 extends BaseTest {
 
     @Test
-    public static void deleteThePlaylist() throws InterruptedException {
+    public void deleteThePlaylist() throws InterruptedException {
 
         String deletedPlaylistMsg = "Deleted playlist";//replace with the del
         provideEmail("pdr.deepthi@gmail.com");
