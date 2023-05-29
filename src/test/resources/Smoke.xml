@@ -14,7 +14,7 @@
                         </class>
 <!--After we create the homework java class, we need to add them here, we can copy the existing class-->
 <!--                and replace the class name with the homework-->
-            <class name="Homework16"/>
+            <class name="Homework20"/>
 <!--            we can type the java class name and intelliJ will suggest it-->
         </classes>
     </test>

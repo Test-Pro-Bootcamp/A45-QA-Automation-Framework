@@ -42,6 +42,8 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         url = BaseURL;
         navigateToPage();
     }
@@ -53,7 +55,27 @@ public class BaseTest {
     public static void navigateToPage() {
         driver.get(url);
     }
+    public static void openPlaylist() {
+//        WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        WebElement emptyPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        emptyPlaylist.click();
+    }
+    public static void clickDeletePlaylistBtn() throws InterruptedException {
+//        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
+        WebElement deletePlaylistBtn =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='del btn-delete-playlist']")));
+        deletePlaylistBtn.click();
+    }
+    public static String getdeletedPlaylistMsg() {
 
+       // WebElement notificationMsg = driver.findElement(By.cssSelector("div[class='alertify-logs top right']"));
+        WebElement notificationMsg =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='alertify-logs top right']")));
+        return notificationMsg.getText();
+    }
+
+    public static void clickSaveButton() {
+        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
+        saveButton.click();
+    }
     public static void provideEmail(String email) {
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
         emailField.clear();
@@ -68,10 +90,7 @@ public class BaseTest {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
-    public static void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
-    }
+
     public static void provideProfileName(String randomName) {
         WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
         profileName.clear();
