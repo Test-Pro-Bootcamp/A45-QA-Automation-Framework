@@ -17,19 +17,6 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/Smoke.xml"
-        systemProperty "browser", System.getProperty("browser")
-    }
-}
-
-task testSmoke(type: Test) {
-    useTestNG() {
-        suites "src/test/resources/Smoke.xml"
-    }
-}
-
-task testRegression(type: Test) {
-    useTestNG() {
-        suites "src/test/resources/Regression.xml"
+        suites "src/test/resources/Smoke.xml"//check the xml file name here, testng will run this file
     }
 }
