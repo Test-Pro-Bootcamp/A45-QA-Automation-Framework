@@ -14,3 +14,8 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+src/test/.DS_Store
+src/.DS_Store
+.gradle/file-system.probe
+.DS_Store
+.gradle/file-system.probe
