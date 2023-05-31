@@ -5,7 +5,7 @@ public class Homework20 extends BaseTest{
 
         @Test
 
-            public void deleteThePlaylist() throws InterruptedException {
+            public void deleteThePlaylist()  {
 
                 String deletedPlaylistMsg = "Deleted playlist";//replace with the del
                 provideEmail("pdr.deepthi@gmail.com");

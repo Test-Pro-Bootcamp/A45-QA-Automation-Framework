@@ -60,7 +60,7 @@ public class BaseTest {
         WebElement emptyPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         emptyPlaylist.click();
     }
-    public static void clickDeletePlaylistBtn() throws InterruptedException {
+    public static void clickDeletePlaylistBtn()  {
 //        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
         WebElement deletePlaylistBtn =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='del btn-delete-playlist']")));
         deletePlaylistBtn.click();
