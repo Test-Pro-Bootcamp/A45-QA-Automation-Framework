@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BasePage {
     @FindBy(xpath = "//li[@class='playlist playlist'][1]/a")
@@ -13,8 +14,10 @@ public class HomePage extends BasePage {
 //    private WebElement playlistNameField;
     @FindBy(css = "img.avatar")
     private WebElement userAvatarIcon;
+
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
+        PageFactory.initElements(driver, this);
     }
     public WebElement getUserAvatar () {
         return userAvatarIcon;
