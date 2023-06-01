@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 
 
 
-public class MyStepdefs {
+public class LoginStepDefinition {
     @Given("You open login page")
     public void youOpenLoginPage() {
     }
