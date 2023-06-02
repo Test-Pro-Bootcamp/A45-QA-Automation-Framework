@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -42,6 +43,8 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        actions = new Actions(driver);
         url = BaseURL;
         navigateToPage();
     }
@@ -119,10 +122,25 @@ public class BaseTest {
     }
 
     // double click
+
+    String newPlayListName = "Test Pro Playlist";
     public void doubleClickChoosePlaylist() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         // double click
         WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         actions.doubleClick(playlist).perform();
+    }
+    public void enterNewPlaylistName() {
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='name']")));
+//                driver.findElement(By.cssSelector("input[name='name']"));
+        playlistInputField.sendKeys((Keys.chord(Keys.CONTROL, "a" , Keys.BACK_SPACE)));
+        playlistInputField.sendKeys(newPlayListName);
+        playlistInputField.sendKeys(Keys.ENTER);
+    }
+    public boolean doesPlaylistExist() {
+
+        WebElement playlistElement =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlayListName+"']")));
+//                driver.findElement(By.xpath("//a[text()='"+newPlayListName+"']"));
+        return playlistElement.isDisplayed();
     }
 }
