@@ -111,21 +111,19 @@ public class BaseTest {
     }
 
 
-    public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
-            String hubURL = "https://hub.lambdatest.com/wd/hub";
+    public static WebDriver lambdaTest() throws MalformedURLException {;
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
 
-        FirefoxOptions browserOptions = new FirefoxOptions();
+        ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("111.0");
+        browserOptions.setBrowserVersion("114.0");
         HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", username);
-            ltOptions.put("accessKey", accessToken);
-            ltOptions.put("project", "Untitled");
-            ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
-            browserOptions.setCapability("LT:Options", ltOptions);
+        ltOptions.put("username", "rishkodaria");
+        ltOptions.put("accessKey", "ej4bMd4ZUbU6NvtKf04dkhhyxMyCA98qXdS0e9LDNNa5cOzBk5");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
 
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
