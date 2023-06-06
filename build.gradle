@@ -14,10 +14,10 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.1'
 }
-
+//${suite}
 test {
     useTestNG() {
-        suites "src/test/resources/Smoke.xml"
+        suites "src/test/resources/.xml"
         systemProperty "browser", System.getProperty("browser")
     }
 }
