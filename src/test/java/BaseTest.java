@@ -42,6 +42,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+        driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         url = BaseURL;
@@ -52,6 +53,38 @@ public class BaseTest {
         driver.quit();
     }
 
+
+    public static WebDriver pickBrowser(String browser) throws MalformedURLException {
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        String gridURL = "http://192.168.12.245:4444";//replaced with grid url
+
+        switch (browser) {
+            case "firefox" -> {
+                WebDriverManager.firefoxdriver().setup();
+                return driver = new FirefoxDriver();
+            }
+            case "MicrosoftEdge" -> {
+                WebDriverManager.edgedriver().setup();
+                return driver = new EdgeDriver();
+            }
+            case "grid-firefox" -> {
+                caps.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            case "grid-MicrosoftEdge" -> {
+                caps.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            case "grid-chrome" -> {
+                caps.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            }
+            default -> {
+                return driver = new ChromeDriver();
+            }
+        }
+    }
     public static void navigateToPage() {
         driver.get(url);
     }

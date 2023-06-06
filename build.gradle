@@ -18,5 +18,6 @@ dependencies {
 test {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"//check the xml file name here, testng will run this file
+        systemProperty "browser", System.getProperty("browser")
     }
 }
