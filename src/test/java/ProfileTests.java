@@ -1,3 +1,6 @@
+import POM.HomePage;
+import POM.LoginPage;
+import POM.ProfilePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -6,23 +9,25 @@ import org.testng.annotations.Test;
 public class ProfileTests extends BaseTest {
 
     @Test
-    public static void changeProfileNameTest () throws InterruptedException {
+    public void changeProfileNameTest () throws InterruptedException {
 
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        ProfilePage profilePage = new ProfilePage(getDriver());
 
-        Thread.sleep(2000);
-        clickAvatarIcon();
+        loginPage.provideEmail("pdr.deepthi@gmail.com");
+        loginPage.providePassword("te$t$tudent1");
+        loginPage.clickSubmit();
 
-        String randomName = generateRandomName();
+        homePage.clickAvatarIcon();
 
-        provideCurrentPassword("te$t$tudent");
-        provideProfileName(randomName);
-        clickSaveButton();
+        String randomName = (profilePage.generateRandomName());
 
-        Thread.sleep(2000);
-        WebElement actualProfileName = driver.findElement(By.cssSelector("a.view-profile>span"));
-        Assert.assertEquals(actualProfileName.getText(), randomName);
+        profilePage.provideCurrentPassword("te$t$tudent");
+        profilePage.provideProfileName(randomName);
+        profilePage.clickSaveButton();
+
+
+        Assert.assertEquals(profilePage.getCurrentProfileName(), randomName);
     }
 }

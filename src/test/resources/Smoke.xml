@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
-
-    <test name="Example Test">
+<suite name="TestNG" parallel="methods" thread-count="3">
+    <test name="LoginTests" preserve-order="false">
         <parameter name="BaseURL" value="https://bbb.testpro.io/"/>
         <classes>
-<!--                        <class name="LoginTests">-->
-<!--                            <methods>-->
-<!--                                <include name="loginValidEmailPasswordTest" />-->
-<!--                                <include name="loginValidEmailEmptyPasswordTest" />-->
-<!--                            </methods>-->
-<!--                        </class>-->
-<!--After we create the homework java class, we need to add them here, we can copy the existing class-->
-<!--                and replace the class name with the homework-->
-            <class name="Homework24"/>
 
-<!--            we can type the java class name and intelliJ will suggest it-->
+            <class name="LoginTests"/>
+
         </classes>
+
     </test>
+
+<!--    <test name="Example Test">-->
+<!--        <parameter name="BaseURL" value="https://bbb.testpro.io/"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;                        <class name="LoginTests">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <include name="loginValidEmailPasswordTest" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                <include name="loginValidEmailEmptyPasswordTest" />&ndash;&gt;-->
+<!--&lt;!&ndash;                            </methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </class>&ndash;&gt;-->
+<!--&lt;!&ndash;After we create the homework java class, we need to add them here, we can copy the existing class&ndash;&gt;-->
+<!--&lt;!&ndash;                and replace the class name with the homework&ndash;&gt;-->
+<!--            <class name="Homework25"/>-->
+
+<!--&lt;!&ndash;            we can type the java class name and intelliJ will suggest it&ndash;&gt;-->
+<!--        </classes>-->
 </suite>
