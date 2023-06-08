@@ -39,9 +39,9 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        driver = new ChromeDriver(options);
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
@@ -81,7 +81,13 @@ public class BaseTest {
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             }
             default -> {
-                return driver = new ChromeDriver();
+
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+//                options.addArguments("--disable notifications" , "--remote-allow-origins=*" , "--incognito" ,"--start maximized");
+//                options.setExperimentalOption("excludeSwitches" , new String[]{"enable-automation"} );
+                return driver = new ChromeDriver(options);
             }
         }
     }
