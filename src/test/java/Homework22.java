@@ -1,3 +1,4 @@
+import POM.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
