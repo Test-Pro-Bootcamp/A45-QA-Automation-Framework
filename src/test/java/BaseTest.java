@@ -31,7 +31,7 @@ public class BaseTest {
 
     @BeforeMethod
     public static void navigateToPage() throws InterruptedException {
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         Thread.sleep(1000);
     }
@@ -52,9 +52,10 @@ public class BaseTest {
         Thread.sleep(1000);
     }
 
-    public static void logInButton() {
+    public static void logInButton() throws InterruptedException{
         WebElement logIn = driver.findElement(By.cssSelector("button[type='submit']"));
         logIn.click();
+        Thread.sleep(3000);
     }
 
     public static void assertAvatar() throws InterruptedException {
@@ -118,12 +119,13 @@ public class BaseTest {
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys("te$t$tudent");
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
 
     public static void openUserProfilePage() throws InterruptedException {
         WebElement avatar = driver.findElement(By.xpath("//span//img[@class='avatar']"));
         avatar.click();
+        Thread.sleep(1000);
     }
 
     public static void setCurrentPassword() throws InterruptedException {
