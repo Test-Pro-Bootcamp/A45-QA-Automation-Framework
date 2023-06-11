@@ -10,7 +10,6 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPasswordTest(String username, String password){
 
@@ -19,7 +18,7 @@ public class LoginTests extends BaseTest {
         clickSubmit();
 
         // Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(),url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(),url); //https://bbb.testpro.io/ (was), now: https://qa.koel.app/
 
 //        // Post-condition
 //        driver.quit();
@@ -33,7 +32,7 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
@@ -68,7 +67,7 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
@@ -85,8 +84,12 @@ public class LoginTests extends BaseTest {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
-        Assert.assertEquals(driver.getCurrentUrl(),url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
 
         driver.quit();
+    }
+        public static void isAvatarDisplayed() {
+            WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+            Assert.assertTrue(avatarIcon.isDisplayed());
     }
 }
