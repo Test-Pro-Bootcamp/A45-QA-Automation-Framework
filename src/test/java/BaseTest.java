@@ -87,7 +87,7 @@ public class BaseTest {
             case "cloud":
                 return lambdaTest();
             default:
-                WebDriverManager.edgedriver().setup();
+                WebDriverManager.edgedriver().setup(); //need change to chromedriver in every branch from before too
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(chromeOptions);

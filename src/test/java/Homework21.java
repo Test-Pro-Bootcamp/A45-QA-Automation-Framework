@@ -9,21 +9,23 @@ import pages.HomePage;
 import pages.LoginPage;
 
 public class Homework21  extends BaseTest {
-    @Test
-    public void renamePlaylist(){
-
-    String newPlaylistName = "kristina.matskaylo2";
-    LoginPage loginPage = new LoginPage(getDriver());
-    HomePage homePage = new HomePage(getDriver());
-
-        loginPage.provideEmail("kristina.matskaylo@testpro.io")
-                 .providePassword("11111111*a")
-                 .clickSubmitBtn();
-        homePage.doubleClickFirstPlaylist()
-                .enterNewPLaylistName(newPlaylistName);
-        Assert.assertTrue(homePage.doesNewPlaylistexist(newPlaylistName));
-
-    }
+//    @Test
+//    public void renamePlaylist(){
+//
+//    String newPlaylistName = "kristina.matskaylo2";
+//    LoginPage loginPage = new LoginPage(getDriver());
+//    HomePage homePage = new HomePage(getDriver());
+//
+//        loginPage.provideEmail("kristina.matskaylo@testpro.io")
+//                 .providePassword("11111111*a")
+//                 .clickSubmitBtn();
+//
+//        homePage.doubleClickFirstPlaylist()
+//                .enterNewPLaylistName(newPlaylistName);
+//
+//        Assert.assertTrue(homePage.doesNewPlaylistexist(newPlaylistName));
+//
+//    }
 }
 
 

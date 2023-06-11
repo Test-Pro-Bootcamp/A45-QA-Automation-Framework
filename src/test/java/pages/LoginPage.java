@@ -15,23 +15,31 @@ public class LoginPage extends BasePage {
     @FindBy(css="[type='password']")
     private WebElement passwordField;
 
+    @FindBy(css="#hel")
+    private WebElement registrationSign;
+
     public LoginPage(WebDriver givenDriver){
         super(givenDriver);
     }
     public LoginPage provideEmail(String email){
-        emailField.sendKeys(email);
+        findElement(emailField).sendKeys(email);
         return this;
     }
     public LoginPage providePassword(String password){
-        passwordField.sendKeys(password);
+        findElement(passwordField).sendKeys(password);
         return this;
     }
     public LoginPage clickSubmitBtn(){
-        submitButtonLocator.click();
+        findElement(submitButtonLocator).click();
         return this;
     }
     public boolean isClickSubmitBtnDisplayed(){
-        return submitButtonLocator.isDisplayed();
+        return findElement(submitButtonLocator).isDisplayed();
+    }
+
+    public LoginPage clickRegistrationSign(){
+        findElement(registrationSign).click();
+       return this;
     }
 
 

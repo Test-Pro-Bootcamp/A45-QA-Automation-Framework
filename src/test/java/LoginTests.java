@@ -28,7 +28,16 @@ public class LoginTests extends BaseTest {
                 .clickSubmitBtn();
 
         Assert.assertTrue(loginPage.isClickSubmitBtnDisplayed());
-
     }
+    @Test
+    public void loginEmptyEmailEmptyPassword() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.provideEmail("")
+                .providePassword("")
+                .clickSubmitBtn();
+
+        Assert.assertTrue(loginPage.isClickSubmitBtnDisplayed());
+    }
+
 
 }

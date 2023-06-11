@@ -17,5 +17,7 @@ public class XpathLocators {
 
     String playButton = "//span[@title='Play or resume']";
 
+    String playNextSongButton = "//*[@data-testid='play-next-btn']"; // "//*[@title='Play next song']"   //body[1]/div[1]/div[1]/footer[1]/div[1]/i[2]
+
 
 }

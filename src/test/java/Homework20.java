@@ -7,17 +7,17 @@ import pages.LoginPage;
 
 public class Homework20 extends BaseTest {
     @Test
-    public void deletePlaylist() {
-        String expectedNotificationText = "Deleted playlist \"kristina.matskaylo.\"";
-        LoginPage loginPage = new LoginPage(getDriver());
-
-        loginPage.provideEmail("kristina.matskaylo@testpro.io")
-                .providePassword("11111111*a")
-                .clickSubmitBtn();
-        navigateToPlaylist();
-        clickDeletePlaylist();
-       // Assert.assertTrue(actualNotificationText().contains(expectedNotificationText));
-    }
+//    public void deletePlaylist() {
+//        String expectedNotificationText = "Deleted playlist \"kristina.matskaylo.\"";
+//        LoginPage loginPage = new LoginPage(getDriver());
+//
+//        loginPage.provideEmail("kristina.matskaylo@testpro.io")
+//                .providePassword("11111111*a")
+//                .clickSubmitBtn();
+//        navigateToPlaylist();
+//        clickDeletePlaylist();
+//       // Assert.assertTrue(actualNotificationText().contains(expectedNotificationText));
+//    }
     public void navigateToPlaylist() {
        // WebElement openMyPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlists']/ul/li[3]")));
        // openMyPlaylist.click();

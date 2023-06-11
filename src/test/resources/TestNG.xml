@@ -2,9 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-    <test name="Login Tests" preserve-order="false">
+    <parameter name="BaseURL" value="https://qa.koel.app/"/>
+    <test name="Homework29 test" preserve-order="false">
         <classes>
-            <class name="CucumberRunner"/>
+<!--            <class name="LoginTests">-->
+<!--            </class>-->
+<!--            <class name="PlaylistTests">-->
+<!--            </class>-->
+<!--            <class name="RegistrationTests">-->
+<!--            </class>-->
+            <class name="SongPLayTests">
+            </class>
+<!--            <class name="CucumberRunner"/>-->
         </classes>
     </test>
 </suite>
