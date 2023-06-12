@@ -1,19 +1,15 @@
 package pages;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
-  public class BasePage {
-    protected WebDriver driver = null;
-    protected WebDriverWait wait = null;
-    protected Actions actions = null;
+    public class BasePage {
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
 
     public BasePage (WebDriver givenDriver){
     driver = givenDriver;
@@ -26,5 +22,6 @@ import java.time.Duration;
     }
     protected void doubleClickElement(WebElement webElement){
     actions.doubleClick(findElement(webElement)).perform();
-}
+    }
+
   }

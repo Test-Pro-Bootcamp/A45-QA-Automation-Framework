@@ -1,7 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,45 +8,25 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-
 import java.net.URL;
 import java.util.HashMap;
-
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
-
-
 public class BaseTest {
    public static WebDriver driver;
    public  static String url;
    public static  WebDriverWait wait;
    public  static Actions actions;
    ThreadLocal<WebDriver> threadDriver;
-    @BeforeSuite
-    static void setupClass() {
-       // WebDriverManager.chromedriver().setup();
-    }
-    @BeforeTest
-    public static void setUpBrowser() {
-        /* ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));*/
-        }
-
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException{
-        threadDriver = new ThreadLocal<>(); //#1
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
-        //driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver); //#2
-
+        threadDriver.set(driver);
 
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
@@ -57,11 +35,8 @@ public class BaseTest {
         getDriver().get(url);
     }
     public WebDriver getDriver(){
-       return threadDriver.get(); //#3
-       // return driver;
+       return threadDriver.get();
     }
-
-
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.130.173:4444";
@@ -87,7 +62,7 @@ public class BaseTest {
             case "cloud":
                 return lambdaTest();
             default:
-                WebDriverManager.edgedriver().setup(); //need change to chromedriver in every branch from before too
+                WebDriverManager.edgedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(chromeOptions);
@@ -115,7 +90,7 @@ public class BaseTest {
     @AfterMethod
     public  void tearDownBrowser(){
         getDriver().quit();
-        threadDriver.remove(); //#4
+        threadDriver.remove();
     }
 
 }

@@ -1,13 +1,8 @@
 package pages;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 public class LoginPage extends BasePage {
-    //locators
-
     @FindBy(css="[type='submit']")
     private WebElement submitButtonLocator;
     @FindBy(css="[type='email']")
@@ -41,6 +36,4 @@ public class LoginPage extends BasePage {
         findElement(registrationSign).click();
        return this;
     }
-
-
 }

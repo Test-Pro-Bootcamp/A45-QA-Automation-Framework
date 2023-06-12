@@ -14,8 +14,8 @@
             </class>
             <class name="RegistrationTests">
             </class>
-<!--            <class name="SongPLayTests">-->
-<!--            </class>-->
+            <class name="SongPLayTests">
+            </class>
         </classes>
     </test>
 </suite>
