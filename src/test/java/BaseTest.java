@@ -23,7 +23,7 @@ import java.time.Duration;
 
 
 public class BaseTest {
-    public static WebDriver driver = null;
+    public WebDriver driver = null;
     public static ThreadLocal <WebDriver> threadDriver;
 
     public static String url = "";
@@ -53,7 +53,7 @@ public class BaseTest {
        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseUrl;
         getDriver().get(url);
-        navigateToPage();
+       // navigateToPage();
 
 
 
@@ -68,7 +68,7 @@ public class BaseTest {
 }
     public void closeBrowser() { getDriver().quit(); }
 
-    public static WebDriver pickBrowser (String browser) throws MalformedURLException {
+    public WebDriver pickBrowser (String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.42:4444";
         switch (browser){
@@ -99,10 +99,10 @@ public class BaseTest {
         }
     }
 
-    public WebDriver getDriver (){
+    public static WebDriver getDriver (){
         return threadDriver.get();
     }
-    public static void provideEmail (String email){
+    public void provideEmail (String email){
 
      WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='email']"))).click();
@@ -110,7 +110,7 @@ public class BaseTest {
      emailField.clear();
      emailField.sendKeys(email);
     }
-    public static void providePassword (String password) {
+    public void providePassword (String password) {
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='password']"))).click();
@@ -118,7 +118,7 @@ public class BaseTest {
         passwordField.clear();
         passwordField.sendKeys(password);
     }
-    public static void clickSubmit (){
+    public void clickSubmit (){
         WebElement clickSubmit = driver.findElement(By.xpath("//button[@type='submit']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']"))).click();
 

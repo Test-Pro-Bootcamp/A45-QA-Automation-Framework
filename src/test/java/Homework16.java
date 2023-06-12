@@ -11,7 +11,7 @@ import java.time.Duration;
 public class Homework16 extends BaseTest {
 
     @Test
-    public static void RegistrationLink() {
+    public void RegistrationLink() {
 //
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
