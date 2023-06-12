@@ -24,6 +24,8 @@ import java.time.Duration;
 
 public class BaseTest {
     public static WebDriver driver = null;
+    public static ThreadLocal <WebDriver> threadDriver;
+
     public static String url = "";
     public static WebDriverWait wait = null;
     public static Actions actions = null;
@@ -44,21 +46,27 @@ public class BaseTest {
 
         //driver = new ChromeDriver(options);
         driver = pickBrowser(System.getProperty("browser"));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+        threadDriver = new ThreadLocal<>();
+        threadDriver.set(driver);
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseUrl;
-        driver.get(url);
+        getDriver().get(url);
         navigateToPage();
 
 
 
  }
      public void navigateToPage(){
-        driver.get(url);
+        getDriver().get(url);
     }
 @AfterMethod
-    public void closeBrowser() { driver.quit(); }
+    public void tearDownBrowser (){
+        getDriver().quit();
+        threadDriver.remove();
+}
+    public void closeBrowser() { getDriver().quit(); }
 
     public static WebDriver pickBrowser (String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -91,7 +99,9 @@ public class BaseTest {
         }
     }
 
-
+    public WebDriver getDriver (){
+        return threadDriver.get();
+    }
     public static void provideEmail (String email){
 
      WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
