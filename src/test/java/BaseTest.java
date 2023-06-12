@@ -29,6 +29,7 @@ public class BaseTest {
         threadDriver.set(driver);
 
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().window().maximize();
         wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
         actions = new Actions(getDriver());
         url = BaseURL;
@@ -62,7 +63,6 @@ public class BaseTest {
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "cloud":
                 return lambdaTest();
-            case "chrome":
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
