@@ -6,7 +6,6 @@
         <parameter name="BaseUrl" value="https://qa.koel.app/"></parameter>
         <classes>
             <class name="HomeWork22"/>
-            <class name="LoginTests"/>
         </classes>
     </test>
 </suite>

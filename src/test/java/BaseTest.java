@@ -50,7 +50,7 @@ public class BaseTest {
         threadDriver.set(driver);
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
-       // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseUrl;
         getDriver().get(url);
        // navigateToPage();

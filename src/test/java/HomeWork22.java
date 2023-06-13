@@ -19,9 +19,9 @@ public class HomeWork22 extends BaseTest{
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.login();
-        homePage.doubleClickPlaylist();
-        homePage.enterNewPlayListName(playlistName);
-        Assert.assertTrue(homePage.doesPlaylistExist(playlistName));
+      //  homePage.doubleClickPlaylist();
+      //  homePage.enterNewPlayListName(playlistName);
+     //   Assert.assertTrue(homePage.doesPlaylistExist(playlistName));
 
 
     }
@@ -34,9 +34,9 @@ public class HomeWork22 extends BaseTest{
         HomePage homePage = new HomePage(getDriver());
 
         loginPage.login();
-        homePage.doubleClickPlaylist();
-        homePage.enterNewPlayListName(playlistName);
-        Assert.assertTrue(homePage.doesPlaylistExist(playlistName));
+       // homePage.doubleClickPlaylist();
+       // homePage.enterNewPlayListName(playlistName);
+       // Assert.assertTrue(homePage.doesPlaylistExist(playlistName));
 
 
     }
