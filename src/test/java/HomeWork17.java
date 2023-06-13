@@ -8,7 +8,7 @@ public class HomeWork17 extends BaseTest{
 
     @Test
     public void testMethod () throws InterruptedException {
-        navigateToPage();
+       // navigateToPage();
         provideEmail("pavel.furnic@testpro.io");
         providePassword("Test123456789@");
         clickSubmit();

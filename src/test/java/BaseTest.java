@@ -19,54 +19,42 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 
 public class BaseTest {
     public WebDriver driver = null;
-    public static ThreadLocal <WebDriver> threadDriver;
+    public static ThreadLocal<WebDriver> threadDriver;
 
-    public static String url = "";
-    public static WebDriverWait wait = null;
-    public static Actions actions = null;
-    @BeforeSuite
+    public String url = "";
+    public WebDriverWait wait = null;
+    public Actions actions = null;
 
-    static void setupClass() {
-
-
-        // WebDriverManager.chromedriver().setup();
-         //WebDriverManager.firefoxdriver().setup();
-    }
  @BeforeMethod
  @Parameters ({"BaseUrl"})
-     public void launchBrowser(String BaseUrl) throws MalformedURLException {
+     public void navigateToPage(String BaseUrl) throws MalformedURLException {
 
-       // ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--remote-allow-origins=*");
-
-        //driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
         threadDriver = new ThreadLocal<>();
+        driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseUrl;
         getDriver().get(url);
-       // navigateToPage();
-
-
-
- }
-     public void navigateToPage(){
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
+        url = BaseUrl;
         getDriver().get(url);
-    }
+ }
+
 @AfterMethod
     public void tearDownBrowser (){
         getDriver().quit();
         threadDriver.remove();
 }
-    public void closeBrowser() { getDriver().quit(); }
+public static WebDriver getDriver (){ return threadDriver.get();}
+
 
     public WebDriver pickBrowser (String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -89,24 +77,39 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browserName","chrome" );
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+            case "Lambda":
+                return lambdaTest();
+
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(options);
-
-
         }
     }
+    public WebDriver lambdaTest() throws MalformedURLException {
+     String userName ="pavel.furnic";
+     String accessToken = "ZON6n7JqP2ubbrbvoP4QC2nOnfKAU6fsoqPkWfeS7jD6navi4W";
+     String hubUrl ="https://hub.lambdatest.com/wd/hub";
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("114.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", userName);
+        ltOptions.put("accessKey", accessToken);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
+        return new RemoteWebDriver(new URL(hubUrl),browserOptions);
 
-    public static WebDriver getDriver (){
-        return threadDriver.get();
     }
+
     public void provideEmail (String email){
 
      WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='email']"))).click();
-     //emailField.click();
+     emailField.click();
      emailField.clear();
      emailField.sendKeys(email);
     }
@@ -114,7 +117,7 @@ public class BaseTest {
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='password']"))).click();
-        //passwordField.click();
+        passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
     }
@@ -122,9 +125,8 @@ public class BaseTest {
         WebElement clickSubmit = driver.findElement(By.xpath("//button[@type='submit']"));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']"))).click();
 
-        //clickSubmit.click();
+        clickSubmit.click();
     }
-
 }
 
 

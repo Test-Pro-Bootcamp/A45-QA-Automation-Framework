@@ -27,6 +27,7 @@ public class HomeWork22 extends BaseTest{
     }
 
     @Test
+
     public void renamePlaylist1 (){
         String playlistName = "New Play List";
 
