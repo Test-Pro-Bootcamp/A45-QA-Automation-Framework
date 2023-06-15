@@ -26,28 +26,17 @@ import java.util.UUID;
 
 public class BaseTest {
     public static WebDriver driver = null;
-    public ThreadLocal<WebDriver> threadDriver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
+
+    private static ThreadLocal<WebDriver> threadDriver;
     public static String url = "";
 
     @BeforeSuite
     static void setupClass() {
-
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
-
+        WebDriverManager.chromedriver().setup();
     }
 
-    @DataProvider(name="IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders() {
-
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
@@ -55,36 +44,37 @@ public class BaseTest {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
 //        driver = new ChromeDriver(options);
-
-//        driver = new FirefoxDriver();
-
-        threadDriver = new ThreadLocal<>(); // make sure to have this line before the assigning the driver variable
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
-
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
+        getDriver().manage().window().maximize();
         url = BaseURL;
-        navigateToPage();
+        getDriver().get(url);
     }
+//    @AfterMethod//(enabled = false)
+//    public void closeBrowser() {
+//        driver.quit();
+//    }
 
     @AfterMethod//(enabled = false)
     public void closeBrowser() {
-        getDriver().quit();
+        threadDriver.get().close();
         threadDriver.remove();
     }
 
-    public WebDriver getDriver() {
-//        return driver;
+
+    public static WebDriver getDriver(){
         return threadDriver.get();
     }
 
-    public static WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.1.160:4444";
 
-        switch (browser){
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        String gridURL = "http://192.168.12.245:4444";//replaced with grid url
+
+        switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
@@ -94,41 +84,42 @@ public class BaseTest {
             case "grid-firefox":
                 caps.setCapability("browserName", "firefox");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "grid-MicrosoftEdge":
+                caps.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-            case "grid-edge":
-                caps.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "cloud":
                 return lambdaTest();
             default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(options);
+                return driver = new ChromeDriver();
+
         }
     }
 
+    public WebDriver lambdaTest() throws MalformedURLException{
+        String hub = "https://hub.lambdatest.com/wd/hub";
 
-    public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
-            String hubURL = "https://hub.lambdatest.com/wd/hub";
-
-        FirefoxOptions browserOptions = new FirefoxOptions();
+        ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("111.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", username);
-            ltOptions.put("accessKey", accessToken);
-            ltOptions.put("project", "Untitled");
-            ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
-            browserOptions.setCapability("LT:Options", ltOptions);
+        browserOptions.setBrowserVersion("110.0");
+        HashMap<String, Object> ltOptions = new HashMap<>();
+        ltOptions.put("username","deepthi.raman");
+        ltOptions.put("accessKey","lIlgAS3ypPghhFVkBIybws4C58p8G7yKl0Z7IZyRRrD5wBcJ0p");
+        ltOptions.put("project","Test Project");
+        ltOptions.put("w3c","true");
+        browserOptions.setCapability("LT:options", ltOptions);
 
-        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+        return new RemoteWebDriver(new URL(hub), browserOptions);
+
+
+
     }
+
+
+
     public static void navigateToPage() {
         driver.get(url);
     }
@@ -138,77 +129,17 @@ public class BaseTest {
         emailField.clear();
         emailField.sendKeys(email);
     }
-
     public static void providePassword(String password) {
         WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
-
     public static void clickSubmit() {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
 
-    public static void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
-    }
 
-    public static void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
 
-    public static void provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
 
-    public static String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-
-    public static void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("img.avatar")));
-        avatarIcon.click();
-    }
-
-    // hover
-    public void hoverPlay() {
-        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-        // move to element
-        actions.moveToElement(play).perform();
-    }
-
-    // context click
-    public void chooseAllSongsList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs")));
-        driver.findElement(By.cssSelector("li a.songs")).click();
-    }
-
-    public void contextClickFirstSong(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
-        // context click
-        actions.contextClick(firstSong).perform();
-    }
-
-    public void displayAllSongs() {
-        chooseAllSongsList();
-    //add assertion
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item")));
-        List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
-        Assert.assertEquals(songsList.size(), 63);
-    }
-
-    // double click
-    public void doubleClickChoosePlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        // double click
-        WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        actions.doubleClick(playlist).perform();
-    }
 }
