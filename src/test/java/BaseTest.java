@@ -33,31 +33,22 @@ public class BaseTest {
 
     @BeforeSuite
     static void setupClass() {
-
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
-
+        // WebDriverManager.chromedriver().setup();
+        // WebDriverManager.firefoxdriver().setup();
     }
 
     @DataProvider(name="IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
-
         return new Object[][] {
                 {"invalid@mail.com", "invalidPass"},
                 {"demo@class.com", ""},
                 {"", ""}
         };
     }
+
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
-        //      Added ChromeOptions argument below to fix websocket error
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        driver = new ChromeDriver(options);
-
-//        driver = new FirefoxDriver();
-
         threadDriver = new ThreadLocal<>(); // make sure to have this line before the assigning the driver variable
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
@@ -76,7 +67,6 @@ public class BaseTest {
     }
 
     public WebDriver getDriver() {
-//        return driver;
         return threadDriver.get();
     }
 
@@ -198,16 +188,13 @@ public class BaseTest {
 
     public void displayAllSongs() {
         chooseAllSongsList();
-    //add assertion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item")));
         List<WebElement> songsList = driver.findElements(By.cssSelector(".all-songs tr.song-item"));
         Assert.assertEquals(songsList.size(), 63);
     }
 
-    // double click
     public void doubleClickChoosePlaylist() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        // double click
         WebElement playlist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         actions.doubleClick(playlist).perform();
     }
