@@ -17,7 +17,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(getDriver().getCurrentUrl(), url); // https://bbb.testpro.io/
     }
 
-    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
+    @Test (enabled = true , priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPasswordTest(){
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.provideEmail("demo@class.com");
