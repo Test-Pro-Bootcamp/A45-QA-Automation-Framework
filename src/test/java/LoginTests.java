@@ -14,10 +14,10 @@ public class LoginTests extends BaseTest {
         loginPage.providePassword(password);
         loginPage.clickSubmit();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(), url); // https://bbb.testpro.io/
+        Assert.assertEquals(getDriver().getCurrentUrl(), url); // https://qa.koel.app/
     }
 
-    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
+    @Test (enabled = true , priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPasswordTest(){
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.provideEmail("demo@class.com");
@@ -33,12 +33,11 @@ public class LoginTests extends BaseTest {
         loginPage.providePassword("");
         loginPage.clickSubmit();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://qa.koel.app/
     }
     public void isAvatarDisplayed() {
         WebElement avatarIcon = getDriver().findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
-//        Assert.assertEquals(avatarIcon.isDisplayed(), true);
     }
 
     //Page Object Model example

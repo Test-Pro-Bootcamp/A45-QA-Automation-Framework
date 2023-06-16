@@ -14,7 +14,7 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.1'
 }
-
+//${suite}
 test {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"
@@ -25,11 +25,13 @@ test {
 task testSmoke(type: Test) {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"
+        systemProperty "browser", System.getProperty("browser")
     }
 }
 
 task testRegression(type: Test) {
     useTestNG() {
         suites "src/test/resources/Regression.xml"
+        systemProperty "browser", System.getProperty("browser")
     }
 }
