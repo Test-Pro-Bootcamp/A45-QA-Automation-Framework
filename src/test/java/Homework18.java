@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class Homework18 extends BaseTest {
 
     @Test
-    public static void playSong() throws InterruptedException {
+    public void playSong() throws InterruptedException {
         provideEmail();
         providePassword();
         logInButton();

@@ -17,6 +17,16 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/PlaySongHW18.xml"
+        suites "src/test/resources/SmokeTest.xml"
+    }
+    task testSmoke(type: Test){
+        useTestNG(){
+            suites "src/test/resources/SmokeTest.xml"
+        }
+    }
+    task testRegression(type: Test){
+        useTestNG(){
+            suites "src/test/resources/RegressionTest.xml"
+        }
     }
 }
