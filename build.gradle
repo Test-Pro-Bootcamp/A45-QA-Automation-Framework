@@ -26,7 +26,13 @@ test {
     }
     task testRegression(type: Test){
         useTestNG(){
-            suites "src/test/resources/RegressionTest.xml"
+            suites "src/test/resources/Regression.xml"
         }
+    }
+    task PlaySongHW18(type: Test){
+        useTestNG(){
+            suites "src/test/resources/PlaySongHW18.xml"
+        }
+
     }
 }

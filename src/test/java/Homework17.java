@@ -29,6 +29,7 @@ public class Homework17 extends BaseTest {
 //        emailField.clear();
 //        emailField.sendKeys("esther.martinez32@gmail.com");
 //        Thread.sleep(1000);
+
         provideEmail();
 //        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
 //        passwordField.click();

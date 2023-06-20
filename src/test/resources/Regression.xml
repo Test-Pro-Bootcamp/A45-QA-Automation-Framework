@@ -32,9 +32,14 @@
             </methods>
         </class>
 
+        <class name="Homework19">
+            <methods>
+                <include name="deletePlaylist"/>
+            </methods>
+        </class>
+
     </classes>
 
-
-
+        
     </test>
 </suite>
