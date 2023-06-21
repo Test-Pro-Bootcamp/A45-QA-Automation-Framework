@@ -14,7 +14,7 @@ public class Homework19 extends BaseTest{
         providePassword();
         logInButton();
 
-        WebElement playlist = driver.findElement(By.xpath("//section[@id='playlists']//a[@href='#!/playlist/44971']"));
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='playlists']//li[3]]"));
         playlist.click();
         WebElement deletePlaylist = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
         deletePlaylist.click();
