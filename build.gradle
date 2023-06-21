@@ -33,6 +33,11 @@ test {
         useTestNG(){
             suites "src/test/resources/PlaySongHW18.xml"
         }
+    task Homework19(type: Test){
+        useTestNG(){
+            suites "src/test/resources/Homework19.xml"
+        }
+    }
 
     }
 }

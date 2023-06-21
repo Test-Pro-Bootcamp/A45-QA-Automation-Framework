@@ -8,13 +8,13 @@ public class Homework19 extends BaseTest{
 
     @Test
     public void deletePlaylist() throws InterruptedException {
-       String deletedPlaylistMsg = "Deleted Playlist";
+       String deletedPlaylistMsg = "Deleted playlist";
 
         provideEmail();
         providePassword();
         logInButton();
 
-        WebElement playlist = driver.findElement(By.xpath("//section[@id='playlists']//li[5]]"));
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='playlists']//li[5]"));
         playlist.click();
         WebElement deletePlaylist = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
         deletePlaylist.click();
