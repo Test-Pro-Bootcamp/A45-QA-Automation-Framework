@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.UUID;
 
@@ -25,6 +25,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
     public WebDriver driver = null;
+    WebDriverWait wait;
     public static String url = null;
     @BeforeMethod
     @Parameters({"BaseURL"})
@@ -37,6 +38,7 @@ public class BaseTest {
         driver.get(BaseURL);
         Thread.sleep(2000);
         url = BaseURL;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
     }
     public void provideEmail() throws InterruptedException {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
