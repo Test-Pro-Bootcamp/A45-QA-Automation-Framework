@@ -23,8 +23,6 @@ public class LoginStepDefinitions {
     WebDriverWait wait;
 
     @Before
-    @Given("I open browser")
-
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
