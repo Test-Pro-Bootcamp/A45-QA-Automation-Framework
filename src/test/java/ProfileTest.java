@@ -17,7 +17,6 @@ public class ProfileTest extends BaseTest{
         setNewName(newName);
         saveProfile();
 
-
         WebElement newProfileName = driver.findElement(By.xpath("//span[@class='name']"));
         Thread.sleep(2000);
         Assert.assertEquals(newProfileName.getText(), newName);

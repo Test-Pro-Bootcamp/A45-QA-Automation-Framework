@@ -17,8 +17,9 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/SmokeTest.xml"
-    }
+        suites "src/test/resources/TestNG.xml"
+
+}
     task testSmoke(type: Test){
         useTestNG(){
             suites "src/test/resources/SmokeTest.xml"
@@ -38,6 +39,9 @@ test {
             suites "src/test/resources/Homework19.xml"
         }
     }
+        task ProfileTest(type: Test){
+            useTestNG(){
+                suites "src/test/resources/ProfileTest.xml"
 
     }
-}
+}}}
