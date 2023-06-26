@@ -43,7 +43,7 @@ public class BaseTest {
         url = BaseURL;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    public void provideEmail() throws InterruptedException {
+    public void provideEmail()  {
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
                 //driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();
@@ -51,7 +51,7 @@ public class BaseTest {
         emailField.sendKeys("esther.martinez32@gmail.com");
         //Thread.sleep(1000);
     }
-    public void provideIncorrectEmail(String email) throws InterruptedException {
+    public void provideIncorrectEmail(String email)  {
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
                 //driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();
@@ -59,7 +59,7 @@ public class BaseTest {
         emailField.sendKeys(email);
        // Thread.sleep(1000);
     }
-    public void providePassword() throws InterruptedException {
+    public void providePassword() {
         WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
                 //driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.click();
@@ -67,7 +67,7 @@ public class BaseTest {
         passwordField.sendKeys("Proverbs99!");
         //Thread.sleep(1000);
     }
-    public void provideIncorrectPassword(String incorrectPassword) throws InterruptedException {
+    public void provideIncorrectPassword(String incorrectPassword) {
         WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
                 //driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.click();
@@ -75,21 +75,21 @@ public class BaseTest {
         passwordField.sendKeys(incorrectPassword);
         //Thread.sleep(1000);
     }
-    public void logInButton() throws InterruptedException{
+    public void logInButton() {
         WebElement logIn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
                 //driver.findElement(By.cssSelector("button[type='submit']"));
         logIn.click();
        // Thread.sleep(3000);
     }
 
-    public void assertAvatar() throws InterruptedException {
+    public void assertAvatar() {
         WebElement usersAvatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
                 //driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(usersAvatar.isDisplayed());
         //Thread.sleep(1000);
     }
 
-    public void searchSong() throws InterruptedException {
+    public void searchSong()  {
         WebElement songSearch = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='q']")));
                 //driver.findElement(By.cssSelector("input[name='q']"));
         songSearch.click();
@@ -97,21 +97,21 @@ public class BaseTest {
         //Thread.sleep(1000);
     }
 
-    public void viewSongs() throws InterruptedException {
+    public void viewSongs() {
         WebElement viewAll = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("section.songs h1 button")));
                 //driver.findElement(By.cssSelector("section.songs h1 button"));
         viewAll.click();
       //  Thread.sleep(1000);
     }
 
-    public void findFirstSong() throws InterruptedException {
+    public void findFirstSong()  {
         WebElement firstSong = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//table[@class='items']/tr[1]/td[2]")));
                 //driver.findElement(By.xpath("//section[@id='songResultsWrapper']//table[@class='items']/tr[1]/td[2]"));
         firstSong.click();
        // Thread.sleep(1000);
     }
 
-    public void addSong() throws InterruptedException {
+    public void addSong()  {
         WebElement addTo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//button[2]")));
              //   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[2]"));
 
@@ -119,14 +119,14 @@ public class BaseTest {
         //Thread.sleep(1000);
     }
 
-    public void playlist17() throws InterruptedException {
+    public void playlist17() {
         WebElement playList = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//li[7]")));
              //   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[7]"));
         playList.click();
         //Thread.sleep(2000);
     }
 
-    public void success() throws InterruptedException {
+    public void success()  {
         WebElement verification =
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
         //driver.findElement(By.xpath("//div[@class='success show']"));
@@ -139,7 +139,7 @@ public class BaseTest {
         return UUID.randomUUID().toString().replace("", "");
     }
 
-    public void provideTestEmail() throws InterruptedException {
+    public void provideTestEmail() {
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
             //    driver.findElement(By.cssSelector("input[type='email']"));
         emailField.click();
@@ -148,7 +148,7 @@ public class BaseTest {
        // Thread.sleep(1000);
     }
 
-    public void provideTestPassword() throws InterruptedException {
+    public void provideTestPassword()  {
         WebElement passwordField =
                 wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
       //  driver.findElement(By.cssSelector("input[type='password']"));
@@ -158,14 +158,14 @@ public class BaseTest {
         //Thread.sleep(3000);
     }
 
-    public void openUserProfilePage() throws InterruptedException {
+    public void openUserProfilePage()  {
         WebElement avatar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span//img[@class='avatar']")));
             //    driver.findElement(By.xpath("//span//img[@class='avatar']"));
         avatar.click();
         //Thread.sleep(1000);
     }
 
-    public void setCurrentPassword() throws InterruptedException {
+    public void setCurrentPassword()  {
         WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='inputProfileCurrentPassword']")));
                // driver.findElement(By.xpath("//*[@id='inputProfileCurrentPassword']"));
         passwordField.click();
@@ -174,7 +174,7 @@ public class BaseTest {
        //Thread.sleep(1000);
     }
 
-    public void setNewName(String newName) throws InterruptedException {
+    public void setNewName(String newName)  {
         WebElement nameField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='inputProfileName']")));
              //   driver.findElement(By.xpath("//*[@id='inputProfileName']"));
         nameField.click();
@@ -183,7 +183,7 @@ public class BaseTest {
         //Thread.sleep(1000);
     }
 
-    public void saveProfile() throws InterruptedException {
+    public void saveProfile()  {
         WebElement save = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']")));
               //  driver.findElement(By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']"));
         save.click();
