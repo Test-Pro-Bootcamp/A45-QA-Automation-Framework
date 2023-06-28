@@ -1,9 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -30,6 +32,8 @@ public class BaseTest {
     public WebDriver driver = null;
     WebDriverWait wait;
     public static String url = null;
+    public static Actions actions = null;
+    String newPlaylistName = "Renamed Playlist";
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException {
@@ -42,6 +46,13 @@ public class BaseTest {
         Thread.sleep(2000);
         url = BaseURL;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
+    }
+
+    public void login(){
+        provideEmail();
+        providePassword();
+        logInButton();
     }
     public void provideEmail()  {
         WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
@@ -197,6 +208,21 @@ public class BaseTest {
     public void closeBrowser() {
         driver.quit();
 
+    }
+
+    public void enterNewPlaylistName(){
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlists']//li[5]")));
+        actions.doubleClick(playlist).perform();
+        WebElement playlistTextField = driver.findElement(By.cssSelector("input[name='name']"));
+        playlistTextField.sendKeys((Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE)));
+        //element is required so clear does not work. ctrl a (to select all) then backspace
+        playlistTextField.sendKeys(newPlaylistName);
+        playlistTextField.sendKeys(Keys.ENTER);
+    }
+
+    public boolean validateRenamedPlaylist(){
+        WebElement renamedPlaylist = driver.findElement(By.xpath("//a[contains(text(),'"+newPlaylistName+"')]"));
+        return renamedPlaylist.isDisplayed();
     }
 }
 //    @BeforeMethod
