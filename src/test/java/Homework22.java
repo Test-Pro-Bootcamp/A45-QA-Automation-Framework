@@ -1,7 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
+import baseClassParentPages.HomePage;
+import baseClassParentPages.LoginPage;
 
 public class Homework22 extends BaseTest{
     @Test

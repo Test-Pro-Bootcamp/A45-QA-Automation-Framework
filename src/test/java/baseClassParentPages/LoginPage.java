@@ -1,14 +1,15 @@
-package pages;
+package baseClassParentPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
     By emailField = By.cssSelector("input[type='email']");
-    By passwordField = By.cssSelector("input[Type='password;]");
+    By passwordField = By.cssSelector("input[Type='password']");
     By submitBtn= By.cssSelector("button[Type='submit'");
 
     public void provideEmail(String email){

@@ -1,4 +1,4 @@
-package pages;
+package baseClassParentPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

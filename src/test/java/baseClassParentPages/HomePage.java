@@ -1,4 +1,4 @@
-package pages;
+package baseClassParentPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -21,6 +21,7 @@ public class HomePage extends BasePage{
         findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys((Keys.ENTER));
     }
+
     public boolean doesPlaylistExist(String playlistName){
         By newPlaylist=By.xpath("//a[contains(text(),'\"+newPlaylistName+\"')]");
         return findElement(newPlaylist).isDisplayed();
