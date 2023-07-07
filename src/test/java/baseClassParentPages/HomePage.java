@@ -8,8 +8,8 @@ public class HomePage extends BasePage{
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    By findPlaylist= By.xpath("//section[@id='playlists']//li[5]");
-    By playlistNameField= By.cssSelector("input[name='name']");
+    private By findPlaylist= By.xpath("//section[@id='playlists']//li[5]");
+    private By playlistNameField= By.cssSelector("input[name='name']");
 
     public void doubleClickPlaylist(){
         doubleClick(findPlaylist);
