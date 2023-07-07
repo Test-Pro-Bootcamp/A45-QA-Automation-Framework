@@ -10,7 +10,7 @@ public class HomePage extends BasePage{
     }
     By findPlaylist= By.xpath("//section[@id='playlists']//li[5]");
     By playlistNameField= By.cssSelector("input[name='name']");
-    By playlistName = By.xpath("//a[contains(text(),'\"+newPlaylistName+\"')]");
+
     public void doubleClickPlaylist(){
         doubleClick(findPlaylist);
     }
@@ -22,7 +22,7 @@ public class HomePage extends BasePage{
     }
 
     public boolean doesPlaylistExist(String playlistName){
-        By newPlaylist=By.xpath(playlistName);
+        By newPlaylist=By.xpath("//a[text()='"+playlistName+"']");
         return findElement(newPlaylist).isDisplayed();
     }
 }
