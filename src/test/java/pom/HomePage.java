@@ -1,4 +1,4 @@
-package baseClassParentPages;
+package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

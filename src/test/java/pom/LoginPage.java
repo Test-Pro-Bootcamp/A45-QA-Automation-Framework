@@ -1,8 +1,9 @@
-package baseClassParentPages;
+package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
     public LoginPage(WebDriver givenDriver) {
