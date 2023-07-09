@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
@@ -13,8 +14,10 @@ public class Homework19 extends BaseTest {
     }
 
     public static void createPlaylist() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("i[title='Create a new playlist']")));
         WebElement createPlaylist = driver.findElement(By.cssSelector ("i[title='Create a new playlist']"));
         createPlaylist.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li[data-testid='playlist-context-menu-create-simple']")));
         WebElement newPlaylist = driver.findElement(By.cssSelector ("li[data-testid='playlist-context-menu-create-simple']"));
         newPlaylist.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -31,19 +34,20 @@ public class Homework19 extends BaseTest {
     }
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[class='home active']")));
         createPlaylist();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//section[@id='playlists']//*[contains(text(), 'My List')]")));
         clickPlaylist();
-        Thread.sleep(10000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[class='del btn-delete-playlist']")));
         clickRedButton();
-        Thread.sleep(2000);
 
-        WebElement deletePlaylistNotif = driver.findElement(By.cssSelector("div.success.show"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(),'Deleted playlist')]")));
+        WebElement deletePlaylistNotif = driver.findElement(By.xpath("//*[contains(text(),'Deleted playlist')]"));
+
         Assert.assertEquals(deletePlaylistNotif.getText(), "Deleted playlist \"My List.\"");
     }
 }
