@@ -65,6 +65,12 @@
                 </methods>
             </class>
 
+            <class name="HomeWork20">
+                <methods>
+                    <include name="deletePlaylist"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>
