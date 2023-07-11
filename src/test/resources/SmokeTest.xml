@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
+<suite name="SmokeTest">
 
     <test name="Smoke Test" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="Homework21">
+            <class name="Homework23LoginTests">
             <methods>
-                <include name="renamePlaylist"/>
+                <include name="ValidLogInCredentials"/>
             </methods>
             </class>
         </classes>

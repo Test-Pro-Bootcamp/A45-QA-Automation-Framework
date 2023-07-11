@@ -47,6 +47,7 @@ public class BaseTest {
         url = BaseURL;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
+        //driver.manage().window().maximize;
     }
 
     public void login(){
