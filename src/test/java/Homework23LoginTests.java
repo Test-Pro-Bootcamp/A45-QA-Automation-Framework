@@ -14,7 +14,7 @@ public class Homework23LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
     @Test
-    public void ValidLogInCredentials() throws InterruptedException {
+    public void validLogInCredentials()  {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.login();
