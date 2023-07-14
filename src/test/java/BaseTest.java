@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -27,7 +30,9 @@ public class BaseTest {
 
     @BeforeSuite
      void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
+        //WebDriverManager.firefoxdriver().setup();
+      //  WebDriverManager.edgedriver().setup();
     }
     public WebDriver driver = null;
     WebDriverWait wait;
@@ -37,10 +42,17 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-        driver = new ChromeDriver(options);
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--disable-notifications");
+//        driver = new ChromeDriver(options);
+       // driver = new FirefoxDriver();
+
+//        EdgeOptions options = new EdgeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--disable-notifications");
+//        driver = new EdgeDriver(options);
+        driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(BaseURL);
         Thread.sleep(2000);
@@ -48,6 +60,25 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
         //driver.manage().window().maximize;
+    }
+    public static WebDriver pickBrowser(String browser){
+        switch (browser){
+            case "Firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return driver = new FirefoxDriver();
+            case "MicrosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions options = new EdgeOptions();
+                options.addArguments("--remote allow origins=*");
+                options.addArguments("--disable-notifications");
+                return driver = new EdgeDriver(options);
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                return driver = new ChromeDriver(options);
+        }
     }
 
     public void login(){
