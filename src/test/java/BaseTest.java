@@ -34,7 +34,7 @@ public class BaseTest {
         //WebDriverManager.firefoxdriver().setup();
       //  WebDriverManager.edgedriver().setup();
     }
-    public WebDriver driver = null;
+    public static WebDriver driver = null;
     WebDriverWait wait;
     public static String url = null;
     public static Actions actions = null;
@@ -68,10 +68,10 @@ public class BaseTest {
                 return driver = new FirefoxDriver();
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
-                EdgeOptions options = new EdgeOptions();
-                options.addArguments("--remote allow origins=*");
-                options.addArguments("--disable-notifications");
-                return driver = new EdgeDriver(options);
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote allow origins=*");
+                edgeOptions.addArguments("--disable-notifications");
+                return driver = new EdgeDriver(edgeOptions);
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
