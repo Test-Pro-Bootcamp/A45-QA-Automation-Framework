@@ -9,12 +9,16 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.beans.Visibility;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 import java.util.UUID;
 
@@ -62,6 +66,8 @@ public class BaseTest {
         //driver.manage().window().maximize;
     }
     public static WebDriver pickBrowser(String browser){
+        DesiredCapabilities caps = new DesiredCapabilities();
+        String gridURL = "http://10.0.0.208:4444";
         switch (browser){
             case "Firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -72,6 +78,27 @@ public class BaseTest {
                 edgeOptions.addArguments("--remote allow origins=*");
                 edgeOptions.addArguments("--disable-notifications");
                 return driver = new EdgeDriver(edgeOptions);
+            case "grid-Firefox":
+                caps.setCapability("browserName", "Firefox");
+                try {
+                    return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            case "grid-Chrome":
+                caps.setCapability("browserName", "Chrome");
+                try {
+                    return driver= new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            case "grid-Edge":
+                caps.setCapability("browserName", "Edge");
+                try {
+                    return  driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
