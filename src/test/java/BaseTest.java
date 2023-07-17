@@ -69,31 +69,31 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.208:4444";
         switch (browser){
-            case "Firefox":
+            case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
-            case "MicrosoftEdge":
+            case "microsoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote allow origins=*");
                 edgeOptions.addArguments("--disable-notifications");
                 return driver = new EdgeDriver(edgeOptions);
-            case "grid-Firefox":
-                caps.setCapability("browserName", "Firefox");
+            case "grid-firefox":
+                caps.setCapability("browserName", "firefox");
                 try {
                     return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
-            case "grid-Chrome":
-                caps.setCapability("browserName", "Chrome");
+            case "grid-chrome":
+                caps.setCapability("browserName", "chrome");
                 try {
                     return driver= new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
-            case "grid-Edge":
-                caps.setCapability("browserName", "Edge");
+            case "grid-edge":
+                caps.setCapability("browserName", "MicrosoftEdge");
                 try {
                     return  driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
                 } catch (MalformedURLException e) {

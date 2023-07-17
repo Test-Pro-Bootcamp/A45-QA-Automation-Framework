@@ -14,3 +14,9 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+/rid-Edge/
+rid-Edge
+/rid-Firefox/
+/rid-MicrosoftEdge/
+/.gradle/
+.gradle/
