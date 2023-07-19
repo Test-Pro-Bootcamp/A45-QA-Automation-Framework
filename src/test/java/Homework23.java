@@ -18,7 +18,7 @@ public class Homework23 extends BaseTest {
         homePage.doubleClickChoosePlaylist()
                 .enterNewPlaylistName(playlistName);
 
-        Assert.assertTrue (homePage.doesPlaylistExist(playlistName));
+        Assert.assertEquals (homePage.getPlaylistName(), playlistName);
     }
 
 }
