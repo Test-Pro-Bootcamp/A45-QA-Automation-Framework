@@ -52,7 +52,7 @@ public class LoginTests extends BaseTest {
         loginPage.providePassword("te$t$tudent");
         loginPage.clickSubmit();
 
-        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+        Assert.assertTrue(homePage.getUserAvatar());
 
     }
 }

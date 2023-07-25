@@ -19,6 +19,9 @@ public class HomePage extends BasePage {
     @FindBy(css = "div.success.show")
     WebElement popUpNotification;
 
+    @FindBy(css = "img[class'avatar']")
+    private WebElement avatarIcon;
+
 
     public HomePage doubleClickChoosePlaylist() {
         doubleClick(firstPlaylist);
@@ -35,8 +38,11 @@ public class HomePage extends BasePage {
 //        By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
 //        return findElement(newPlaylist).isDisplayed();
 //    }
-public String getPlaylistName() {
-    findElement(popUpNotification);
-    return findElement(firstPlaylist).getText();
-}
+    public String getPlaylistName() {
+        findElement(popUpNotification);
+        return findElement(firstPlaylist).getText();
+    }
+    public boolean getUserAvatar() {
+        return avatarIcon.isDisplayed();
+    }
 }
