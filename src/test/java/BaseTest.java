@@ -67,12 +67,12 @@ public class BaseTest {
     }
     public static WebDriver pickBrowser(String browser){
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://10.0.0.208:4444";
+        String gridURL = "http://172.20.10.2:4444";
         switch (browser){
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
-            case "microsoftEdge":
+            case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote allow origins=*");
