@@ -9,7 +9,8 @@ public class Homework23LoginTests extends BaseTest {
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);provideIncorrectEmail(email);
+        HomePage homePage = new HomePage(driver);
+        provideIncorrectEmail(email);
 
         loginPage.provideIncorrectPassword(incorrectPassword);
         //calling the object of the class (loginPage) not the class itself (LoginPage)
