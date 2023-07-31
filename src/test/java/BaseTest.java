@@ -108,6 +108,7 @@ public class BaseTest {
                 }
             case "lambda":
                 return lambdaTest();
+
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -119,7 +120,7 @@ public class BaseTest {
 
 
     public static WebDriver lambdaTest() throws MalformedURLException{
-        String hubURL = "https://hub.lamdatest.com/we/hub:";
+        String hubURL = "https://hub.lambdatest.com/we/hub:";
         String accessToken ="zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf";
         String username = "esther.foshee";
         ChromeOptions browserOptions = new ChromeOptions();
