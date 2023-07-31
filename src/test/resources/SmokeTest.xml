@@ -6,7 +6,7 @@
     <test name="Smoke Test" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="Homework23LoginTests">
+            <class name="Homework24LoginTests">
 <!--            <methods>-->
 <!--                <include name="validLogInCredentials"/>-->
 <!--            </methods>-->
