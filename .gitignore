@@ -21,3 +21,4 @@ rid-Edge
 /.gradle/
 .gradle/
 *.probe
+*.probe
