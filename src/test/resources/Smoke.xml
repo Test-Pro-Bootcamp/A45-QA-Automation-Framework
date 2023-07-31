@@ -11,10 +11,9 @@
 <!--                    <include name="actionMethods" />-->
 <!--                </methods>-->
 <!--            </class>-->
-                        <class name="LoginTests">
+                        <class name="Homework23">
                             <methods>
-                                <include name="loginValidEmailPasswordTest" />
-                                <include name="loginValidEmailEmptyPasswordTest" />
+                                <include name="renamePlaylist" />
                             </methods>
                         </class>
         </classes>
