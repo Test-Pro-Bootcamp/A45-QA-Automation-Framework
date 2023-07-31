@@ -19,7 +19,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.beans.Visibility;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class BaseTest {
@@ -42,10 +44,15 @@ public class BaseTest {
     WebDriverWait wait;
     public static String url = null;
     public static Actions actions = null;
+
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static WebDriver getDriver(){
+        return threadDriver.get();
+    }
     String newPlaylistName = "Renamed Playlist";
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws InterruptedException {
+    public void launchBrowser(String BaseURL) throws InterruptedException, MalformedURLException {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--remote-allow-origins=*");
 //        options.addArguments("--disable-notifications");
@@ -65,7 +72,7 @@ public class BaseTest {
         actions = new Actions(driver);
         //driver.manage().window().maximize;
     }
-    public static WebDriver pickBrowser(String browser){
+    public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.208:4444";
         switch (browser){
@@ -99,6 +106,8 @@ public class BaseTest {
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
+            case "lambda":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -108,6 +117,23 @@ public class BaseTest {
         }
     }
 
+
+    public static WebDriver lambdaTest() throws MalformedURLException{
+        String hubURL = "https://hub.lamdatest.com/we/hub:";
+        String accessToken ="zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf";
+        String username = "esther.foshee";
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("114.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "esther.foshee");
+        ltOptions.put("accessKey", "zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        browserOptions.setCapability("LT:Options", ltOptions);
+        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+    }
     public void login(){
         provideEmail();
         providePassword();
@@ -267,6 +293,11 @@ public class BaseTest {
     public void closeBrowser() {
         driver.quit();
 
+    }
+    @AfterMethod
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 
     public void enterNewPlaylistName(){

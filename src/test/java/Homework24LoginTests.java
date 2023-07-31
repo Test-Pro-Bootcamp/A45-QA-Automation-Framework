@@ -8,8 +8,8 @@ public class Homework24LoginTests extends BaseTest {
 //add this to SmokeTestxml for hw24
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         provideIncorrectEmail(email);
 
         loginPage.provideIncorrectPassword(incorrectPassword);
@@ -19,8 +19,8 @@ public class Homework24LoginTests extends BaseTest {
     }
     @Test
     public void validLogInCredentials()  {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.login();
         Assert.assertTrue(homePage.assertAvatar());

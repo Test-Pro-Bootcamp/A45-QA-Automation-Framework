@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SmokeTest">
+<suite name="SmokeTest" parallel="methods" thread-count="4">
 
     <test name="Smoke Test" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="Homework24LoginTests">
-<!--            <methods>-->
-<!--                <include name="validLogInCredentials"/>-->
-<!--            </methods>-->
+            <methods>
+                <include name="validLogInCredentials"/>
+            </methods>
             </class>
         </classes>
     </test>
