@@ -15,7 +15,7 @@ dependencies {
 test {
     useTestNG() {
         suites "src/test/resources/SmokeTest.xml"
-        systemProperty "browser", System.getProperty ("browser")
+        systemProperty "browser", System.getProperty ("browser")//allows selenium grid to work
 
 }
     task testSmoke(type: Test){

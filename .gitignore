@@ -20,3 +20,4 @@ rid-Edge
 /rid-MicrosoftEdge/
 /.gradle/
 .gradle/
+*.probe
