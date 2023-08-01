@@ -14,7 +14,7 @@ public class LoginTests extends BaseTest {
         providePassword(password);
         clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); // https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
@@ -26,7 +26,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public static void loginValidEmailEmptyPasswordTest() {
+    public static void loginValidEmailEmptyPasswordTest(String username, String password) {
         provideEmail("demo@class.com");
         providePassword("");
         clickSubmit();

@@ -18,6 +18,7 @@ public class LoginPage extends BasePage {
     }
     public void clickSubmit() {
         click(submitBtn);
+        findElement(submitBtn).click();
     }
     public void login(){
         provideEmail("demo@class.com");
