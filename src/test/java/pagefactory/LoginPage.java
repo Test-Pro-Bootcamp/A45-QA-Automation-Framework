@@ -48,7 +48,10 @@ public class LoginPage extends BasePage {
         passwordField.sendKeys(incorrectPassword);
         return this;
     }
-}
+    public boolean assertNotLoggedIn() {
+        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=submit]")));
+        return loginButton.isDisplayed();
+}}
 
 
 

@@ -44,8 +44,8 @@ public class BaseTest {
     WebDriverWait wait;
     public static String url = null;
     public static Actions actions = null;
-
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+
     public static WebDriver getDriver(){
         return threadDriver.get();
     }
@@ -63,13 +63,15 @@ public class BaseTest {
 //        options.addArguments("--remote-allow-origins=*");
 //        options.addArguments("--disable-notifications");
 //        driver = new EdgeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(BaseURL);
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+
+        //next we call the getDriver method which returns the current instance of the webdriver with the current thread
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().get(BaseURL);
         Thread.sleep(2000);
         url = BaseURL;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
         //driver.manage().window().maximize;
     }
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -120,7 +122,7 @@ public class BaseTest {
 
 
     public static WebDriver lambdaTest() throws MalformedURLException{
-        String hubURL = "https://hub.lambdatest.com/we/hub:";
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
         String accessToken ="zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf";
         String username = "esther.foshee";
         ChromeOptions browserOptions = new ChromeOptions();
@@ -290,12 +292,13 @@ public class BaseTest {
 
 
 
-    @AfterMethod
-    public void closeBrowser() {
-        driver.quit();
+//    @AfterMethod //without parallel execution
+//    public void closeBrowser() {
+//        driver.quit();
+//
+//    }
 
-    }
-    @AfterMethod
+    @AfterMethod//for parallel execution
     public void tearDown(){
         threadDriver.get().close();
         threadDriver.remove();
