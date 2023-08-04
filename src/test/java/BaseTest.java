@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -48,6 +47,9 @@ public class BaseTest {
                 {"", ""}
         };
     }
+
+
+
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
@@ -110,10 +112,9 @@ public class BaseTest {
         }
     }
 
-
     public static WebDriver lambdaTest() throws MalformedURLException {
-            String username = "khaledzamanqa";
-            String accessToken = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
+            String username = "adesinaikeoluwa4";
+            String accessToken = "UkB4anX0vDCYCNesDCvetfDI2d9gBTJTEoncBQdnZG9XqzYrPr";
             String hubURL = "https://hub.lambdatest.com/wd/hub";
 
         FirefoxOptions browserOptions = new FirefoxOptions();
