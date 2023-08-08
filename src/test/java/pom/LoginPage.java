@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
+
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -28,16 +29,4 @@ public class LoginPage extends BasePage {
         providePassword("Proverbs99!");
         clickSubmit();
     }
-    //public void provideIncorrectEmail(String email) {
-    //    findElement(emailField).sendKeys(email);
     }
-    //public void provideIncorrectPassword(String password){
-    //    findElement(passwordField).sendKeys(password);
-   // }
-
-
-        //driver.findElement(By.cssSelector("input[type='email']")); old code
-//        emailField.click();
-//        emailField.clear();
-//        emailField.sendKeys(email);
-}

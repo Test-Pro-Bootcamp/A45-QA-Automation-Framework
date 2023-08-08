@@ -53,16 +53,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException, MalformedURLException {
-//the old way before switchcase options       ChromeOptions options = new ChromeOptions();
-//the old way before switchcase options       options.addArguments("--remote-allow-origins=*");
-//the old way before switchcase options       driver = new ChromeDriver(options);
-//the old way before switchcase options driver = new FirefoxDriver();
 
-//the old way before switchcase options        EdgeOptions options = new EdgeOptions();
-//the old way before switchcase options/       options.addArguments("--remote-allow-origins=*");
-//the old way before switchcase options        options.addArguments("--disable-notifications");
-//the old way before switchcase options        driver = new EdgeDriver(options);
-// teacher recommendation if needed            options.addArguments("--disable-notifications");
         threadDriver.set(pickBrowser(System.getProperty("browser")));
 
         //next we call the getDriver method which returns the current instance of the webdriver with the current thread
@@ -71,7 +62,10 @@ public class BaseTest {
         url = BaseURL;
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
-        //driver.manage().window().maximize;
+
+// teacher recommendation if needed
+// options.addArguments("--disable-notifications");
+// driver.manage().window().maximize;
     }
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -118,7 +112,15 @@ public class BaseTest {
                 return driver = new ChromeDriver(options);
         }
     }
-
+//the old way before switchcase options
+// ChromeOptions options = new ChromeOptions();
+// options.addArguments("--remote-allow-origins=*");
+// driver = new ChromeDriver(options);
+// driver = new FirefoxDriver();
+// EdgeOptions options = new EdgeOptions();
+// options.addArguments("--remote-allow-origins=*");
+// options.addArguments("--disable-notifications");
+// driver = new EdgeDriver(options);
 
     public static WebDriver lambdaTest() throws MalformedURLException{
         String hubURL = "https://hub.lambdatest.com/wd/hub";

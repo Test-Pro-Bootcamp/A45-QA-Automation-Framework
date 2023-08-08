@@ -12,17 +12,13 @@ public class LoginTests extends BaseTest {
         loginPage.login();
         homePage.assertAvatar();
     }
-
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-        loginPage.provideEmail();
-        loginPage.providePassword();
-//        loginPage.provideIncorrectEmail(email);
-//        loginPage.provideIncorrectPassword(incorrectPassword);
-//        loginPage.clickSubmit();
-//        Assert.assertEquals(driver.getCurrentUrl(), url);
+        loginPage.provideEmail(email);
+        loginPage.providePassword(incorrectPassword);
+        loginPage.clickSubmit();
+        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
 }
