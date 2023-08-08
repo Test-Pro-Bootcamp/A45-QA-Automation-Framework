@@ -28,12 +28,12 @@ public class LoginPage extends BasePage {
         providePassword("Proverbs99!");
         clickSubmit();
     }
-    public void provideIncorrectEmail(String email) {
-        findElement(emailField).sendKeys(email);
+    //public void provideIncorrectEmail(String email) {
+    //    findElement(emailField).sendKeys(email);
     }
-    public void provideIncorrectPassword(String password){
-        findElement(passwordField).sendKeys(password);
-    }
+    //public void provideIncorrectPassword(String password){
+    //    findElement(passwordField).sendKeys(password);
+   // }
 
 
         //driver.findElement(By.cssSelector("input[type='email']")); old code

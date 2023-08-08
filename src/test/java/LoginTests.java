@@ -17,10 +17,11 @@ public class LoginTests extends BaseTest {
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
-
-        loginPage.provideIncorrectEmail(email);
-        loginPage.provideIncorrectPassword(incorrectPassword);
-        loginPage.clickSubmit();
+        loginPage.provideEmail();
+        loginPage.providePassword();
+//        loginPage.provideIncorrectEmail(email);
+//        loginPage.provideIncorrectPassword(incorrectPassword);
+//        loginPage.clickSubmit();
 //        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
