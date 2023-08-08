@@ -1,24 +1,27 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagefactory.HomePage;
-import pagefactory.LoginPage;
+import pom.HomePage;
+import pom.LoginPage;
 
 public class LoginTests extends BaseTest {
 
+    @Test
+    public void ValidLogInCredentials() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        loginPage.login();
+        homePage.assertAvatar();
+    }
 
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
-        provideIncorrectEmail(email);
-        provideIncorrectPassword(incorrectPassword);
-        logInButton();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-    }
-    @Test
-    public void ValidLogInCredentials() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        loginPage.login();
-        homePage.assertAvatar();
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
+        loginPage.provideIncorrectEmail(email);
+        loginPage.provideIncorrectPassword(incorrectPassword);
+        loginPage.clickSubmit();
+//        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
+
 }

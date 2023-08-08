@@ -53,22 +53,21 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException, MalformedURLException {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        options.addArguments("--disable-notifications");
-//        driver = new ChromeDriver(options);
-       // driver = new FirefoxDriver();
+//the old way before switchcase options       ChromeOptions options = new ChromeOptions();
+//the old way before switchcase options       options.addArguments("--remote-allow-origins=*");
+//the old way before switchcase options       driver = new ChromeDriver(options);
+//the old way before switchcase options driver = new FirefoxDriver();
 
-//        EdgeOptions options = new EdgeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        options.addArguments("--disable-notifications");
-//        driver = new EdgeDriver(options);
+//the old way before switchcase options        EdgeOptions options = new EdgeOptions();
+//the old way before switchcase options/       options.addArguments("--remote-allow-origins=*");
+//the old way before switchcase options        options.addArguments("--disable-notifications");
+//the old way before switchcase options        driver = new EdgeDriver(options);
+// teacher recommendation if needed            options.addArguments("--disable-notifications");
         threadDriver.set(pickBrowser(System.getProperty("browser")));
 
         //next we call the getDriver method which returns the current instance of the webdriver with the current thread
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         getDriver().get(BaseURL);
-        Thread.sleep(2000);
         url = BaseURL;
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
@@ -137,56 +136,57 @@ public class BaseTest {
         browserOptions.setCapability("LT:Options", ltOptions);
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
-    public void login(){
-        provideEmail();
-        providePassword();
-        logInButton();
-    }
-    public void provideEmail()  {
-        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
-                //driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.click();
-        emailField.clear();
-        emailField.sendKeys("esther.martinez32@gmail.com");
+//   removed since it is in the LoginPage POM
+//        public void login(){
+//        provideEmail();
+//        providePassword();
+//        logInButton();
+//    }
+//    public void provideEmail()  {
+//        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
+//                //driver.findElement(By.cssSelector("input[type='email']"));
+//        emailField.click();
+//        emailField.clear();
+//        emailField.sendKeys("esther.martinez32@gmail.com");
         //Thread.sleep(1000);
-    }
-    public void provideIncorrectEmail(String email)  {
-        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
-                //driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.click();
-        emailField.clear();
-        emailField.sendKeys(email);
-       // Thread.sleep(1000);
-    }
-    public void providePassword() {
-        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
-                //driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.click();
-        passwordField.clear();
-        passwordField.sendKeys("Proverbs99!");
+  //  }
+//    public void provideIncorrectEmail(String email)  {
+//        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
+//                //driver.findElement(By.cssSelector("input[type='email']"));
+//        emailField.click();
+//        emailField.clear();
+//        emailField.sendKeys(email);
+//       // Thread.sleep(1000);
+//    }
+//    public void providePassword() {
+//        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
+//                //driver.findElement(By.cssSelector("input[type='password']"));
+//        passwordField.click();
+//        passwordField.clear();
+//        passwordField.sendKeys("Proverbs99!");
         //Thread.sleep(1000);
-    }
-    public void provideIncorrectPassword(String incorrectPassword) {
-        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
-                //driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.click();
-        passwordField.clear();
-        passwordField.sendKeys(incorrectPassword);
-        //Thread.sleep(1000);
-    }
-    public void logInButton() {
-        WebElement logIn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-                //driver.findElement(By.cssSelector("button[type='submit']"));
-        logIn.click();
+//    }
+//    public void provideIncorrectPassword(String incorrectPassword) {
+//        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
+//                //driver.findElement(By.cssSelector("input[type='password']"));
+//        passwordField.click();
+//        passwordField.clear();
+//        passwordField.sendKeys(incorrectPassword);
+//        //Thread.sleep(1000);
+//    }
+//    public void logInButton() {
+//        WebElement logIn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+//                //driver.findElement(By.cssSelector("button[type='submit']"));
+//        logIn.click();
        // Thread.sleep(3000);
-    }
+//    }
 
-    public void assertAvatar() {
-        WebElement usersAvatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-                //driver.findElement(By.cssSelector("img.avatar"));
-        Assert.assertTrue(usersAvatar.isDisplayed());
+//    public void assertAvatar() {
+//        WebElement usersAvatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
+//                //driver.findElement(By.cssSelector("img.avatar"));
+//        Assert.assertTrue(usersAvatar.isDisplayed());
         //Thread.sleep(1000);
-    }
+//    }
 
     public void searchSong()  {
         WebElement songSearch = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='q']")));
