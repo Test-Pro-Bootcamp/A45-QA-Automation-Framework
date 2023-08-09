@@ -1,16 +1,15 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.LoginPage;
 import pom.ProfilePreferences;
 
 
-public class ProfileTest extends BaseTest{
+public class ProfileTests extends BaseTest{
     @Test
     public void changeProfileName()throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
         ProfilePreferences profilePreferences = new ProfilePreferences(getDriver());
+
+        String email = "demo@class.com";
 
         loginPage.login();
         profilePreferences.openUserProfilePage();
@@ -19,11 +18,5 @@ public class ProfileTest extends BaseTest{
         profilePreferences.setCurrentPassword(password);
         profilePreferences.setNewName(newName);
         profilePreferences.saveProfile();
-
-
-//        WebElement newProfileName = driver.findElement(By.xpath("//span[@class='name']"));
-//        Thread.sleep(2000);
-//        Assert.assertEquals(newProfileName.getText(), newName);
-//    }
-//}
+        profilePreferences.newProfileName();
     }}
