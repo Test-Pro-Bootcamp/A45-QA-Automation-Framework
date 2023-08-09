@@ -236,60 +236,60 @@ public class BaseTest {
     }
 
     //for ProfileTest
-    public String getRandomString() {
-        return UUID.randomUUID().toString().replace("", "");
-    }
+//    public String getRandomString() {
+//        return UUID.randomUUID().toString().replace("", "");
+//    }
 
-    public void provideTestEmail() {
-        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
-            //    driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.click();
-        emailField.clear();
-        emailField.sendKeys("demo@class.com");
-       // Thread.sleep(1000);
-    }
-
-    public void provideTestPassword()  {
-        WebElement passwordField =
-                wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
-      //  driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.click();
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-        //Thread.sleep(3000);
-    }
-
-    public void openUserProfilePage()  {
-        WebElement avatar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span//img[@class='avatar']")));
-            //    driver.findElement(By.xpath("//span//img[@class='avatar']"));
-        avatar.click();
-        //Thread.sleep(1000);
-    }
-
-    public void setCurrentPassword()  {
-        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='inputProfileCurrentPassword']")));
-               // driver.findElement(By.xpath("//*[@id='inputProfileCurrentPassword']"));
-        passwordField.click();
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-       //Thread.sleep(1000);
-    }
-
-    public void setNewName(String newName)  {
-        WebElement nameField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='inputProfileName']")));
-             //   driver.findElement(By.xpath("//*[@id='inputProfileName']"));
-        nameField.click();
-        nameField.clear();
-        nameField.sendKeys(newName);
-        //Thread.sleep(1000);
-    }
-
-    public void saveProfile()  {
-        WebElement save = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']")));
-              //  driver.findElement(By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']"));
-        save.click();
-       // Thread.sleep(2000);
-    }
+//    public void provideTestEmail() {
+//        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='email']")));
+//            //    driver.findElement(By.cssSelector("input[type='email']"));
+//        emailField.click();
+//        emailField.clear();
+//        emailField.sendKeys("demo@class.com");
+//       // Thread.sleep(1000);
+//    }
+//
+//    public void provideTestPassword()  {
+//        WebElement passwordField =
+//                wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='password']")));
+//      //  driver.findElement(By.cssSelector("input[type='password']"));
+//        passwordField.click();
+//        passwordField.clear();
+//        passwordField.sendKeys("te$t$tudent");
+//        //Thread.sleep(3000);
+//    }
+//
+//    public void openUserProfilePage()  {
+//        WebElement avatar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span//img[@class='avatar']")));
+//            //    driver.findElement(By.xpath("//span//img[@class='avatar']"));
+//        avatar.click();
+//        //Thread.sleep(1000);
+//    }
+//
+//    public void setCurrentPassword()  {
+//        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='inputProfileCurrentPassword']")));
+//               // driver.findElement(By.xpath("//*[@id='inputProfileCurrentPassword']"));
+//        passwordField.click();
+//        passwordField.clear();
+//        passwordField.sendKeys("te$t$tudent");
+//       //Thread.sleep(1000);
+//    }
+//
+//    public void setNewName(String newName)  {
+//        WebElement nameField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='inputProfileName']")));
+//             //   driver.findElement(By.xpath("//*[@id='inputProfileName']"));
+//        nameField.click();
+//        nameField.clear();
+//        nameField.sendKeys(newName);
+//        //Thread.sleep(1000);
+//    }
+//
+//    public void saveProfile()  {
+//        WebElement save = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']")));
+//              //  driver.findElement(By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']"));
+//        save.click();
+//       // Thread.sleep(2000);
+//    }
 
 
 
