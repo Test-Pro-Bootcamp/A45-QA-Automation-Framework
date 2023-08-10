@@ -28,16 +28,16 @@ public class ProfilePreferences extends BasePage{
     public void openUserProfilePage(){
         findElement(avatar).click();
     }
-    public void provideTestEmail (String email){
+    public void provideTestEmail (){
         findElement(emailField).sendKeys("demo@class.com");
     }
-    public void provideTestPassword (String password){
+    public void provideTestPassword (){
         findElement(passwordField).sendKeys("te$t$tudent");
     }
-    public void setCurrentPassword(String password){
+    public void setCurrentPassword(){
         findElement(inputPassword).sendKeys("te$t$tudent");
     }
-    public void setNewName(String newName)  {
+    public void setNewName()  {
         findElement(inputName).sendKeys(newName);
     }
     public void saveProfile()  {

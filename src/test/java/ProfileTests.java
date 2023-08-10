@@ -9,14 +9,13 @@ public class ProfileTests extends BaseTest{
         LoginPage loginPage = new LoginPage(getDriver());
         ProfilePreferences profilePreferences = new ProfilePreferences(getDriver());
 
-        String email = "demo@class.com";
 
         loginPage.login();
         profilePreferences.openUserProfilePage();
-        profilePreferences.provideTestEmail(email);
-        profilePreferences.provideTestPassword(password);
-        profilePreferences.setCurrentPassword(password);
-        profilePreferences.setNewName(newName);
+        profilePreferences.provideTestEmail();
+        profilePreferences.provideTestPassword();
+        profilePreferences.setCurrentPassword();
+        profilePreferences.setNewName();
         profilePreferences.saveProfile();
         profilePreferences.newProfileName();
     }}
