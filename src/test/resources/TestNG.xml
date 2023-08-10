@@ -9,12 +9,12 @@
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="RegistrationTests"/>
-            <class name="Homework17"/>
-            <class name="ProfileTests"/>
-            <class name="Homework19"/>
-            <class name="Homework18"/>
+            <class name="PlaylistAddSong"/>
+            <class name="ProfilePreferencesTests"/>
+            <class name="PlaylistDelete"/>
+            <class name="PlaySong"/>
             <class name="Homework20"/>
-            <class name="Homework21"/>
+            <class name="PlaylistRename"/>
             <class name="Homework23LoginTests"/>
             <class name="Homework22">
 

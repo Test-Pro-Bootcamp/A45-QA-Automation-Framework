@@ -14,13 +14,13 @@
             </methods>
         </class>
 
-        <class name="Homework18">
+        <class name="PlaySong">
             <methods>
                 <include name="playSong"/>
             </methods>
         </class>
 
-        <class name="Homework17">
+        <class name="PlaylistAddSong">
             <methods>
                 <include name="addSongToPlaylist"/>
             </methods>
@@ -32,7 +32,7 @@
             </methods>
         </class>
 
-        <class name="Homework19">
+        <class name="PlaylistDelete">
             <methods>
                 <include name="deletePlaylist"/>
             </methods>

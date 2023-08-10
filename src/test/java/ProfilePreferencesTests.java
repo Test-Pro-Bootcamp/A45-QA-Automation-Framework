@@ -3,7 +3,7 @@ import pom.LoginPage;
 import pom.ProfilePreferences;
 
 
-public class ProfileTests extends BaseTest{
+public class ProfilePreferencesTests extends BaseTest{
     @Test
     public void changeProfileName(){
         LoginPage loginPage = new LoginPage(getDriver());

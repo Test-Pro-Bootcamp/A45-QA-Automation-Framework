@@ -3,11 +3,11 @@
 
 <suite name="TestNG">
 
-    <test name="Homework19" preserve-order="false">
+    <test name="PlaylistDelete" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
 
-            <class name="Homework19"/>
+            <class name="PlaylistDelete"/>
 
         </classes>
     </test>

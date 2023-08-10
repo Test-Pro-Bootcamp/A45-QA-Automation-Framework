@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
 
-public class Homework21 extends BaseTest{
+public class PlaylistRename extends BaseTest{
 
 
     @Test

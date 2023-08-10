@@ -1,11 +1,10 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework19 extends BaseTest{
+public class PlaylistDelete extends BaseTest{
 
     @Test
     public void deletePlaylist() throws InterruptedException {
