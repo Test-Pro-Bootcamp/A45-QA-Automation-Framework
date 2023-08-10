@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 
-public class Homework16 extends BaseTest {
+public class RegistrationTests extends BaseTest {
     @Test
 
     public void registrationNavigation() throws InterruptedException {
@@ -25,7 +25,7 @@ public class Homework16 extends BaseTest {
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        String registrationUrl = "https://qa.koel.app/registration.php";
+        String registrationUrl = "https://qa.koel.app/registration";
         WebElement registration = driver.findElement(By.cssSelector("a[id='hel']"));
         registration.click();
         Assert.assertEquals(driver.getCurrentUrl(),registrationUrl);

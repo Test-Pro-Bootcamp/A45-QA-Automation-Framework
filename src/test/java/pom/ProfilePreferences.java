@@ -27,13 +27,13 @@ public class ProfilePreferences extends BasePage{
         findElement(avatar).click();
     }
     public void provideTestEmail (String email){
-        findElement(emailField).sendKeys();
+        findElement(emailField).sendKeys(email);
     }
     public void provideTestPassword (String password){
-        findElement(passwordField).sendKeys();
+        findElement(passwordField).sendKeys(password);
     }
     public void setCurrentPassword(String password){
-        findElement(inputPassword).sendKeys();
+        findElement(inputPassword).sendKeys(password);
     }
     public void setNewName()  {
         findElement(inputName).sendKeys(newName);
@@ -43,6 +43,6 @@ public class ProfilePreferences extends BasePage{
     }
     public void newProfileName(){
         driver.findElement(newProfileName);
-        Assert.assertEquals(newProfileName.getText(), newName);
+        Assert.assertEquals(newProfileName.getText, newName);
     }
 }
