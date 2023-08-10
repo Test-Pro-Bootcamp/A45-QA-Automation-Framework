@@ -2,8 +2,6 @@ package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.UUID;
@@ -28,14 +26,14 @@ public class ProfilePreferences extends BasePage{
     public void openUserProfilePage(){
         findElement(avatar).click();
     }
-    public void provideTestEmail (){
-        findElement(emailField).sendKeys("demo@class.com");
+    public void provideTestEmail (String email){
+        findElement(emailField).sendKeys();
     }
-    public void provideTestPassword (){
-        findElement(passwordField).sendKeys("te$t$tudent");
+    public void provideTestPassword (String password){
+        findElement(passwordField).sendKeys();
     }
-    public void setCurrentPassword(){
-        findElement(inputPassword).sendKeys("te$t$tudent");
+    public void setCurrentPassword(String password){
+        findElement(inputPassword).sendKeys();
     }
     public void setNewName()  {
         findElement(inputName).sendKeys(newName);

@@ -5,16 +5,19 @@ import pom.ProfilePreferences;
 
 public class ProfileTests extends BaseTest{
     @Test
-    public void changeProfileName()throws InterruptedException {
+    public void changeProfileName(){
         LoginPage loginPage = new LoginPage(getDriver());
         ProfilePreferences profilePreferences = new ProfilePreferences(getDriver());
 
+String email = "demo@class.com";
+String passwordField = "te$t$tudent";
+String inputPassword = "te$t$tudent";
 
         loginPage.login();
         profilePreferences.openUserProfilePage();
-        profilePreferences.provideTestEmail();
-        profilePreferences.provideTestPassword();
-        profilePreferences.setCurrentPassword();
+        profilePreferences.provideTestEmail(email);
+        profilePreferences.provideTestPassword(passwordField);
+        profilePreferences.setCurrentPassword(inputPassword);
         profilePreferences.setNewName();
         profilePreferences.saveProfile();
         profilePreferences.newProfileName();
