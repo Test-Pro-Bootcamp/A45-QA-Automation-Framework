@@ -9,15 +9,12 @@ public class ProfilePreferencesTests extends BaseTest{
         LoginPage loginPage = new LoginPage(getDriver());
         ProfilePreferences profilePreferences = new ProfilePreferences(getDriver());
 
-String email = "demo@class.com";
-String passwordField = "te$t$tudent";
-String inputPassword = "te$t$tudent";
 
         loginPage.login();
         profilePreferences.openUserProfilePage();
-        profilePreferences.provideTestEmail(email);
-        profilePreferences.provideTestPassword(passwordField);
-        profilePreferences.setCurrentPassword(inputPassword);
+        profilePreferences.provideTestEmail("demo@class.com");
+        profilePreferences.provideTestPassword("te$t$tudent");
+        profilePreferences.setCurrentPassword("te$t$tudent");
         profilePreferences.setNewName();
         profilePreferences.saveProfile();
         profilePreferences.newProfileName();
