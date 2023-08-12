@@ -3,18 +3,12 @@
 
 <suite name="TestNG" parallel="methods" thread-count="4">
 
-    <test name="Example Test">
-        <parameter name="BaseURL" value="https://qa.koel.app/"/>
+    <test name="LoginTests">
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
-<!--            <class name="RandomTests">-->
-<!--                <methods>-->
-<!--                    <include name="actionMethods" />-->
-<!--                </methods>-->
-<!--            </class>-->
                         <class name="LoginTests">
                             <methods>
                                 <include name="loginValidEmailPasswordTest" />
-                                <include name="loginValidEmailEmptyPasswordTest" />
                             </methods>
                         </class>
         </classes>
