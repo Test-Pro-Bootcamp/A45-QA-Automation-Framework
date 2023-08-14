@@ -21,8 +21,6 @@ public class ProfilePreferences extends BasePage{
     public String getRandomString() {
         return UUID.randomUUID().toString().replace("", "");
     }
-    String newName = getRandomString();
-
     public void openUserProfilePage(){
         findElement(avatar).click();
     }
@@ -35,14 +33,14 @@ public class ProfilePreferences extends BasePage{
     public void setCurrentPassword(String password){
         findElement(inputPassword).sendKeys(password);
     }
-    public void setNewName()  {
+    public void setNewName(String newName)  {
         findElement(inputName).sendKeys(newName);
     }
     public void saveProfile()  {
         findElement(submit).click();
     }
-    public void newProfileName(){
-        driver.findElement(newProfileName);
-        Assert.assertEquals(newProfileName.getText, newName);
+        public String getNewProfileName(){
+            findElement(newProfileName);
+            return findElement(newProfileName).getText();
     }
 }
