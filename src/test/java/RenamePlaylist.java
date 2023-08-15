@@ -9,8 +9,8 @@ public class RenamePlaylist extends BaseTest{
     public void renamePlaylist(){
         String playlistName = "Edited Playlist Name";
 
-        LoginPage loginPage=new LoginPage(getDriver());
-        Playlists playlists=new Playlists(getDriver());
+        LoginPage loginPage=new LoginPage(driver);
+        Playlists playlists=new Playlists(driver);
 
         loginPage.login();
         playlists.doubleClickPlaylist();

@@ -10,8 +10,8 @@ public class PlaySong extends BaseTest {
     @Test
     public void playSong() throws InterruptedException {
 
-        LoginPage loginPage = new LoginPage(getDriver());
-        AllSongs allSongs = new AllSongs(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
+        AllSongs allSongs = new AllSongs(driver);
 
         loginPage.login();
 

@@ -10,8 +10,8 @@ public class ProfilePreferencesTests extends BaseTest{
 
     @Test
     public void changeProfileName(){
-        LoginPage loginPage = new LoginPage(getDriver());
-        ProfilePreferences profilePreferences = new ProfilePreferences(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
+        ProfilePreferences profilePreferences = new ProfilePreferences(driver);
 
         String newName = profilePreferences.getRandomString();
 

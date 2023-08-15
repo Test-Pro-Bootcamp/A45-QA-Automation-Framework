@@ -44,24 +44,26 @@ public class BaseTest {
     WebDriverWait wait;
     public static String url = null;
     public static Actions actions = null;
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-
-    public static WebDriver getDriver(){
-        return threadDriver.get();
-    }
+//    for lambda parallel testing
+//    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+//    public static WebDriver getDriver(){
+//        return threadDriver.get();
+ //   }
     String newPlaylistName = "Renamed Playlist";
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException, MalformedURLException {
-
-        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        driver = pickBrowser(System.getProperty("browser"));
+        //threadDriver.set(pickBrowser(System.getProperty("browser"))); for parallel
 
         //next we call the getDriver method which returns the current instance of the webdriver with the current thread
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        getDriver().get(BaseURL);
+        //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //getDriver().get(BaseURL);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(BaseURL);
         url = BaseURL;
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
 
 // teacher recommendation if needed
 // options.addArguments("--disable-notifications");
