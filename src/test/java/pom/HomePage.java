@@ -16,6 +16,13 @@ public class HomePage extends BasePage{
         //driver.findElement(By.cssSelector("img.avatar")); old code
         Assert.assertTrue(usersAvatar.isDisplayed());
     }
+    public void searchSong() {
+        WebElement songSearch = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='q']")));
+        //driver.findElement(By.cssSelector("input[name='q']"));
+        songSearch.click();
+        songSearch.sendKeys("hand");
+        //Thread.sleep(1000);
+    }
 
     }
 

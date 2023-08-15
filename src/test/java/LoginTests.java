@@ -7,14 +7,14 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void ValidLogInCredentials() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
         loginPage.login();
         homePage.assertAvatar();
     }
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
-        LoginPage loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.provideEmail(email);
         loginPage.providePassword(incorrectPassword);
         loginPage.clickSubmit();
