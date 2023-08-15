@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG" parallel="methods" thread-count="4">
+<suite name="TestNG" >
 
-    <test name="LoginTests">
+    <test name="SmokeTest">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
+<!--        <parameter name="browser" value="chrome"/>-->
         <classes>
-                        <class name="LoginTests">
-                            <methods>
-                                <include name="loginValidEmailPasswordTest" />
-                            </methods>
-                        </class>
+            <class name="LoginTests">
+                <methods>
+                    <include name="loginValidEmailPasswordTest" />
+                </methods>
+            </class>
+            <class name="PlaylistTest">
+                <methods>
+                    <include name="renamePlaylist" />
+                </methods>
+            </class>
+            <class name="ProfileTests">
+                <methods>
+                    <include name="changeProfileNameTest" />
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

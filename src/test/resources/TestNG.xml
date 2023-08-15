@@ -10,12 +10,11 @@
                         <include name="loginValidEmailEmptyPasswordTest" />
                     </methods>
                 </class>
-                <class name="HomeWork18">
+                <class name="Homework29">
                     <methods>
-                        <include name="playASongTest" />
+                        <include name="renamePlaylist" />
                     </methods>
                 </class>
             </classes>
         </test>
     </suite>
-</suite>
