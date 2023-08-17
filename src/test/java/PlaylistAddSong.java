@@ -1,58 +1,36 @@
 import org.testng.annotations.Test;
+import pom.AllSongs;
+import pom.HomePage;
+import pom.LoginPage;
+import pom.Playlists;
 
 public class PlaylistAddSong extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException{
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongs allSongs = new AllSongs(driver);
+        Playlists playlists = new Playlists(driver);
+        loginPage.login();
+        //homePage.searchSong();
+        homePage.viewAllSongs();
+        allSongs.findFirstSong();
 
-//  //added these to baseTest
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        options.addArguments("--disable-notifications");
 
-//        WebDriver driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-//        String url = "https://bbb.testpro.io/";
-//        driver.get(url);
-//        Thread.sleep(1000);
-
-//        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-//        emailField.click();
-//        emailField.clear();
-//        emailField.sendKeys("esther.martinez32@gmail.com");
-//        Thread.sleep(1000);
-
-        provideEmail();
-//        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-//        passwordField.click();
-//        passwordField.clear();
-//        passwordField.sendKeys("Proverbs99!");
-//        Thread.sleep(1000);
-        providePassword();
-//        WebElement logIn = driver.findElement(By.cssSelector("button[type='submit']"));
-//        logIn.click();
-        logInButton();
-//        WebElement usersAvatar = driver.findElement(By.cssSelector("img.avatar"));
-//        Assert.assertTrue(usersAvatar.isDisplayed());
-//        Thread.sleep(1000);
-        assertAvatar();
-//        WebElement songSearch = driver.findElement(By.cssSelector("input[name='q']"));
-//        songSearch.click();
-//        songSearch.sendKeys("hand");
-//        Thread.sleep(1000);
-        searchSong();
+        //searchSong();
 //        WebElement viewAll = driver.findElement(By.cssSelector("section.songs h1 button"));
 //        viewAll.click();
 //        Thread.sleep(1000);
-        viewSongs();
+        //viewSongs();
 //        WebElement firstSong = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//table[@class='items']/tr[1]/td[2]"));
 //        firstSong.click();
 //        Thread.sleep(1000);
-        findFirstSong();
+       // findFirstSong();
 //        WebElement addTo = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[2]"));
 //        addTo.click();
 //        Thread.sleep(1000);
-        addSong();
+        //addSong();
 //        WebElement playList = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[7]"));
 //        playList.click();
 //        Thread.sleep(2000);

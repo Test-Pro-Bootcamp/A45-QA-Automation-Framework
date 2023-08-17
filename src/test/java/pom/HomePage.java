@@ -16,12 +16,18 @@ public class HomePage extends BasePage{
         //driver.findElement(By.cssSelector("img.avatar")); old code
         Assert.assertTrue(usersAvatar.isDisplayed());
     }
+    private By searchfield = By.cssSelector("input[name='q']");
+    private By allSongs = By.xpath("//section[@class='music']//li[3]//a[@class='songs active']");
     public void searchSong() {
-        WebElement songSearch = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='q']")));
+        findElement(searchfield).sendKeys("hand");
+        //WebElement songSearch = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='q']")));
         //driver.findElement(By.cssSelector("input[name='q']"));
-        songSearch.click();
-        songSearch.sendKeys("hand");
+        //songSearch.click();
+        //songSearch.sendKeys("hand");
         //Thread.sleep(1000);
+    }
+    public void viewAllSongs(){
+        findElement(allSongs).click();
     }
 
     }

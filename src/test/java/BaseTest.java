@@ -133,22 +133,22 @@ public class BaseTest {
 // options.addArguments("--disable-notifications");
 // driver = new EdgeDriver(options);
 
-    public static WebDriver lambdaTest() throws MalformedURLException {
-        String hubURL = "https://hub.lambdatest.com/wd/hub";
-        String accessToken = "zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf";
-        String username = "esther.foshee";
-        ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("114.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-        ltOptions.put("username", "esther.foshee");
-        ltOptions.put("accessKey", "zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf");
-        ltOptions.put("project", "Untitled");
-        ltOptions.put("w3c", true);
-        ltOptions.put("plugin", "java-testNG");
-        browserOptions.setCapability("LT:Options", ltOptions);
-        return new RemoteWebDriver(new URL(hubURL), browserOptions);
-    }
+//    public static WebDriver lambdaTest() throws MalformedURLException {
+//        String hubURL = "https://hub.lambdatest.com/wd/hub";
+//        String accessToken = "zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf";
+//        String username = "esther.foshee";
+//        ChromeOptions browserOptions = new ChromeOptions();
+//        browserOptions.setPlatformName("Windows 10");
+//        browserOptions.setBrowserVersion("114.0");
+//        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+//        ltOptions.put("username", "esther.foshee");
+//        ltOptions.put("accessKey", "zl4feoCHKb3Qf2Nu9GtJTzqxvKHfg9gH76AVb49JfwYONaDRGf");
+//        ltOptions.put("project", "Untitled");
+//        ltOptions.put("w3c", true);
+//        ltOptions.put("plugin", "java-testNG");
+//        browserOptions.setCapability("LT:Options", ltOptions);
+//        return new RemoteWebDriver(new URL(hubURL), browserOptions);
+//    }
     @AfterMethod //without parallel execution
     public void closeBrowser() {
         driver.quit();
