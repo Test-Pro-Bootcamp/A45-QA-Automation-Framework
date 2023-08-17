@@ -16,7 +16,7 @@ public class Playlists extends BasePage {
     private By findPlaylist = By.xpath("//section[@id='playlists']//li[5]");
     private By playlistNameField = By.cssSelector("input[name='name']");
     private By playlist = By.xpath("//section[@id='songResultsWrapper']//button[2]");
-
+    private By success = By.xpath("//div[@class='success show']");
     public void doubleClickPlaylist() {
         doubleClick(findPlaylist);
     }
@@ -54,15 +54,17 @@ public class Playlists extends BasePage {
         //Thread.sleep(2000);
     }
 
-    public void addSongToPlaylist() {
-        WebElement addTo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//button[2]")));
+//    public void addSongToPlaylist() {
+//        WebElement addTo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//button[2]")));
         //   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[2]"));
 
-        addTo.click();
+    //    addTo.click();
         //Thread.sleep(1000);
-    }
+   // }
 
-    public void addedSongSuccess() {
+    public void assertSuccess() {
+        findElement(success).
+
         WebElement verification =
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
         //driver.findElement(By.xpath("//div[@class='success show']"));
@@ -70,4 +72,5 @@ public class Playlists extends BasePage {
         Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
     }
 }
+
 

@@ -1,3 +1,7 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.AllSongs;
 import pom.HomePage;
@@ -15,7 +19,11 @@ public class PlaylistAddSong extends BaseTest {
         //homePage.searchSong();
         homePage.viewAllSongs();
         allSongs.findFirstSong();
+        allSongs.addToPlaylist();
 
+//        Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
+//        WebElement verification =
+//                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
 
 
         //searchSong();
@@ -31,14 +39,14 @@ public class PlaylistAddSong extends BaseTest {
 //        addTo.click();
 //        Thread.sleep(1000);
         //addSong();
-//        WebElement playList = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[7]"));
+//        WebElement playList = driver.findElement(By.xpath("//section[@id='songsWrapper']//li[7]"));
 //        playList.click();
 //        Thread.sleep(2000);
-        playlist17();
+      //  playlist17();
 //        WebElement verification = driver.findElement(By.xpath("//div[@class='success show']"));
 //        Thread.sleep(2000);
 //        Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
-        success();
+   //     success();
 //  //after method in baseTest
 //        driver.quit();
     }

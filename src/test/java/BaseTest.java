@@ -112,8 +112,8 @@ public class BaseTest {
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
-            case "lambda":
-                return lambdaTest();
+          //  case "lambda":
+          //      return lambdaTest();
 
             default:
                 WebDriverManager.chromedriver().setup();
