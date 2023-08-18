@@ -3,6 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import pom.AllSongs;
+import pom.HomePage;
 import pom.LoginPage;
 
 public class PlaySong extends BaseTest {
@@ -11,14 +12,21 @@ public class PlaySong extends BaseTest {
     public void playSong() throws InterruptedException {
 
         LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
         AllSongs allSongs = new AllSongs(driver);
 
         loginPage.login();
+        homePage.viewAllSongs();
+        allSongs.findFirstSong();
+        allSongs.playNextSong();
+        allSongs.playSong();
 
+        WebElement soundBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='bars']")));
+        //  driver.findElement(By.xpath("//div[@class='bars']"));
+        soundBar.isDisplayed();
     }
-//        provideEmail();
-//        providePassword();
-//        logInButton();
+}
+
 //
 //        WebElement allSongs = driver.findElement(By.xpath("//a[@class='songs']"));
 //        allSongs.click();

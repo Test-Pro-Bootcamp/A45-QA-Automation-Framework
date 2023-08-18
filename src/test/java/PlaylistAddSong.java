@@ -20,10 +20,7 @@ public class PlaylistAddSong extends BaseTest {
         homePage.viewAllSongs();
         allSongs.findFirstSong();
         allSongs.addToPlaylist();
-
-//        Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
-//        WebElement verification =
-//                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
+        //need assertion
 
 
         //searchSong();
@@ -47,7 +44,5 @@ public class PlaylistAddSong extends BaseTest {
 //        Thread.sleep(2000);
 //        Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
    //     success();
-//  //after method in baseTest
-//        driver.quit();
     }
 }

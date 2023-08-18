@@ -17,7 +17,8 @@ public class AllSongs extends BasePage{
         //  Thread.sleep(1000);
     private By addToBTN = By.xpath("//section[@id='songsWrapper']//button[@class='btn-add-to']");
     private By choosePlaylist = By.xpath("//section[@id='songsWrapper']//li[7]");
-
+    private By playNextSongBTN = By.xpath("//i[@data-testid='play-next-btn']");
+    private By playSong = By.xpath("//span[@data-testid='play-btn']");
 
     public void findFirstSong() {
         findElement(firstSong).click();
@@ -29,5 +30,11 @@ public class AllSongs extends BasePage{
     public void addToPlaylist(){
         findElement(addToBTN).click();
         findElement(choosePlaylist).click();
+    }
+    public void playNextSong(){
+        findElement(playNextSongBTN).click();
+    }
+    public void playSong(){
+        findElement(playSong).click();
     }
 }
