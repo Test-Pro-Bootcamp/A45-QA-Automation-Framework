@@ -32,10 +32,6 @@ public class Playlists extends BasePage {
     }
     public void addSongToPlaylist() {
         findElement(playlist).click();
-        // WebElement playList = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//li[7]")));
-        //   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[7]"));
-        // playList.click();
-        //Thread.sleep(2000);
     }
     public void selectPlaylist(){
         findElement(selectPlaylist).click();
@@ -43,24 +39,26 @@ public class Playlists extends BasePage {
     public void deletePlaylist(){
         findElement(deletePlaylist).click();
     }
-
-//    public void addSongToPlaylist() {
-//        WebElement addTo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//button[2]")));
-        //   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[2]"));
-
-    //    addTo.click();
-        //Thread.sleep(1000);
-   // }
-
-    public void assertSuccess() {
-        findElement(success).
-
-        WebElement verification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
-        //driver.findElement(By.xpath("//div[@class='success show']"));
-        //Thread.sleep(2000);
-        Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
+    public String getSuccessMsg() {
+        findElement(success);
+        return findElement(success).getText();
+        //Assert.assertTrue(success.getText().contains("Added 1 song into"));
+                //assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
     }
 }
+// WebElement playList = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//li[7]")));
+//   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[7]"));
+// playList.click();
+//Thread.sleep(2000);
+//    public void addSongToPlaylist() {
+//        WebElement addTo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//button[2]")));
+//   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//button[2]"));
+
+//    addTo.click();
+//Thread.sleep(1000);
+// }
+//WebElement verification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='success show']")));
+//driver.findElement(By.xpath("//div[@class='success show']"));
 
 //    public void enterNewPlaylistName(){
 //        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='playlists']//li[5]")));
@@ -75,4 +73,3 @@ public class Playlists extends BasePage {
 //    public boolean validateRenamedPlaylist(){
 //        WebElement renamedPlaylist = driver.findElement(By.xpath("//a[contains(text(),'"+newPlaylistName+"')]"));
 //        return renamedPlaylist.isDisplayed();
-//    }

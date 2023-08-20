@@ -16,12 +16,12 @@ public class PlaylistAddSong extends BaseTest {
         AllSongs allSongs = new AllSongs(driver);
         Playlists playlists = new Playlists(driver);
         loginPage.login();
-        //homePage.searchSong();
         homePage.viewAllSongs();
         allSongs.findFirstSong();
         allSongs.addToPlaylist();
-        //need assertion
-
+        Assert.assertTrue(playlists.getSuccessMsg().contains("Added 1 song into"));
+    }
+}
 
         //searchSong();
 //        WebElement viewAll = driver.findElement(By.cssSelector("section.songs h1 button"));
@@ -44,5 +44,4 @@ public class PlaylistAddSong extends BaseTest {
 //        Thread.sleep(2000);
 //        Assert.assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
    //     success();
-    }
-}
+
