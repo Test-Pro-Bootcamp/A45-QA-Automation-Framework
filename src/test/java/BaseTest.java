@@ -33,7 +33,6 @@ public class BaseTest {
                 {"", ""}
         };
     }
-
     @BeforeSuite
     void setupClass() {
         //if want to run chrome in default
@@ -41,7 +40,6 @@ public class BaseTest {
         //WebDriverManager.firefoxdriver().setup();
         //  WebDriverManager.edgedriver().setup();
     }
-
     public static WebDriver driver = null;
     WebDriverWait wait;
     public static String url = null;
@@ -77,7 +75,6 @@ public class BaseTest {
 // options.addArguments("--disable-notifications");
 // driver.manage().window().maximize;
     }
-
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.208:4444";
@@ -123,6 +120,11 @@ public class BaseTest {
                 return driver = new ChromeDriver(options);
         }
     }
+    @AfterMethod //without parallel execution
+    public void closeBrowser() {
+        driver.quit();
+    }
+}
 //the old way before switchcase options
 // ChromeOptions options = new ChromeOptions();
 // options.addArguments("--remote-allow-origins=*");
@@ -149,13 +151,7 @@ public class BaseTest {
 //        browserOptions.setCapability("LT:Options", ltOptions);
 //        return new RemoteWebDriver(new URL(hubURL), browserOptions);
 //    }
-    @AfterMethod //without parallel execution
-    public void closeBrowser() {
-        driver.quit();
 
-    }
-}
-//   removed since it is in the LoginPage POM
 //        public void login(){
 //        provideEmail();
 //        providePassword();
@@ -308,9 +304,6 @@ public class BaseTest {
 //        save.click();
 //       // Thread.sleep(2000);
 //    }
-
-
-
 
 //    @AfterMethod//for parallel execution
 //    public void tearDown(){

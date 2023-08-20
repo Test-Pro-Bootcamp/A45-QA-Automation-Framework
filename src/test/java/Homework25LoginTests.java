@@ -5,12 +5,10 @@ import pagefactory.LoginPage;
 
 public class Homework25LoginTests extends BaseTest {
 
-//add this to SmokeTestxml for hw24
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
     public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-        provideIncorrectEmail(email);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.provideIncorrectPassword(incorrectPassword);
         //calling the object of the class (loginPage) not the class itself (LoginPage)
@@ -21,8 +19,8 @@ public class Homework25LoginTests extends BaseTest {
     }
     @Test
     public void validLogInCredentials()  {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.login();
         Assert.assertTrue(homePage.assertAvatar());

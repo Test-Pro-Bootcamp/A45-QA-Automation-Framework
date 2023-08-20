@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
         homePage.assertAvatar();
     }
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
-    public void loginInvalidEmailInvalidPasswordTest(String email, String incorrectPassword) throws InterruptedException {
+    public void loginIncorrectData(String email, String incorrectPassword) throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.provideEmail(email);
         loginPage.providePassword(incorrectPassword);

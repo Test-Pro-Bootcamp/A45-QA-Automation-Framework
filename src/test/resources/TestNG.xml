@@ -13,7 +13,6 @@
             <class name="ProfilePreferencesTests"/>
             <class name="PlaylistDelete"/>
             <class name="PlaySong"/>
-            <class name="Homework20"/>
             <class name="Homework23LoginTests"/>
             <class name="RenamePlaylist">
 

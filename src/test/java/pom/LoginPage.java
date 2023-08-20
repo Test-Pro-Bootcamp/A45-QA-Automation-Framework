@@ -13,20 +13,22 @@ public class LoginPage extends BasePage {
     }
     private By emailField = By.cssSelector("input[type='email']");
     private By passwordField = By.cssSelector("input[Type='password']");
-    private By submitBtn= By.cssSelector("button[Type='submit'");
+    private By submitBtn = By.cssSelector("button[Type='submit'");
 
-    public void provideEmail(String email){
+    public void provideEmail(String email) {
         findElement(emailField).sendKeys(email);
     }
-    public void providePassword(String password){
+
+    public void providePassword(String password) {
         findElement(passwordField).sendKeys(password);
     }
-    public void clickSubmit(){
+    public void clickSubmit() {
         findElement(submitBtn).click();
     }
-    public void login(){
+    public void login() {
         provideEmail("esther.martinez32@gmail.com");
         providePassword("Proverbs99!");
         clickSubmit();
     }
     }
+

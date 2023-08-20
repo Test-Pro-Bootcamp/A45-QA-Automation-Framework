@@ -9,33 +9,53 @@
     <classes>
 
         <class name="LoginTests">
-            <methods>
-                <include name="ValidLogInCredentials"/>
-            </methods>
+<!--            <methods>-->
+<!--                <include name="ValidLogInCredentials"/>-->
+<!--            </methods>-->
         </class>
 
         <class name="PlaySong">
-            <methods>
-                <include name="playSong"/>
-            </methods>
+<!--            <methods>-->
+<!--                <include name="playSong"/>-->
+<!--            </methods>-->
         </class>
 
         <class name="PlaylistAddSong">
-            <methods>
-                <include name="addSongToPlaylist"/>
-            </methods>
+<!--            <methods>-->
+<!--                <include name="addSongToPlaylist"/>-->
+<!--            </methods>-->
         </class>
 
         <class name="RegistrationTests">
-            <methods>
-                <include name="registrationNavigation"/>
-            </methods>
+<!--            <methods>-->
+<!--                <include name="registrationNavigation"/>-->
+<!--            </methods>-->
         </class>
 
         <class name="PlaylistDelete">
-            <methods>
-                <include name="deletePlaylist"/>
-            </methods>
+<!--            <methods>-->
+<!--                <include name="deletePlaylist"/>-->
+<!--            </methods>-->
+        </class>
+        <class name="RenamePlaylist">
+            <!--            <methods>-->
+            <!--                <include name="deletePlaylist"/>-->
+            <!--            </methods>-->
+        </class>
+        <class name="ProfilePreferencesTests">
+            <!--            <methods>-->
+            <!--                <include name="deletePlaylist"/>-->
+            <!--            </methods>-->
+        </class>
+        <class name="Homework25LoginTests">
+            <!--            <methods>-->
+            <!--                <include name="deletePlaylist"/>-->
+            <!--            </methods>-->
+        </class>
+        <class name="Homework23LoginTests">
+            <!--            <methods>-->
+            <!--                <include name="deletePlaylist"/>-->
+            <!--            </methods>-->
         </class>
 
     </classes>
