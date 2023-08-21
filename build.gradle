@@ -15,7 +15,7 @@ dependencies {
 test {
     useTestNG() {
         suites "src/test/resources/SmokeTest.xml"
-        systemProperty "browser", System.getProperty ("browser")//allows selenium grid to work
+        //systemProperty "browser", System.getProperty ("browser")//allows selenium grid to work
 
 }
     task testSmoke(type: Test){
@@ -30,18 +30,10 @@ test {
             systemProperty "browser", System.getProperty ("browser")
         }
     }
-    task PlaySongHW18(type: Test){
-        useTestNG(){
-            suites "src/test/resources/PlaySongHW18.xml"
-        }
-    task Homework19(type: Test){
-        useTestNG(){
-            suites "src/test/resources/Homework19.xml"
-        }
-    }
+
         task ProfileTest(type: Test){
             useTestNG(){
                 suites "src/test/resources/ProfileTest.xml"
 
     }
-}}}
+}}

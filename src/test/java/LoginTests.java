@@ -6,7 +6,7 @@ import pom.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void ValidLogInCredentials() throws InterruptedException {
+    public void validLogInCredentials() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.login();
