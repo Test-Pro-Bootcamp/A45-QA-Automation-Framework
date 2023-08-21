@@ -66,8 +66,9 @@ public class BaseTest {
         //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //getDriver().get(BaseURL);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(BaseURL);
+//        driver.get(BaseURL);
         url = BaseURL;
+        driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
 

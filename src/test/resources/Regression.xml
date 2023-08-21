@@ -52,11 +52,11 @@
             <!--                <include name="deletePlaylist"/>-->
             <!--            </methods>-->
         </class>
-        <class name="Homework23LoginTests">
-            <!--            <methods>-->
-            <!--                <include name="deletePlaylist"/>-->
-            <!--            </methods>-->
-        </class>
+<!--        <class name="Homework23LoginTests">-->
+<!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
+<!--        </class>-->
 
     </classes>
 
