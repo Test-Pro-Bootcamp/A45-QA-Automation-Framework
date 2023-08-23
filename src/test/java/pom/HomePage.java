@@ -12,7 +12,7 @@ public class HomePage extends BasePage{
         super(givenDriver);
     }
     public void assertAvatar() {
-        WebElement usersAvatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
+        WebElement usersAvatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
         //driver.findElement(By.cssSelector("img.avatar")); old code
         Assert.assertTrue(usersAvatar.isDisplayed());
     }

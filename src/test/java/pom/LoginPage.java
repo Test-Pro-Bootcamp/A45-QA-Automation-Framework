@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
     }
     private By emailField = By.cssSelector("input[type='email']");
     private By passwordField = By.cssSelector("input[Type='password']");
-    private By submitBtn = By.cssSelector("button[Type='submit'");
+    private By submitBtn = By.cssSelector("button[Type='submit']");
 
     public void provideEmail(String email) {
         findElement(emailField).sendKeys(email);
