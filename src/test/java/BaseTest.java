@@ -55,6 +55,8 @@ public class BaseTest {
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException, MalformedURLException {
         driver = pickBrowser(System.getProperty("browser"));//this lets you run multiple browsers
+        url = BaseURL;
+        driver.get(url);
         //change to this for chrome as default
         //ChromeOptions options = new ChromeOptions();
         //options.addArguments("--remote-allow-origins=*);
@@ -65,12 +67,11 @@ public class BaseTest {
         //next we call the getDriver method which returns the current instance of the webdriver with the current thread
         //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //getDriver().get(BaseURL);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 //        driver.get(BaseURL);
-        url = BaseURL;
-        driver.get(url);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
+
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        actions = new Actions(driver);
 
 // teacher recommendation if needed
 // options.addArguments("--disable-notifications");
