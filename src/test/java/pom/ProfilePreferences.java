@@ -13,7 +13,7 @@ public class ProfilePreferences extends BasePage{
     private By emailField = By.cssSelector("input[type='email']");
     private By passwordField = By.cssSelector("input[id='inputProfileNewPassword']");
     private By avatar = By.xpath("//span//img[@class='avatar']");
-    private By inputCurrentPassword = By.xpath("//input[id='inputProfileCurrentPassword']");
+    private By inputCurrentPassword = By.cssSelector("input[name='current_password']");
     private By inputName = By.xpath("//*[@id='inputProfileName']");
     private By submit = By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']");
     private By newProfileName = By.xpath("//span[@class='name']");

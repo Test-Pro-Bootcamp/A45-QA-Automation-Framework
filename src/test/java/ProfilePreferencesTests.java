@@ -25,7 +25,6 @@ public class ProfilePreferencesTests extends BaseTest{
 
         profilePreferences.saveProfile();
         profilePreferences.getNewProfileName();
-        Assert.assertEquals(newName,
-                profilePreferences.getNewProfileName());
+        Assert.assertEquals(newName, profilePreferences.getNewProfileName());
     }
 }
