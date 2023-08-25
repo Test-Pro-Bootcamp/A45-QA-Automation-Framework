@@ -13,6 +13,8 @@ import java.time.Duration;
 
 
 public class RegistrationTests extends BaseTest {
+
+    String url = "https://qa.koel.app/registration";
     @Test
     public void registrationNavigation() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);

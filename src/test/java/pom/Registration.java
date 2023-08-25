@@ -8,8 +8,8 @@ public class Registration extends BasePage{
     public Registration(WebDriver givenDriver){
         super(givenDriver);
     }
-    private By registrationBTN = By.cssSelector("a[id='hel']");
-    String url = "https://qa.koel.app/registration";
+    private By registrationBTN = By.cssSelector("a[href='registration']");
+
     public void registration(){
         findElement(registrationBTN).click();
     }

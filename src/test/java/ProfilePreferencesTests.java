@@ -17,10 +17,12 @@ public class ProfilePreferencesTests extends BaseTest{
 
         loginPage.login();
         profilePreferences.openUserProfilePage();
-        profilePreferences.provideTestEmail("demo@class.com");
-        profilePreferences.provideTestPassword("te$t$tudent");
         profilePreferences.setCurrentPassword("te$t$tudent");
         profilePreferences.setNewName(newName);
+        profilePreferences.provideTestEmail("demo@class.com");
+        profilePreferences.provideTestPassword("te$t$tudent");
+
+
         profilePreferences.saveProfile();
         profilePreferences.getNewProfileName();
         Assert.assertEquals(newName,

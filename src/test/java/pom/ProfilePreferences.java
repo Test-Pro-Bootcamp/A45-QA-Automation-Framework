@@ -11,13 +11,12 @@ public class ProfilePreferences extends BasePage{
         super(givenDriver);
     }
     private By emailField = By.cssSelector("input[type='email']");
-    private By passwordField = By.cssSelector("input[type='password']");
+    private By passwordField = By.cssSelector("input[id='inputProfileNewPassword']");
     private By avatar = By.xpath("//span//img[@class='avatar']");
-    private By inputPassword = By.xpath("//*[@id='inputProfileCurrentPassword']");
+    private By inputCurrentPassword = By.xpath("//input[id='inputProfileCurrentPassword']");
     private By inputName = By.xpath("//*[@id='inputProfileName']");
     private By submit = By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']");
     private By newProfileName = By.xpath("//span[@class='name']");
-
     public String getRandomString() {
         return UUID.randomUUID().toString().replace("", "");
     }
@@ -31,7 +30,7 @@ public class ProfilePreferences extends BasePage{
         findElement(passwordField).sendKeys(password);
     }
     public void setCurrentPassword(String password){
-        findElement(inputPassword).sendKeys(password);
+        findElement(inputCurrentPassword).sendKeys(password);
     }
     public void setNewName(String newName)  {
         findElement(inputName).sendKeys(newName);
