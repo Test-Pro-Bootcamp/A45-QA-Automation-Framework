@@ -57,6 +57,7 @@ public class BaseTest {
         driver = pickBrowser(System.getProperty("browser"));//this lets you run multiple browsers
         url = BaseURL;
         driver.get(url);
+        driver.manage().window().maximize();
         //change to this for chrome as default
         //ChromeOptions options = new ChromeOptions();
         //options.addArguments("--remote-allow-origins=*);
@@ -75,7 +76,8 @@ public class BaseTest {
 
 // teacher recommendation if needed
 // options.addArguments("--disable-notifications");
-// driver.manage().window().maximize;
+
+
     }
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
