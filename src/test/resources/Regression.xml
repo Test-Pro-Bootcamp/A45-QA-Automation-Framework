@@ -32,21 +32,21 @@
 <!--&lt;!&ndash;            </methods>&ndash;&gt;-->
 <!--        </class>-->
 
-<!--        <class name="PlaylistDelete">-->
-<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
+        <class name="PlaylistDelete">
+<!--            <methods>-->
+<!--                <include name="deletePlaylist"/>-->
+<!--            </methods>-->
+        </class>
 <!--        <class name="RenamePlaylist">-->
 <!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
 <!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
 <!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
 <!--        </class>-->
-        <class name="ProfilePreferencesTests">
-            <!--            <methods>-->
-            <!--                <include name="deletePlaylist"/>-->
-            <!--            </methods>-->
-        </class>
+<!--        <class name="ProfilePreferencesTests">-->
+<!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
+<!--        </class>-->
 <!--        <class name="Homework25LoginTests">-->
 <!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
 <!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->

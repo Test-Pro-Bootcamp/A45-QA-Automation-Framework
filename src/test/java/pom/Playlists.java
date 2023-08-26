@@ -11,7 +11,7 @@ public class Playlists extends BasePage {
     public Playlists(WebDriver givenDriver) {
         super(givenDriver);
     }
-    private By findPlaylist = By.xpath("//section[@id='playlists']//li[5]");
+    private By findPlaylist = By.xpath("//nav[@class='menu playlist-item-menu']//li[2]");
     private By playlistNameField = By.cssSelector("input[name='name']");
     private By playlist = By.xpath("//section[@id='songResultsWrapper']//button[2]");
     private By success = By.xpath("//div[@class='success show']");

@@ -17,9 +17,9 @@ public class ProfilePreferencesTests extends BaseTest{
 
         loginPage.login();
         profilePreferences.openUserProfilePage();
-        profilePreferences.setCurrentPassword("te$t$tudent");
+        profilePreferences.setCurrentPassword("Proverbs99!");
         profilePreferences.setNewName(newName);
-        profilePreferences.provideTestEmail("demo@class.com");
+        profilePreferences.provideTestEmail("esther.martinez32@gmail.com");
     //    profilePreferences.provideTestPassword("te$t$tudent");
 
 
