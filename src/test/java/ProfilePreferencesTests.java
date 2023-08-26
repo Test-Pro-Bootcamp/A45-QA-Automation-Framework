@@ -20,7 +20,7 @@ public class ProfilePreferencesTests extends BaseTest{
         profilePreferences.setCurrentPassword("te$t$tudent");
         profilePreferences.setNewName(newName);
         profilePreferences.provideTestEmail("demo@class.com");
-        profilePreferences.provideTestPassword("te$t$tudent");
+    //    profilePreferences.provideTestPassword("te$t$tudent");
 
 
         profilePreferences.saveProfile();

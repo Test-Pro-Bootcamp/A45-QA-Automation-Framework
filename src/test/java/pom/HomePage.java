@@ -13,7 +13,7 @@ public class HomePage extends BasePage{
     }
 
     private By searchfield = By.cssSelector("input[name='q']");
-    private By allSongs = By.xpath("//section[@class='music']//li[3]//a[@class='songs active']");
+    private By allSongs = By.xpath("//section[@class='music']//li[3]//a[@class='songs']");
     private By userAvatar = By.cssSelector("img.avatar");
 
     public WebElement assertAvatar() {
