@@ -16,8 +16,8 @@ public class PlaySong extends BaseTest {
         AllSongs allSongs = new AllSongs(driver);
 
         loginPage.login();
-        homePage.viewAllSongs();
-        allSongs.findFirstSong();
+        //homePage.viewAllSongs();
+        //allSongs.findFirstSong();
         allSongs.playNextSong();
         allSongs.playSong();
 
