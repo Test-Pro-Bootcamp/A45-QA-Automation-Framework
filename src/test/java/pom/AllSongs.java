@@ -18,7 +18,10 @@ public class AllSongs extends BasePage{
     private By addToBTN = By.xpath("//section[@id='songsWrapper']//button[@class='btn-add-to']");
     private By choosePlaylist = By.xpath("//section[@id='songsWrapper']//li[7]");
     private By playNextSongBTN = By.xpath("//i[@data-testid='play-next-btn']");
-    private By playSong = By.xpath("//span[@data-testid='play-btn']");//li[@class='playback']
+
+    private By playSong = By.xpath("//span[@data-testid='play-btn']");//li[@class='playback']//span[@data-testid='play-btn']
+
+    private By soundBar = By.xpath("//div[@class='bars']");
 
     public void findFirstSong() {
         findElement(firstSong);
@@ -33,9 +36,14 @@ public class AllSongs extends BasePage{
         findElement(choosePlaylist).click();
     }
     public void playNextSong(){
-        findElement(playNextSongBTN).click();
+        WebElement playNextButton = driver.findElement(playNextSongBTN);
+        playNextButton.click();
     }
-    public void playSong(){
+    public void playBtn(){
         findElement(playSong).click();
+    }
+
+    public boolean isSoundBarDisplayed(){
+        return findElement(soundBar).isDisplayed();
     }
 }
