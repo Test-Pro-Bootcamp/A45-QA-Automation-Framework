@@ -24,8 +24,8 @@ public class AllSongs extends BasePage{
     private By soundBar = By.xpath("//div[@class='bars']");
 
     public void findFirstSong() {
-        findElement(firstSong);
-        actions.contextClick(findElement(firstSong));//right click
+        findElement(firstSong).click();
+        //actions.contextClick(findElement(firstSong));//right click
         //WebElement firstSong = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//table[@class='items']/tr[1]/td[2]")));
         //driver.findElement(By.xpath("//section[@id='songResultsWrapper']//table[@class='items']/tr[1]/td[2]"));
        //firstSong.click();
@@ -35,7 +35,7 @@ public class AllSongs extends BasePage{
         findElement(addToBTN).click();
         findElement(choosePlaylist).click();
     }
-    public void playNextSong(){
+    public void playNextSong(){//can't use explicit wait for play button so changed code
         WebElement playNextButton = driver.findElement(playNextSongBTN);
         playNextButton.click();
     }

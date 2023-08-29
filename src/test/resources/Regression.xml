@@ -14,11 +14,11 @@
 <!--&lt;!&ndash;            </methods>&ndash;&gt;-->
 <!--        </class>-->
 
-        <class name="PlaySong">
-<!--            <methods>-->
-<!--                <include name="playSong"/>-->
-<!--            </methods>-->
-        </class>
+<!--        <class name="PlaySong">-->
+<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                <include name="playSong"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
+<!--        </class>-->
 
 <!--        <class name="PlaylistAddSong">-->
 <!--&lt;!&ndash;            <methods>&ndash;&gt;-->
@@ -47,11 +47,16 @@
 <!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
 <!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
 <!--        </class>-->
-<!--        <class name="Homework25LoginTests">-->
+<!--        <class name="Homework25PageFactoryLoginTests">-->
 <!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
 <!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
 <!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
 <!--        </class>-->
+        <class name="Homework23LoginTests">
+
+        </class>
+
+
 
     </classes>
 

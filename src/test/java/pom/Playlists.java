@@ -45,6 +45,9 @@ public class Playlists extends BasePage {
         //Assert.assertTrue(success.getText().contains("Added 1 song into"));
                 //assertEquals(verification.getText(), "Added 1 song into \"homework17.\"");
     }
+    public boolean isSuccessDisplayed(){
+        return findElement(success).isDisplayed();
+    }
 }
 // WebElement playList = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//li[7]")));
 //   driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[7]"));

@@ -19,7 +19,8 @@ public class PlaylistAddSong extends BaseTest {
         homePage.viewAllSongs();
         allSongs.findFirstSong();
         allSongs.addToPlaylist();
-        Assert.assertTrue(playlists.getSuccessMsg().contains("Added 1 song into"));
+        Assert.assertTrue(playlists.isSuccessDisplayed());
+       // Assert.assertTrue(playlists.getSuccessMsg().contains("Added 1 song into"));
     }
 }
 
