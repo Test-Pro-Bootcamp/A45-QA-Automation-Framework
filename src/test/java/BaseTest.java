@@ -49,7 +49,7 @@ public class BaseTest {
 //    public static WebDriver getDriver(){
 //        return threadDriver.get();
     //   }
-    
+
 
     @BeforeMethod
     @Parameters({"BaseURL"})
