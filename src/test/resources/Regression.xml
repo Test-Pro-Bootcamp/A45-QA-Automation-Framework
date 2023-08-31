@@ -8,58 +8,41 @@
 
     <classes>
 
-<!--        <class name="LoginTests">-->
-<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="ValidLogInCredentials"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
+        <class name="LoginTests">
+<!--            <methods>-->
+<!--                <include name="ValidLogInCredentials"/>-->
+<!--            </methods>-->
+        </class>
 
-<!--        <class name="PlaySong">-->
-<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="playSong"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
+        <class name="PlaySong">
 
-<!--        <class name="PlaylistAddSong">-->
-<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="addSongToPlaylist"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
+        </class>
 
-<!--        <class name="RegistrationTests">-->
-<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="registrationNavigation"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
+        <class name="PlaylistAddSong">
 
-<!--        <class name="PlaylistDelete">-->
-<!--&lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
-<!--        <class name="RenamePlaylist">-->
-<!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
-<!--        <class name="ProfilePreferencesTests">-->
-<!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
-<!--        <class name="Homework25PageFactoryLoginTests">-->
-<!--            &lt;!&ndash;            <methods>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <include name="deletePlaylist"/>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </methods>&ndash;&gt;-->
-<!--        </class>-->
+        </class>
+
+        <class name="RegistrationTests">
+
+        </class>
+
+        <class name="PlaylistDelete">
+
+        </class>
+        <class name="RenamePlaylist">
+
+        </class>
+        <class name="ProfilePreferencesTests">
+
+        </class>
+        <class name="Homework25PageFactoryLoginTests">
+
+        </class>
         <class name="Homework23LoginTests">
 
         </class>
 
-
-
     </classes>
-
 
     </test>
 </suite>
