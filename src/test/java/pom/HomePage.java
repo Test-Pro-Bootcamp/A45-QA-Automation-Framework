@@ -15,6 +15,11 @@ public class HomePage extends BasePage{
     private By searchfield = By.cssSelector("input[name='q']");
     private By allSongs = By.xpath("//section[@class='music']//li[3]//a[@class='songs']");
     private By userAvatar = By.cssSelector("img.avatar");
+    private By logOutIcon = By.cssSelector("i[class='fa fa-sign-out']");
+
+    public boolean isLogoutIconDisplayed(){
+        return findElement(logOutIcon).isDisplayed();
+    }
 
     public WebElement assertAvatar() {
         return findElement(userAvatar);

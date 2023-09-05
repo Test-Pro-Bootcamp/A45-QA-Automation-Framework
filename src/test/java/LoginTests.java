@@ -11,6 +11,7 @@ public class LoginTests extends BaseTest {
         HomePage homePage = new HomePage(driver);
         loginPage.login();
         Assert.assertTrue(homePage.assertAvatar().isDisplayed());
+        Assert.assertTrue(homePage.isLogoutIconDisplayed());
         //homePage.assertAvatar();
     }
     @Test (dataProvider = "IncorrectData", dataProviderClass = BaseTest.class)
