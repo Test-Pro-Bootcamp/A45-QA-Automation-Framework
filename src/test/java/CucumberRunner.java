@@ -4,7 +4,7 @@ import io.cucumber.testng.TestNGCucumberRunner;
 import org.testng.annotations.*;
 
 @CucumberOptions(
-        features = {"src/test/resources/features/Login.feature"}
+        features = {"src/test/resources/Features/Login.feature"}
 //glue ={"stepDefinition:} optional
  )
 
