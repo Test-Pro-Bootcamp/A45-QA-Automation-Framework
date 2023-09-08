@@ -55,12 +55,12 @@ public class LoginStepDefs {
 
     @When("I enter email {string}")
     public void enterEmail(String email) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys("esther.martinez32@gmail.com");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']"))).sendKeys(email);
     }
 
     @And("I enter password {string}")
     public void enterPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys("Proverbs99!");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
     }
 
     @And("I submit")
@@ -69,12 +69,13 @@ public class LoginStepDefs {
     }
 
     @Then("I am logged in")
-    public void assertUserLoggedIn() {
+    public void assertUserLoggedIn() throws InterruptedException {
+    //    Thread.sleep(5000);
         Assert.assertTrue((wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed()));
     }
 
     @Then("I am not logged in")
-    public void assertNotLoggedIn() {
+    public void assertNotLoggedIn() throws InterruptedException {
         String url = "https://qa.koel.app/";
         Assert.assertEquals(driver.getCurrentUrl(), url);//ask czar which one is better
        // Assert.assertFalse((wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed()));
