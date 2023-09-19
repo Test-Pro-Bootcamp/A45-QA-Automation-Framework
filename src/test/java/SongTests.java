@@ -1,13 +1,10 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.AllSongs;
 import pom.HomePage;
 import pom.LoginPage;
 
-public class PlaySong extends BaseTest {
+public class SongTests extends BaseTest {
 
     @Test
     public void playAnySong() throws InterruptedException {

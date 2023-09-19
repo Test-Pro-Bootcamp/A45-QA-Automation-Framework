@@ -10,6 +10,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.login();
+
         Assert.assertTrue(homePage.assertAvatar().isDisplayed());
         //homePage.assertAvatar();
     }

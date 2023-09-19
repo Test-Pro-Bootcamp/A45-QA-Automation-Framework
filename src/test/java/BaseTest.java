@@ -83,9 +83,12 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.0.0.208:4444";
         switch (browser) {
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                return driver = new FirefoxDriver();
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                return driver = new ChromeDriver(options);
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
@@ -117,11 +120,8 @@ public class BaseTest {
           //      return lambdaTest();
 
             default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                options.addArguments("--disable-notifications");
-                return driver = new ChromeDriver(options);
+                WebDriverManager.firefoxdriver().setup();
+                return driver = new FirefoxDriver();
         }
     }
     @AfterMethod //without parallel execution
