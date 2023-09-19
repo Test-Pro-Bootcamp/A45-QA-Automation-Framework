@@ -71,7 +71,7 @@ public class BaseTest {
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 //        driver.get(BaseURL);
 
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+  //      wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //        actions = new Actions(driver);
 
 // teacher recommendation if needed

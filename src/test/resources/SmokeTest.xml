@@ -6,13 +6,10 @@
     <test name="Smoke Test" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="LoginTests">
+            <class name="ProfilePreferencesTests">
             <methods>
-                <include name="validLogInCredentials"/>
+                <include name="changeProfileName"/>
             </methods>
-<!--                <methods>-->
-<!--                    <include name="loginIncorrectData"/>-->
-<!--                </methods>-->
             </class>
         </classes>
     </test>

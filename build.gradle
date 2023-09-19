@@ -21,7 +21,7 @@ test {
     useTestNG() {
        // suites "src/test/resources/${suite}.xml" for jenkins
         //suites "src/test/resources/Cucumber.xml"
-        suites "src/test/resources/Smoke.xml"
+        suites "src/test/resources/SmokeTest.xml"
         systemProperty "browser", System.getProperty ("browser")//allows selenium grid to work
 
 }
