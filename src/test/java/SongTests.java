@@ -14,6 +14,7 @@ public class SongTests extends BaseTest {
         AllSongs allSongs = new AllSongs(driver);
 
         loginPage.login();
+//        Thread.sleep(3000);
         homePage.viewAllSongs();
 //        allSongs.findFirstSong();
         allSongs.playNextSong();

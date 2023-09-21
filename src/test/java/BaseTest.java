@@ -40,7 +40,7 @@ public class BaseTest {
         //WebDriverManager.firefoxdriver().setup();
         //  WebDriverManager.edgedriver().setup();
     }
-    public static WebDriver driver = null;
+    public static WebDriver driver;
     WebDriverWait wait;
     public static String url = null;
     public static Actions actions = null;
@@ -69,9 +69,9 @@ public class BaseTest {
         //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //getDriver().get(BaseURL);
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.get(BaseURL);
-
-  //      wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+////        driver.get(BaseURL);
+//
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //        actions = new Actions(driver);
 
 // teacher recommendation if needed
@@ -92,7 +92,7 @@ public class BaseTest {
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--remote allow origins=*");
+                edgeOptions.addArguments("--remote-allow-origins=*");
                 edgeOptions.addArguments("--disable-notifications");
                 return driver = new EdgeDriver(edgeOptions);
             case "grid-firefox":

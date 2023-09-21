@@ -16,7 +16,7 @@ public class ProfilePreferencesTests extends BaseTest{
         String newName = profilePreferences.getRandomString();
 
         loginPage.login();
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         profilePreferences.openUserProfilePage();
         profilePreferences.setCurrentPassword("Proverbs99!");
         profilePreferences.setNewName(newName);

@@ -6,9 +6,9 @@
     <test name="Smoke Test" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="ProfilePreferencesTests">
+            <class name="SongTests">
             <methods>
-                <include name="changeProfileName"/>
+                <include name="playAnySong"/>
             </methods>
             </class>
         </classes>
