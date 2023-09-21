@@ -11,12 +11,13 @@ public class Playlists extends BasePage {
     public Playlists(WebDriver givenDriver) {
         super(givenDriver);
     }
-    private By findPlaylist = By.xpath("//nav[@class='menu playlist-item-menu']//li[2]");
+    private By findPlaylist = By.xpath("//section[@id='playlists']//li[@class='playlist playlist'][1]");
     private By playlistNameField = By.cssSelector("input[name='name']");
     private By playlist = By.xpath("//section[@id='songResultsWrapper']//button[2]");
     private By success = By.xpath("//div[@class='success show']");
     private By selectPlaylist = By.xpath("//section[@id='playlists']//li[5]");
     private By deletePlaylist = By.xpath("//button[@class='del btn-delete-playlist']");
+    private By confirmDelete = By.xpath("//button[@class='ok]'");
     public void doubleClickPlaylist() {
         doubleClick(findPlaylist);
     }
@@ -38,6 +39,7 @@ public class Playlists extends BasePage {
     }
     public void deletePlaylist(){
         findElement(deletePlaylist).click();
+        findElement(confirmDelete).click();
     }
     public String getSuccessMsg() {
         findElement(success);
