@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SmokeTest" parallel="methods" thread-count="4">
+<suite name="SmokeTest" parallel="methods" thread-count="1">
 
     <test name="Smoke Test" preserve-order="false">
 
@@ -9,7 +9,7 @@
         <classes>
             <class name="PlaylistTests">
             <methods>
-                <include name="renamePlaylist"/>
+                <include name="addSongToPlaylist"/>
             </methods>
             </class>
         </classes>
