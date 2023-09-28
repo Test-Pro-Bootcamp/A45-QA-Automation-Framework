@@ -11,8 +11,6 @@ public class PlaylistTests extends BaseTest {
     public void createPlaylist() throws InterruptedException {
         String playlistName = "New Playlist";
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongs allSongs = new AllSongs(driver);
         Playlists playlists = new Playlists(driver);
         loginPage.login();
         playlists.addNewPlaylist();
@@ -21,10 +19,8 @@ public class PlaylistTests extends BaseTest {
     @Test(enabled = true, priority = 2, description = "Rename Playlist")
     public void renamePlaylist(){
         String playlistName = "Renamed Playlist";
-
         LoginPage loginPage = new LoginPage(driver);
         Playlists playlists = new Playlists(driver);
-
         loginPage.login();
         playlists.doubleClickPlaylist();
         playlists.enterNewPlaylistName(playlistName);

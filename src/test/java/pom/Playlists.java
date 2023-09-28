@@ -15,9 +15,9 @@ public class Playlists extends BasePage {
     private By playlistNameField = By.cssSelector("input[name='name']");
     private By playlist = By.xpath("//section[@id='songResultsWrapper']//button[2]");
     private By success = By.xpath("//div[@class='success show']");
-    private By selectPlaylist = By.xpath("//section[@id='playlists']//li[5]");
+    private By selectPlaylist = By.xpath("//li[@class='playlist playlist']");
     private By deletePlaylist = By.xpath("//button[@class='del btn-delete-playlist']");
-    private By confirmDelete = By.xpath("//button[@class='ok]'");
+    private By confirmDelete = By.xpath("//button[@class='ok']");
     private By addPlaylist = By.xpath("//i[@data-testid='sidebar-create-playlist-btn']");
     private By newPlaylist = By.xpath("//li[@data-testid='playlist-context-menu-create-simple']");
 

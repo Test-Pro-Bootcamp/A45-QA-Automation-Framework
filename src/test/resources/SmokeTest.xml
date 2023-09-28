@@ -8,9 +8,9 @@
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="PlaylistTests">
-            <methods>
-                <include name="addSongToPlaylist"/>
-            </methods>
+<!--            <methods>-->
+<!--                <include name="deletePlaylist"/>-->
+<!--            </methods>-->
             </class>
         </classes>
     </test>
