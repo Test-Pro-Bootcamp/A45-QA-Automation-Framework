@@ -6,7 +6,27 @@ import pom.LoginPage;
 import pom.Playlists;
 
 public class PlaylistTests extends BaseTest {
-    @Test
+    @Test(enabled = true, priority = 1, description = "Create Playlist")
+    public void createPlaylist() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongs allSongs = new AllSongs(driver);
+        Playlists playlists = new Playlists(driver);
+        loginPage.login();
+    }
+    @Test(enabled = true, priority = 2, description = "Rename Playlist")
+    public void renamePlaylist(){
+        String playlistName = "Edited Playlist Name";
+
+        LoginPage loginPage = new LoginPage(driver);
+        Playlists playlists = new Playlists(driver);
+
+        loginPage.login();
+        playlists.doubleClickPlaylist();
+        playlists.enterNewPlaylistName(playlistName);
+        Assert.assertTrue(playlists.doesPlaylistExist(playlistName));
+    }
+    @Test(enabled = true, priority = 3, description = "Add Song")
     public void addSongToPlaylist() throws InterruptedException{
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
@@ -19,7 +39,7 @@ public class PlaylistTests extends BaseTest {
         Assert.assertTrue(playlists.isSuccessDisplayed());
        // Assert.assertTrue(playlists.getSuccessMsg().contains("Added 1 song into"));
     }
-    @Test
+    @Test(enabled = true, priority = 4, description = "Delete Playlist")
     public void deletePlaylist() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
         Playlists playlists = new Playlists(driver);
@@ -29,18 +49,7 @@ public class PlaylistTests extends BaseTest {
         //  playlists.getSuccessMsg();
         Assert.assertTrue(playlists.isSuccessDisplayed());
     }
-    @Test
-    public void renamePlaylist(){
-        String playlistName = "Edited Playlist Name";
 
-        LoginPage loginPage = new LoginPage(driver);
-        Playlists playlists = new Playlists(driver);
-
-        loginPage.login();
-        playlists.doubleClickPlaylist();
-        playlists.enterNewPlaylistName(playlistName);
-        Assert.assertTrue(playlists.doesPlaylistExist(playlistName));
-    }
 }
 
         //searchSong();
