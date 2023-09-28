@@ -18,6 +18,9 @@ public class Playlists extends BasePage {
     private By selectPlaylist = By.xpath("//section[@id='playlists']//li[5]");
     private By deletePlaylist = By.xpath("//button[@class='del btn-delete-playlist']");
     private By confirmDelete = By.xpath("//button[@class='ok]'");
+    private By addPlaylist = By.xpath("//i[@data-testid='sidebar-create-playlist-btn']");
+    private By newPlaylist = By.xpath("//li[@data-testid='playlist-context-menu-create-simple']");
+
     public void doubleClickPlaylist() {
         doubleClick(findPlaylist);
     }
@@ -26,6 +29,10 @@ public class Playlists extends BasePage {
         findElement(playlistNameField).sendKeys((Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE)));
         findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys((Keys.ENTER));
+    }
+    public void addNewPlaylist(){
+        findElement(addPlaylist).click();
+        findElement(newPlaylist).click();
     }
     public boolean doesPlaylistExist(String playlistName) {
         By newPlaylist = By.xpath("//a[text()='" + playlistName + "']");
