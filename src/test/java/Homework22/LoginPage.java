@@ -32,7 +32,7 @@ public class LoginPage extends BasePage{
         return this;
     }
     public void logIn(){
-        provideEmail("heavenmayhem@gmail.com");
+        provideEmail("myesha.oliver@testpro.io");
         providePassword("Everything2Me0628!");
         setSubmitButton();
     }
