@@ -4,19 +4,24 @@
     <test name="Smoke Test" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="LoginTests">
+<!--            <class name="LoginTests">-->
+<!--                <methods>-->
+<!--                    <include name="loginValidEmailPasswordTest" />-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="PlaylistTests">-->
+<!--                <methods>-->
+<!--                    <include name="renamePlaylist" />-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="ProfileTests">-->
+<!--                <methods>-->
+<!--                    <include name="changeProfileNameTest" />-->
+<!--                </methods>-->
+<!--            </class>-->
+            <class name="HomeWork20">
                 <methods>
-                    <include name="loginValidEmailPasswordTest" />
-                </methods>
-            </class>
-            <class name="PlaylistTests">
-                <methods>
-                    <include name="renamePlaylist" />
-                </methods>
-            </class>
-            <class name="ProfileTests">
-                <methods>
-                    <include name="changeProfileNameTest" />
+                    <include name="deletePlaylist"/>
                 </methods>
             </class>
         </classes>

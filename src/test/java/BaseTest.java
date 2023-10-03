@@ -217,37 +217,36 @@ public class BaseTest {
         actions.doubleClick(playlist).perform();
     }
 
-    public void searchSong (String songTitleKeyword) throws InterruptedException{
+    public void searchSong (String songTitleKeyword) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#searchForm input[type=search")));
         WebElement searchField = driver.findElement(By.cssSelector("div#searchForm input[type=search"));
         searchField.sendKeys(songTitleKeyword);
-        Thread.sleep(2000);
 
     }
-    public void clickViewAllBtn () throws InterruptedException {
+    public void clickViewAllBtn () {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.results h1 > button")));
         WebElement viewAllSearchResult = driver.findElement(By.cssSelector("div.results h1 > button"));
         viewAllSearchResult.click();
-        Thread.sleep(2000);
     }
 
-    public void selectFirstSongResult () throws InterruptedException {
+    public void selectFirstSongResult () {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section#songResultsWrapper tr.song-item td.title")));
         WebElement firstSongResult = driver.findElement(By.cssSelector("section#songResultsWrapper tr.song-item td.title"));
         firstSongResult.click();
-        Thread.sleep(2000);
 
     }
 
-    public void clickAddtoBtn() throws InterruptedException {
+    public void clickAddtoBtn() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-add-to")));
         WebElement addToBtn = driver.findElement(By.cssSelector("button.btn-add-to"));
         addToBtn.click();
-        Thread.sleep(2000);
     }
 
     public void choosePlaylist() throws InterruptedException {
         // We created a playlist named "Test Playlist"
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test Playlist')]")));
         WebElement playlistElement = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test Playlist')]"));
         playlistElement.click();
-        Thread.sleep(2000);
-
     }
 
     public String getNotificationText() {

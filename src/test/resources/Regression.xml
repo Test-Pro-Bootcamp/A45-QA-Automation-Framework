@@ -4,10 +4,11 @@
     <test name="Regression Test" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="LoginTests"/>
+<!--            <class name="LoginTests"/>-->
 <!--            <class name="PlaylistTests"/>-->
-            <class name="ProfileTests"/>
+<!--            <class name="ProfileTests"/>-->
 <!--            <class name="RandomTests"/>-->
+            <class name="HomeWork20"/>
         </classes>
     </test>
 </suite>
