@@ -19,7 +19,7 @@ public class ProfileTests extends BaseTest {
 
         //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         avatarIcon.click();
 
         String randomName = generateRandomName();
@@ -28,7 +28,7 @@ public class ProfileTests extends BaseTest {
         provideCurrentPassword("te$t$tudent");
         provideProfileName(randomName);
         clickSaveButton();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
         WebElement actualProfileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.view-profile>span")));
         System.out.println("actualProfileName: " + actualProfileName.getText());
