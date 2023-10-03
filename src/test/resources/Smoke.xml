@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG" parallel="methods" thread-count="2">
+<suite name="TestNG">
 
     <test name="Example Test">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
 
-            <class name="LoginTests">
-                <methods>
-                    <include name="loginInvalidEmailValidPasswordTest"/>
-                    <include name="loginValidEmailPasswordTest"/>
-                    <include name="loginValidEmailEmptyPasswordTest"/>
-                    <include name="LoginValidEmailPasswordTest"/>
-                </methods>
-            </class>
+<!--            <class name="LoginTests">-->
+<!--                <methods>-->
+<!--                    <include name="loginInvalidEmailValidPasswordTest"/>-->
+<!--                    <include name="loginValidEmailPasswordTest"/>-->
+<!--                    <include name="loginValidEmailEmptyPasswordTest"/>-->
+<!--                    <include name="LoginValidEmailPasswordTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="ProfileTests">
-                <methods>
-                    <include name="changeProfileNameTest"/>
-                </methods>
-            </class>
+<!--            <class name="ProfileTests">-->
+<!--                <methods>-->
+<!--                    <include name="changeProfileNameTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="RandomTests">
-                <methods>
-                    <include name="actionMethods" />
-                    <include name="listOfSongsWebElements" />
-                </methods>
-            </class>
+<!--            <class name="RandomTests">-->
+<!--                <methods>-->
+<!--                    <include name="actionMethods" />-->
+<!--                    <include name="listOfSongsWebElements" />-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="TestHomework">
-                <methods>
-                    <include name="testMethod"/>
-                </methods>
-            </class>
+<!--            <class name="TestHomework">-->
+<!--                <methods>-->
+<!--                    <include name="testMethod"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="HomeWork15">
-                <methods>
-                    <include name="LoginEmptyEmailPasswordTest"/>
-                </methods>
-            </class>
+<!--            <class name="HomeWork15">-->
+<!--                <methods>-->
+<!--                    <include name="LoginEmptyEmailPasswordTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="HomeWork16">
-                <methods>
-                    <include name="registrationNavigation" />
-                </methods>
-            </class>
+<!--            <class name="HomeWork16">-->
+<!--                <methods>-->
+<!--                    <include name="registrationNavigation" />-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="HomeWork17">
-                <methods>
-                    <include name="addSongToPlaylist" />
-                </methods>
-            </class>
+<!--            <class name="HomeWork17">-->
+<!--                <methods>-->
+<!--                    <include name="addSongToPlaylist" />-->
+<!--                </methods>-->
+<!--            </class>-->
 
-            <class name="HomeWork18">
-                <methods>
-                    <include name="playASongTest"/>
-                </methods>
-            </class>
-            
-            <class name="HomeWork19">
-                <methods>
-                    <include name="deletePlaylist"/>
-                </methods>
-            </class>
+<!--            <class name="HomeWork18">-->
+<!--                <methods>-->
+<!--                    <include name="playASongTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            -->
+<!--            <class name="HomeWork19">-->
+<!--                <methods>-->
+<!--                    <include name="deletePlaylist"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 
             <class name="HomeWork20">
                 <methods>

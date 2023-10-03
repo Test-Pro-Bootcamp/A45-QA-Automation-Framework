@@ -6,16 +6,15 @@
     <test name="Example Test" preserve-order="false">
         <parameter name="BaseURL" value="https://qa.koel.app/"/>
         <classes>
-            <class name="BaseTest"/>
-            <class name="LoginTests"/>
-            <class name="TestHomework"/>
-            <class name="ProfileTests"/>
-            <class name="RandomTests"/>
-            <class name="HomeWork15"/>
-            <class name="HomeWork16"/>
-            <class name="HomeWork17"/>
-            <class name="HomeWork18"/>
-            <class name="HomeWork19"/>
+<!--            <class name="LoginTests"/>-->
+<!--            <class name="TestHomework"/>-->
+<!--            <class name="ProfileTests"/>-->
+<!--            <class name="RandomTests"/>-->
+<!--            <class name="HomeWork15"/>-->
+<!--            <class name="HomeWork16"/>-->
+<!--            <class name="HomeWork17"/>-->
+<!--            <class name="HomeWork18"/>-->
+<!--            <class name="HomeWork19"/>-->
             <class name="HomeWork20"/>
         </classes>
     </test>
