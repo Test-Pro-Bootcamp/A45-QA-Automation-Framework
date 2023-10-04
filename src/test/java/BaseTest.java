@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
@@ -22,38 +21,49 @@ import java.net.URI;
 import java.time.Duration;
 
 public class BaseTest {
-   public static WebDriver driver;
+   public static WebDriver driver = null;
+   String url = null;
     public static ChromeOptions optionC;
     static WebDriverWait wait;
-    private static Actions actions;
-
-    @BeforeSuite
-    static void setupClass() {
-     //  WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
+    public static WebDriver getDriver(){
+        return threadDriver.get();
     }
+    private static Actions actions;
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+
+
+//    @BeforeSuite
+  //  static void setupClass() {
+     //  WebDriverManager.chromedriver().setup();
+    //    WebDriverManager.firefoxdriver().setup();
+   // }
 
     @BeforeMethod
     @Parameters({"baseURL"})
 
     static void setupBrowser(String baseURL) throws MalformedURLException {
-     //   optionC = new ChromeOptions();
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        //   optionC = new ChromeOptions();
      //   optionC.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
     //    driver = new ChromeDriver(optionC);
      //   driver = new FirefoxDriver();
-        driver = pickBrowser(System.getProperty("browser"));
-       wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-       actions = new Actions(driver);
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-       driver.manage().window().minimize();
+     //   driver = pickBrowser(System.getProperty("browser"));
+     //  wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+     //  actions = new Actions(driver);
+      // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+      // driver.manage().window().minimize();
 
        driver.get(baseURL);
 
     }
 
+
     @AfterMethod
     public static void tearDownBrowser() {
-        driver.quit();
+        threadDriver.get().close();
+        threadDriver.remove();
     }
     public static WebDriver pickBrowser(String browser)throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
