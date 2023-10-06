@@ -9,9 +9,9 @@ public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-//    By emailField = By.cssSelector("input[type='email']");
-//    By passwordField = By.cssSelector("input[type='password']");
-//    By submitButton = By.cssSelector("button[type='submit']");
+   // By emailField = By.cssSelector("input[type='email']");
+   // By passwordField = By.cssSelector("input[type='password']");
+   // By submitButton = By.cssSelector("button[type='submit']");
     @FindBy(css = "button[type='submit']")
     WebElement submitButton;
     @FindBy(css = "input[type='password']")

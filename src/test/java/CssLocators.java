@@ -1,4 +1,4 @@
-public class CssLocators {
+class CssLocators {
 
     String emailField = "input[type='email']";
 

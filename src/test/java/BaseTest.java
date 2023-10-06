@@ -18,6 +18,7 @@ import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
@@ -40,10 +41,9 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"baseURL"})
-
-    static void setupBrowser(String baseURL) throws MalformedURLException {
+    void setupBrowser(String baseURL) throws MalformedURLException {
         threadDriver.set(pickBrowser(System.getProperty("browser")));
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
         //   optionC = new ChromeOptions();
      //   optionC.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
@@ -55,7 +55,7 @@ public class BaseTest {
       // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
       // driver.manage().window().minimize();
 
-       driver.get(baseURL);
+       threadDriver.get();
 
     }
 
@@ -65,7 +65,26 @@ public class BaseTest {
         threadDriver.get().close();
         threadDriver.remove();
     }
-    public static WebDriver pickBrowser(String browser)throws MalformedURLException {
+    public WebDriver lambdaTest() throws MalformedURLException{
+         String username = "myesha.oliver";
+         String accesskey = "YhHxc9ImBSN2bjb48j7pLl4q6o2lt1KyUNOWqywzTGcy0A7dE2";
+         String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "112.0");
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("resolution", "1366x768");
+        caps.setCapability("selenium_version","4.13.0");
+        caps.setCapability("driver","112.0");
+        caps.setCapability("console","true");
+        caps.setCapability("visual","true");
+        caps.setCapability("build", "TestNG With JAVA"); // CI/CD job or build name;
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin","git-testNG");
+    return new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + hub) , caps);
+    }
+
+    public WebDriver pickBrowser(String browser)throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.0.181:4444";
 
@@ -87,6 +106,8 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browser","chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 optionC = new ChromeOptions();

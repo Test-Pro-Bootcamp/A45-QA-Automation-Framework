@@ -2,12 +2,9 @@ import Homework22.HomePage;
 import Homework22.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 public class Homework2525 extends BaseTest {
     @Test
     public void loginValidEmailPasswordTest() {
-
-
         LoginPage loginpage = new LoginPage(getDriver());
         HomePage homepage = new HomePage(getDriver());
 
