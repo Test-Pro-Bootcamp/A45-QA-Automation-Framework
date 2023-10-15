@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.InternshipHomePage;
@@ -14,14 +16,34 @@ public class InternshipUpdatePassword extends BaseTest {
 
         //Update password
         internshipLoginPage.loginInitialPassword();
+        Thread.sleep(3000);
         internshipProfilePreferences.openUserProfilePage();
         internshipProfilePreferences.provideCurrentPassword("Proverbs99!");
         internshipProfilePreferences.setNewPassword("IwillSing99!");
         internshipProfilePreferences.saveProfile();
+        Thread.sleep(3000);
         //Verify password updated
-        Assert.assertTrue(internshipProfilePreferences.profileUpdateSuccess().equals("Profile updated"));
+        //these are not correct
+        //Assert.assertTrue(internshipProfilePreferences.profileUpdateSuccess().equals("Profile updated"));//
+        //Assert.assertEquals(internshipProfilePreferences.profileUpdateSuccess(),"Profile updated");
+        //Assert.assertEquals("Profile updated", internshipProfilePreferences.profileUpdatedSuccess.getText());
+        //String success = "Profile updated";
+        //Assert.assertEquals(internshipProfilePreferences.profileUpdatedSuccess.getText, success);
+        WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
+        String success = "Profile updated.";
+        String getText = popup.getText();
+        Assert.assertEquals(getText, success);
 
-//        //***Also assert that new password is saved in database***
+
+//        @Test
+//        public void testAssertFunctions() {
+//            System.setProperty("webdriver.chrome.driver", "C:\\I2EWebsiteTest\\Driver\\chromedriver.exe");
+//            WebDriver driver = new ChromeDriver();
+//            driver.navigate().to("https://www.browserstack.com/");
+//            String ActualTitle = driver.getTitle();
+//            String ExpectedTitle = "Most Reliable App & Cross Browser Testing Platform | BrowserStack";
+//            Assert.assertEquals(ExpectedTitle, ActualTitle);
+//        //***Also assert that new password is saved in database in encrypted format***
 //
 //        //Logout
 //        internshipHomePage.logout();
@@ -47,6 +69,7 @@ public class InternshipUpdatePassword extends BaseTest {
 //        //Verify password updated
 //        Assert.assertTrue(internshipProfilePreferences.profileUpdateSuccess().equals("Profile updated"));
 //
+        //***figure out how to use the data provider to pom page (also move from basetest) instead of hard coding***
     }
 }
 

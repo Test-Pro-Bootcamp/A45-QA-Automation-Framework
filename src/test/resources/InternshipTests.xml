@@ -14,11 +14,6 @@
 <!--        <class name="SongTests">-->
 <!--        </class>-->
 <!--        <class name="PlaylistTests">-->
-<!--        </class>-->
-<!--        <class name="RegistrationTests">-->
-<!--        </class>-->
-<!--        <class name="ProfilePreferencesTests">-->
-<!--        </class>-->
     </classes>
     </test>
 </suite>

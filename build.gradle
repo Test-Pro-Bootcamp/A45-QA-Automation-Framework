@@ -27,7 +27,7 @@ test {
 }
     task internshipTest(type: Test){
         useTestNG(){
-            suites "src/test/resources/InternshipUpdatePassword.xml"
+            suites "src/test/resources/InternshipTests.xml"
             systemProperty "browser", System.getProperty ("browser")
         }
     }
