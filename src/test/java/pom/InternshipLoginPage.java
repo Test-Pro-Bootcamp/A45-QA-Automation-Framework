@@ -3,6 +3,8 @@ package pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class InternshipLoginPage extends BasePage {
 
@@ -31,6 +33,7 @@ public class InternshipLoginPage extends BasePage {
         providePassword("Proverbs99!");
         clickSubmit();
     }
+
     public void loginNewPassword() {
         provideEmail("esther.martinez32@gmail.com");
         providePassword("IwillSing99!");

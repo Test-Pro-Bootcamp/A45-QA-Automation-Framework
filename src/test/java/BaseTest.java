@@ -33,6 +33,12 @@ public class BaseTest {
                 {"", ""}
         };
     }
+    @DataProvider(name = "UnPw")//should set this up instead of hard coding in test class
+    public static Object[][] InitialLogin() {
+        return new Object[][]{
+                {"esther.martinez32@gmail.com", "Proverbs99!"},
+        };
+    }
     @BeforeSuite
     void setupClass() {
         //if want to run chrome in default

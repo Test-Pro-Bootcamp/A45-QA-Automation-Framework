@@ -31,10 +31,9 @@ public class InternshipHomePage extends BasePage{
     public void viewAllSongs(){
         findElement(allSongs).click();
     }
-
-    public void logout(){
+public void logout(){
         findElement(logoutBtn).click();
-    }
+}
+}
 
-    }
 

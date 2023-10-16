@@ -2,6 +2,8 @@ package pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.util.UUID;
 
@@ -17,6 +19,7 @@ public class InternshipProfilePreferences extends BasePage{
     private By submit = By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']");
     private By newProfileName = By.xpath("//span[@class='name']");
     private By popUpMessage = By.cssSelector("div[class='success show']");
+    String success = "Profile updated.";
 
     public String getRandomString() {
         return UUID.randomUUID().toString().replace("", "");
@@ -31,6 +34,7 @@ public class InternshipProfilePreferences extends BasePage{
     public void provideCurrentPassword (String password){
         findElement(provideCurrentPassword).sendKeys(password);
     }
+
     public void setNewPassword(String password){
         findElement(newPasswordField).clear();
         findElement(newPasswordField).sendKeys(password);
@@ -46,4 +50,7 @@ public class InternshipProfilePreferences extends BasePage{
             findElement(popUpMessage);
             return findElement(newProfileName).getText();
     }
-}
+
+    }
+
+
