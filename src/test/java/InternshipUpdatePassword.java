@@ -16,7 +16,6 @@ public class InternshipUpdatePassword extends BaseTest {
         //Update password
         internshipLoginPage.loginInitialPassword();
 
-        Thread.sleep(3000);
         internshipProfilePreferences.openUserProfilePage();
         internshipProfilePreferences.provideCurrentPassword("Proverbs99!");
         internshipProfilePreferences.setNewPassword("IwillSing99!");
@@ -30,10 +29,15 @@ public class InternshipUpdatePassword extends BaseTest {
         //Assert.assertEquals(internshipProfilePreferences.profileUpdatedSuccess.getText, success);
 
         Thread.sleep(3000);
-        WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
-        String success = "Profile updated.";
-        String getText = popup.getText();
-        Assert.assertEquals(getText, success);
+
+        //this works
+//        WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
+//        String success = "Profile updated.";
+//        String getText = popup.getText();
+//        Assert.assertEquals(getText, success);
+        //trying this
+        Assert.assertEquals(internshipProfilePreferences.getNotificationMessage(), "Profile Updated.");
+
         //***Also assert that new password is saved in database in encrypted format***
         //Logout
 

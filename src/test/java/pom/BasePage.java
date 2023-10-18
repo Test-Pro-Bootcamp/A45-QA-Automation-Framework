@@ -18,6 +18,10 @@ public class BasePage {
         wait= new WebDriverWait(driver, Duration.ofSeconds(5));
         actions=new Actions(driver);
     }
+    private By loadingBar = By.cssSelector("#overlay");
+    public void waitForLoadingBarToDisappear() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(loadingBar));
+    }
     public WebElement findElement(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
