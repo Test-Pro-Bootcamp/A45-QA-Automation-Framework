@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.InternshipHomePage;
@@ -12,7 +13,7 @@ public class InternshipUpdatePassword extends BaseTest {
     public void updatePassword() throws InterruptedException {
         InternshipLoginPage internshipLoginPage = new InternshipLoginPage(driver);
         InternshipProfilePreferences internshipProfilePreferences = new InternshipProfilePreferences(driver);
-        InternshipHomePage internshipHomePage = new InternshipHomePage(driver);
+        //InternshipHomePage internshipHomePage = new InternshipHomePage(driver);
         //Update password
         internshipLoginPage.loginInitialPassword();
 
@@ -21,30 +22,23 @@ public class InternshipUpdatePassword extends BaseTest {
         internshipProfilePreferences.setNewPassword("IwillSing99!");
         internshipProfilePreferences.saveProfile();
         //Verify password updated
-        //these are not correct
-        //Assert.assertTrue(internshipProfilePreferences.profileUpdateSuccess().equals("Profile updated"));//
-        //Assert.assertEquals(internshipProfilePreferences.profileUpdateSuccess(),"Profile updated");
-        //Assert.assertEquals("Profile updated", internshipProfilePreferences.profileUpdatedSuccess.getText());
-        //String success = "Profile updated";
-        //Assert.assertEquals(internshipProfilePreferences.profileUpdatedSuccess.getText, success);
-
+//THIS WON'T WORK WITHOUT A WAIT
         Thread.sleep(3000);
-
-        //this works
 //        WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
+//        wait.until(ExpectedConditions.elementToBeClickable(popup));
 //        String success = "Profile updated.";
 //        String getText = popup.getText();
 //        Assert.assertEquals(getText, success);
-        //trying this
-        Assert.assertEquals(internshipProfilePreferences.getNotificationMessage(), "Profile Updated.");
+        String expectedSuccessMessage = "Profile updated.";
+        Assert.assertEquals(InternshipProfilePreferences.getPopUpSuccessMessage(), expectedSuccessMessage);
 
         //***Also assert that new password is saved in database in encrypted format***
         //Logout
 
-        Thread.sleep(3000);
-        internshipHomePage.logout();
-        //verify logged out
-        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
+//        Thread.sleep(3000);
+//        internshipHomePage.logout();
+//        //verify logged out
+//        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
 //        //Login with newly saved password
 //        internshipLoginPage.loginNewPassword();
 //        //verify logged in

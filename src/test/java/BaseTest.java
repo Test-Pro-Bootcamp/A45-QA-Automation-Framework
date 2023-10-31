@@ -56,7 +56,6 @@ public class BaseTest {
 //        return threadDriver.get();
     //   }
 
-
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws InterruptedException, MalformedURLException {
@@ -82,8 +81,6 @@ public class BaseTest {
 
 // teacher recommendation if needed
 // options.addArguments("--disable-notifications");
-
-
     }
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();

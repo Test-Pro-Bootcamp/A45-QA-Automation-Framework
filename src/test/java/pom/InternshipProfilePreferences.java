@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.*;
 
 import java.util.UUID;
 
@@ -12,7 +13,6 @@ public class InternshipProfilePreferences extends BasePage {
     public InternshipProfilePreferences(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     private By emailField = By.cssSelector("input[type='email']");
     private By newPasswordField = By.cssSelector("input[id='inputProfileNewPassword']");
     private By avatar = By.xpath("//span//img[@class='avatar']");
@@ -21,13 +21,12 @@ public class InternshipProfilePreferences extends BasePage {
     private By submit = By.xpath("//form[@data-testid='update-profile-form']//button[@type='submit']");
     private By newProfileName = By.xpath("//span[@class='name']");
     private By popUpMessage = By.cssSelector("div[class='success show']");
-    WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
-    String success = "Profile updated.";
-
+    public String getPopUpSuccessMessage() {
+        return findElement(popUpMessage).getText();
+    }
     public String getRandomString() {
         return UUID.randomUUID().toString().replace("", "");
     }
-
     public void openUserProfilePage() {
         wait.until(ExpectedConditions.elementToBeClickable(avatar));
         //waitForLoadingBarToDisappear();//found in basepage as an option instead of above wait
@@ -39,33 +38,37 @@ public class InternshipProfilePreferences extends BasePage {
         findElement(emailField).clear();
         findElement(emailField).sendKeys(email);
     }
-
     public void provideCurrentPassword(String password) {
         findElement(provideCurrentPassword).sendKeys(password);
     }
-
     public void setNewPassword(String password) {
         findElement(newPasswordField).clear();
         findElement(newPasswordField).sendKeys(password);
     }
-
     public void setNewName(String newName) {
         findElement(inputName).clear();
         findElement(inputName).sendKeys(newName);
     }
-
     public void saveProfile() {
         findElement(submit).click();
     }
-
     public String profileUpdateSuccess() {
         findElement(popUpMessage);
         return findElement(newProfileName).getText();
     }
-public String getNotificationMessage(){//trying this
-        findElement(popUpMessage);
-        return findElement(popUpMessage.getText);
+//public String getNotificationMessage(){//trying this
+//        findElement(popUpMessage);
+//        wait.until(ExpectedConditions.elementToBeClickable(popUpMessage));
+//        return findElement(popUpMessage.getText();
+
+//public String getNotification(){
+//        WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
+//        wait.until(ExpectedConditions.elementToBeClickable(popup));
+//        String success = "Profile updated.";
+//        String getText = popup.getText();
+//       // Assert.assertEquals(getText, success);
+
 }
-}
+
 
 
