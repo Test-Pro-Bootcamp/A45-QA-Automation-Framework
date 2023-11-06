@@ -13,7 +13,7 @@ public class InternshipUpdatePassword extends BaseTest {
     public void updatePassword() throws InterruptedException {
         InternshipLoginPage internshipLoginPage = new InternshipLoginPage(driver);
         InternshipProfilePreferences internshipProfilePreferences = new InternshipProfilePreferences(driver);
-        //InternshipHomePage internshipHomePage = new InternshipHomePage(driver);
+        InternshipHomePage internshipHomePage = new InternshipHomePage(driver);
         //Update password
         internshipLoginPage.loginInitialPassword();
 
@@ -22,32 +22,34 @@ public class InternshipUpdatePassword extends BaseTest {
         internshipProfilePreferences.setNewPassword("IwillSing99!");
         internshipProfilePreferences.saveProfile();
         //Verify password updated
-//THIS WON'T WORK WITHOUT A WAIT
-        Thread.sleep(3000);
 //        WebElement popup = driver.findElement(By.cssSelector("div[class='success show']"));
 //        wait.until(ExpectedConditions.elementToBeClickable(popup));
 //        String success = "Profile updated.";
 //        String getText = popup.getText();
 //        Assert.assertEquals(getText, success);
         String expectedSuccessMessage = "Profile updated.";
-        Assert.assertEquals(InternshipProfilePreferences.getPopUpSuccessMessage(), expectedSuccessMessage);
-
+        //***calling the object of InternshipProfilePreferences (lower case i) instead of the class
+        Assert.assertEquals(internshipProfilePreferences.getPopUpSuccessMessage(), expectedSuccessMessage);
         //***Also assert that new password is saved in database in encrypted format***
         //Logout
 
-//        Thread.sleep(3000);
-//        internshipHomePage.logout();
-//        //verify logged out
-//        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
-//        //Login with newly saved password
-//        internshipLoginPage.loginNewPassword();
-//        //verify logged in
-//        Assert.assertTrue(internshipHomePage.assertAvatar().isDisplayed());
-//
-//        //Login with old password
-//        internshipLoginPage.loginInitialPassword();
-//        //Verify not logged in
-//        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
+        //Thread.sleep(5000);
+        // waiting to fix the wait problem and then figure out how to use a different pw and string
+        internshipHomePage.logout();
+        //verify logged out
+        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
+        //Login with newly saved password
+        internshipLoginPage.loginNewPassword();
+        //verify logged in
+        Assert.assertTrue(internshipHomePage.assertAvatar().isDisplayed());
+        //Logout
+        internshipHomePage.logout();
+        //verify logged out
+        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
+        //Login with old password
+        internshipLoginPage.loginInitialPassword();
+        //Verify not logged in
+        Assert.assertTrue(internshipLoginPage.submitBtn().isDisplayed());
 //
 //        //Clean up - Change password to former password so that test will work again as coded
 //        internshipLoginPage.loginNewPassword();

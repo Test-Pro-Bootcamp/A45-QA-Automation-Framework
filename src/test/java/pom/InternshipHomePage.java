@@ -3,6 +3,9 @@ package pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.Objects;
 
 public class InternshipHomePage extends BasePage{
     public InternshipHomePage(WebDriver givenDriver) {
@@ -32,6 +35,8 @@ public class InternshipHomePage extends BasePage{
         findElement(allSongs).click();
     }
 public void logout(){
+//        WebElement logoutBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[data-testid='btn-logout']")));
+//        logoutBtn.click();
         findElement(logoutBtn).click();
 }
 }
